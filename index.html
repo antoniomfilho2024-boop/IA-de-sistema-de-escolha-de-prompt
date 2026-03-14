@@ -6,293 +6,171 @@
 <title>Guia de Estilos de Imagem — Gemini</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--bg2:#111118;--bg3:#18181f;--bg4:#1e1e28;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--border3:rgba(255,255,255,0.22);
+  --text:#ededf5;--text2:#8888a8;--text3:#44445a;
+  --accent:#6c5ce7;--accent-light:rgba(108,92,231,0.15);--accent-glow:rgba(108,92,231,0.3);
+  --green:#00cba9;--amber:#f59e0b;--coral:#f87171;
+  --radius:12px;--radius-lg:16px;--radius-xl:20px;
+  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Cascadia Code','Fira Code',monospace;
+}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
 
-:root {
-  --bg: #0a0a0f;
-  --bg2: #111118;
-  --bg3: #18181f;
-  --bg4: #1e1e28;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.13);
-  --border3: rgba(255,255,255,0.22);
-  --text: #ededf5;
-  --text2: #8888a8;
-  --text3: #44445a;
-  --accent: #6c5ce7;
-  --accent-light: rgba(108,92,231,0.15);
-  --accent-glow: rgba(108,92,231,0.3);
-  --green: #00cba9;
-  --radius: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
-}
+/* HEADER */
+.header{padding:2.5rem 2rem 1.5rem;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--border);margin-bottom:0}
+.header-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px;font-family:var(--font-display)}
+.header-title{font-family:var(--font-display);font-size:clamp(24px,3.5vw,38px);font-weight:700;color:var(--text);letter-spacing:-0.5px;line-height:1.15;margin-bottom:8px}
+.header-title span{color:var(--accent)}
+.header-sub{font-size:13px;color:var(--text2);max-width:520px}
+.gemini-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:4px 12px;background:rgba(66,133,244,0.12);border:1px solid rgba(66,133,244,0.25);border-radius:20px;font-size:12px;color:#74aaf8;font-weight:500}
+.gemini-dot{width:6px;height:6px;border-radius:50%;background:#74aaf8;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
-}
+/* TOP NAV TABS */
+.nav-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);max-width:1200px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:12px 18px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.15s;font-family:var(--font-display);letter-spacing:0.02em;flex-shrink:0}
+.nav-tab:hover{color:var(--text2)}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* ── HEADER ── */
-.header {
-  padding: 3rem 2rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 2rem;
-}
-.header-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-family: var(--font-display);
-}
-.header-title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.5px;
-  line-height: 1.15;
-  margin-bottom: 10px;
-}
-.header-title span { color: var(--accent); }
-.header-sub {
-  font-size: 14px;
-  color: var(--text2);
-  max-width: 520px;
-}
-.gemini-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 14px;
-  padding: 5px 12px;
-  background: rgba(66,133,244,0.12);
-  border: 1px solid rgba(66,133,244,0.25);
-  border-radius: 20px;
-  font-size: 12px;
-  color: #74aaf8;
-  font-weight: 500;
-}
-.gemini-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #74aaf8;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:1.5rem 2rem 4rem}
 
-/* ── MAIN LAYOUT ── */
-.main { max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem; }
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block}
 
-/* ── SEARCH + FILTERS ── */
-.controls { margin-bottom: 1.5rem; }
-.search-wrap { position: relative; margin-bottom: 1rem; }
-.search-icon {
-  position: absolute; left: 14px; top: 50%;
-  transform: translateY(-50%);
-  color: var(--text3); font-size: 16px; pointer-events: none;
-}
-#sg-search {
-  width: 100%;
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  padding: 11px 14px 11px 40px;
-  font-size: 14px;
-  color: var(--text);
-  outline: none;
-  font-family: var(--font-body);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-#sg-search::placeholder { color: var(--text3); }
-#sg-search:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-light);
-}
+/* ── GUIA PANEL ── */
+.controls{margin-bottom:1.25rem}
+.search-wrap{position:relative;margin-bottom:.85rem}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:15px;pointer-events:none}
+#sg-search{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px 10px 40px;font-size:14px;color:var(--text);outline:none;font-family:var(--font-body);transition:border-color .2s,box-shadow .2s}
+#sg-search::placeholder{color:var(--text3)}
+#sg-search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:5px}
+.ftab{padding:5px 12px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);transition:all .15s;user-select:none;font-family:var(--font-body);font-weight:500}
+.ftab:hover{border-color:var(--border3);color:var(--text)}
+.ftab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.sg-count{font-size:12px;color:var(--text3);margin-bottom:1rem;font-family:var(--font-display);letter-spacing:.03em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 
-.tabs {
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
-.tab {
-  padding: 6px 14px;
-  border: 1px solid var(--border2);
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 12px;
-  color: var(--text2);
-  background: var(--bg2);
-  transition: all 0.15s;
-  user-select: none;
-  font-family: var(--font-body);
-  font-weight: 500;
-}
-.tab:hover { border-color: var(--border3); color: var(--text); }
-.tab.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s}
+.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.card.expanded{border-color:var(--accent);transform:none}
+.card-fav{position:absolute;top:10px;right:10px;font-size:14px;cursor:pointer;opacity:0.4;transition:opacity .15s,transform .15s;z-index:2}
+.card-fav:hover,.card-fav.active{opacity:1}
+.card-fav.active{transform:scale(1.2)}
+.card-body{padding:14px 16px;position:relative}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px}
+.card-title{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--text);line-height:1.3;padding-right:20px}
+.card-arrow{font-size:10px;color:var(--text3);margin-top:3px;transition:transform .2s,color .2s;flex-shrink:0}
+.card.expanded .card-arrow{transform:rotate(180deg);color:var(--accent)}
+.card-cat{font-size:11px;color:var(--text3);margin-bottom:6px;letter-spacing:.04em;font-weight:500}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.55}
+.card-prompts{display:none;border-top:1px solid var(--border);padding:14px 16px;background:var(--bg3)}
+.card.expanded .card-prompts{display:block}
+.prompt-num{font-size:10px;color:var(--text3);font-family:var(--font-display);margin-bottom:4px;margin-top:10px;font-weight:600;letter-spacing:.05em}
+.prompt-num:first-child{margin-top:0}
+.prompt-block{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:6px;font-size:11.5px;color:#c8c8e8;line-height:1.6;font-family:var(--font-mono);word-break:break-word;white-space:pre-wrap}
+.btn-copy{display:block;width:100%;margin-bottom:4px;padding:5px 10px;font-size:11px;border:1px solid var(--border2);border-radius:8px;cursor:pointer;background:var(--bg2);color:var(--text2);font-family:var(--font-body);transition:all .15s;text-align:center}
+.btn-copy:hover{background:var(--bg4);color:var(--text);border-color:var(--border3)}
+.btn-copy.ok{border-color:var(--green);color:var(--green)}
+.btn-use{width:100%;margin-top:10px;padding:9px 14px;font-size:12px;font-weight:600;border:1px solid var(--accent);border-radius:var(--radius);cursor:pointer;background:var(--accent-light);color:var(--accent);font-family:var(--font-display);transition:all .2s;letter-spacing:.03em}
+.btn-use:hover{background:var(--accent);color:#fff}
+.empty{text-align:center;padding:4rem 1rem;color:var(--text3);font-size:14px}
 
-.sg-count {
-  font-size: 12px; color: var(--text3);
-  margin-bottom: 1.25rem;
-  font-family: var(--font-display);
-  letter-spacing: 0.03em;
-}
+/* ── BUILDER PANEL ── */
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:700px){.builder{grid-template-columns:1fr}}
+.builder-col{}
+.section-title{font-family:var(--font-display);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.field-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;font-family:var(--font-display);letter-spacing:.03em}
+.field-input{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:9px 12px;font-size:13px;color:var(--text);outline:none;font-family:var(--font-body);transition:border-color .2s;margin-bottom:12px}
+.field-input:focus{border-color:var(--accent)}
+.field-input::placeholder{color:var(--text3)}
+.field-select{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:9px 12px;font-size:13px;color:var(--text);outline:none;font-family:var(--font-body);margin-bottom:12px;cursor:pointer;appearance:none;-webkit-appearance:none}
+.field-select:focus{border-color:var(--accent)}
+.field-select option{background:var(--bg3);color:var(--text)}
+.builder-preview{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:1.25rem;margin-top:1rem;position:sticky;top:1rem}
+.preview-title{font-family:var(--font-display);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.preview-lang{display:flex;gap:6px;margin-bottom:12px}
+.preview-lang-btn{padding:4px 12px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text2);background:var(--bg3);font-family:var(--font-body);transition:all .15s}
+.preview-lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.preview-box{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-size:12px;color:#c8c8e8;line-height:1.7;font-family:var(--font-mono);white-space:pre-wrap;word-break:break-word;min-height:120px}
+.preview-highlight{color:var(--accent);font-weight:600}
+.btn-build-copy{width:100%;margin-top:10px;padding:10px 14px;font-size:13px;font-weight:600;border:1px solid var(--green);border-radius:var(--radius);cursor:pointer;background:rgba(0,203,169,0.1);color:var(--green);font-family:var(--font-display);transition:all .2s;letter-spacing:.03em}
+.btn-build-copy:hover{background:var(--green);color:#000}
+.btn-build-copy.ok{background:var(--green);color:#000}
+.chip-group{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.chip{padding:4px 10px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text2);background:var(--bg3);transition:all .15s;user-select:none}
+.chip:hover{border-color:var(--border3);color:var(--text)}
+.chip.sel{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
 
-/* ── GRID ── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 14px;
-}
+/* ── COMBO PANEL ── */
+.combo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:800px){.combo-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.combo-grid{grid-template-columns:1fr}}
+.combo-col-title{font-family:var(--font-display);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
+.combo-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:10px 12px;cursor:pointer;transition:all .15s;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.combo-item:hover{border-color:var(--border2)}
+.combo-item.sel{border-color:var(--accent);background:var(--accent-light)}
+.combo-item-icon{font-size:14px;flex-shrink:0}
+.combo-item-text{font-size:12px;color:var(--text2);line-height:1.3}
+.combo-item.sel .combo-item-text{color:var(--text)}
+.combo-item-title{font-weight:600;font-size:12px}
+.combo-result{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:1.25rem;margin-top:1.5rem}
+.combo-result-title{font-family:var(--font-display);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
+.combo-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;min-height:28px}
+.combo-tag{padding:4px 10px;background:var(--accent-light);border:1px solid var(--accent);border-radius:20px;font-size:11px;color:var(--accent);display:flex;align-items:center;gap:5px}
+.combo-tag-x{cursor:pointer;opacity:.7}
+.combo-tag-x:hover{opacity:1}
+.combo-lang{display:flex;gap:6px;margin-bottom:10px}
+.combo-lang-btn{padding:4px 12px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text2);background:var(--bg3);font-family:var(--font-body);transition:all .15s}
+.combo-lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.combo-box{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-size:12px;color:#c8c8e8;line-height:1.7;font-family:var(--font-mono);white-space:pre-wrap;word-break:break-word;min-height:80px}
+.btn-combo-copy{width:100%;margin-top:10px;padding:9px 14px;font-size:12px;font-weight:600;border:1px solid var(--green);border-radius:var(--radius);cursor:pointer;background:rgba(0,203,169,0.1);color:var(--green);font-family:var(--font-display);transition:all .2s}
+.btn-combo-copy:hover{background:var(--green);color:#000}
+.btn-combo-copy.ok{background:var(--green);color:#000}
+.combo-hint{font-size:12px;color:var(--text3);text-align:center;padding:2rem;font-style:italic}
 
-/* ── CARD ── */
-.card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.2s, transform 0.15s;
-}
-.card:hover { border-color: var(--border2); transform: translateY(-2px); }
-.card.expanded { border-color: var(--accent); transform: none; }
+/* ── HISTÓRICO PANEL ── */
+.hist-empty{text-align:center;padding:4rem;color:var(--text3);font-size:14px}
+.hist-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
+.hist-meta{flex-shrink:0;font-size:11px;color:var(--text3);font-family:var(--font-display);min-width:80px}
+.hist-style{font-size:11px;font-weight:600;color:var(--accent);margin-bottom:2px}
+.hist-time{font-size:10px;color:var(--text3)}
+.hist-text{flex:1;font-size:12px;color:var(--text2);font-family:var(--font-mono);line-height:1.5;word-break:break-word;white-space:pre-wrap}
+.hist-actions{display:flex;gap:6px;flex-shrink:0}
+.hist-btn{padding:4px 10px;font-size:11px;border:1px solid var(--border2);border-radius:6px;cursor:pointer;background:var(--bg3);color:var(--text2);font-family:var(--font-body);transition:all .15s}
+.hist-btn:hover{background:var(--bg4);color:var(--text)}
+.hist-btn.ok{border-color:var(--green);color:var(--green)}
+.hist-clear{margin-bottom:1rem;text-align:right}
+.btn-clear{padding:6px 14px;font-size:12px;border:1px solid var(--border2);border-radius:var(--radius);cursor:pointer;background:var(--bg2);color:var(--text3);font-family:var(--font-body);transition:all .15s}
+.btn-clear:hover{color:var(--coral);border-color:var(--coral)}
 
+/* ── FAVORITOS ── */
+.fav-empty{text-align:center;padding:4rem;color:var(--text3);font-size:14px}
 
-/* ── CARD BODY ── */
-.card-body { padding: 14px 16px; }
-.card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
-.card-title { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
-.card-arrow { font-size: 10px; color: var(--text3); margin-top: 3px; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
-.card.expanded .card-arrow { transform: rotate(180deg); color: var(--accent); }
-.card-cat { font-size: 11px; color: var(--text3); margin-bottom: 6px; letter-spacing: 0.04em; font-weight: 500; }
-.card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; }
+/* ── PALETAS ── */
+.palettes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.palette-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s}
+.palette-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.palette-card.expanded{border-color:var(--accent);transform:none}
+.palette-swatches{display:flex;height:56px}
+.swatch{flex:1}
+.palette-body{padding:12px 14px}
+.palette-title{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.palette-desc{font-size:11px;color:var(--text2);line-height:1.45}
+.palette-prompts{display:none;border-top:1px solid var(--border);padding:12px 14px;background:var(--bg3)}
+.palette-card.expanded .palette-prompts{display:block}
 
-/* ── PROMPTS ── */
-.card-prompts {
-  display: none;
-  border-top: 1px solid var(--border);
-  padding: 14px 16px;
-  background: var(--bg3);
-}
-.card.expanded .card-prompts { display: block; }
-
-.prompt-label {
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-family: var(--font-display);
-}
-.prompt-block {
-  background: var(--bg4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  font-size: 11.5px;
-  color: #c8c8e8;
-  line-height: 1.6;
-  font-family: var(--font-mono);
-  word-break: break-word;
-  position: relative;
-}
-.prompt-num {
-  font-size: 10px;
-  color: var(--text3);
-  font-family: var(--font-display);
-  margin-bottom: 4px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-.btn-copy {
-  display: block;
-  width: 100%;
-  margin-top: 4px;
-  padding: 5px 10px;
-  font-size: 11px;
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  cursor: pointer;
-  background: var(--bg2);
-  color: var(--text2);
-  font-family: var(--font-body);
-  transition: all 0.15s;
-  text-align: center;
-}
-.btn-copy:hover { background: var(--bg4); color: var(--text); border-color: var(--border3); }
-.btn-copy.ok { border-color: var(--green); color: var(--green); }
-
-.btn-use {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
-  cursor: pointer;
-  background: var(--accent-light);
-  color: var(--accent);
-  font-family: var(--font-display);
-  transition: all 0.2s;
-  letter-spacing: 0.03em;
-}
-.btn-use:hover { background: var(--accent); color: #fff; }
-
-/* ── ANATOMY SECTION ── */
-.anatomy {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-.anatomy-title {
-  font-family: var(--font-display);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 14px;
-}
-.anatomy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-  gap: 8px;
-}
-.anatomy-item {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 10px 12px;
-}
-.anatomy-num { font-size: 10px; font-weight: 700; color: var(--accent); margin-bottom: 3px; font-family: var(--font-display); letter-spacing: 0.08em; }
-.anatomy-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; font-family: var(--font-display); }
-.anatomy-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
-
-/* ── EMPTY ── */
-.empty { text-align: center; padding: 4rem 1rem; color: var(--text3); font-size: 14px; }
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
 </style>
 </head>
 <body>
@@ -300,79 +178,159 @@ body {
 <div class="header">
   <div class="header-eyebrow">Style Reference Guide</div>
   <div class="header-title">Guia de Estilos<br>de <span>Imagem</span></div>
-  <div class="header-sub">Prompts prontos para transformar qualquer imagem no Gemini. Anexe sua imagem e cole o prompt.</div>
-  <div class="gemini-badge">
-    <span class="gemini-dot"></span>
-    Otimizado para Gemini
-  </div>
+  <div class="header-sub">Prompts para transformar imagens no Gemini. Todas as ferramentas em um só lugar.</div>
+  <div class="gemini-badge"><span class="gemini-dot"></span>Otimizado para Gemini</div>
+</div>
+
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="showPanel('guia',this)">📚 Guia de Estilos</div>
+  <div class="nav-tab" onclick="showPanel('builder',this)">🔧 Prompt Builder</div>
+  <div class="nav-tab" onclick="showPanel('combo',this)">🔀 Combinador</div>
+  <div class="nav-tab" onclick="showPanel('paletas',this)">🎨 Paletas de Cor</div>
+  <div class="nav-tab" onclick="showPanel('favoritos',this)">⭐ Favoritos</div>
+  <div class="nav-tab" onclick="showPanel('historico',this)">🕓 Histórico</div>
 </div>
 
 <div class="main">
 
-  <div class="anatomy" id="anatomy-box">
-    <div class="anatomy-title">Como usar no Gemini</div>
-    <div class="anatomy-grid">
-      <div class="anatomy-item">
-        <div class="anatomy-num">01</div>
-        <div class="anatomy-name">Anexe a imagem</div>
-        <div class="anatomy-desc">No Gemini, clique no ícone de imagem e envie sua foto</div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-num">02</div>
-        <div class="anatomy-name">Cole o prompt</div>
-        <div class="anatomy-desc">Copie o prompt do estilo desejado e cole na caixa de texto</div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-num">03</div>
-        <div class="anatomy-name">Ajuste [subject]</div>
-        <div class="anatomy-desc">Se o prompt tiver [subject], substitua pelo seu tema específico</div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-num">04</div>
-        <div class="anatomy-name">Itere</div>
-        <div class="anatomy-desc">Adicione "more dramatic" ou "less saturated" para refinar o resultado</div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-num">05</div>
-        <div class="anatomy-name">Preserve</div>
-        <div class="anatomy-desc">Adicione "preserve original composition and subject" para manter a estrutura</div>
-      </div>
-      <div class="anatomy-item">
-        <div class="anatomy-num">06</div>
-        <div class="anatomy-name">Negatize</div>
-        <div class="anatomy-desc">Adicione "do not add [x]" para evitar elementos indesejados</div>
-      </div>
-    </div>
-  </div>
-
+<!-- ══════════════════════════════════════════════
+     PAINEL 1 — GUIA DE ESTILOS
+══════════════════════════════════════════════ -->
+<div class="panel active" id="panel-guia">
   <div class="controls">
     <div class="search-wrap">
       <span class="search-icon">⌕</span>
-      <input type="text" id="sg-search" placeholder="Buscar estilo..." oninput="sgRender()">
+      <input type="text" id="sg-search" placeholder="Buscar estilo, técnica ou intenção..." oninput="renderGuia()">
     </div>
-    <div class="tabs" id="tabs">
-      <div class="tab active" onclick="sgTab('all',this)">Todos</div>
-      <div class="tab" onclick="sgTab('fotografia',this)">📷 Fotografia</div>
-      <div class="tab" onclick="sgTab('pintura',this)">🖌 Pintura</div>
-      <div class="tab" onclick="sgTab('digital',this)">🖥 Digital & 3D</div>
-      <div class="tab" onclick="sgTab('retro',this)">📼 Retrô</div>
-      <div class="tab" onclick="sgTab('fantasia',this)">🐉 Fantasia</div>
-      <div class="tab" onclick="sgTab('ilustracao',this)">✏️ Ilustração</div>
-      <div class="tab" onclick="sgTab('iluminacao',this)">💡 Iluminação</div>
-      <div class="tab" onclick="sgTab('composicao',this)">📐 Composição</div>
-      <div class="tab" onclick="sgTab('angulos',this)">🎥 Ângulos & Planos</div>
-      <div class="tab" onclick="sgTab('conceito',this)">🧠 Método</div>
+    <div class="filter-tabs">
+      <div class="ftab active" onclick="setFtab('all',this)">Todos</div>
+      <div class="ftab" onclick="setFtab('fotografia',this)">📷 Fotografia</div>
+      <div class="ftab" onclick="setFtab('pintura',this)">🖌 Pintura</div>
+      <div class="ftab" onclick="setFtab('digital',this)">🖥 Digital & 3D</div>
+      <div class="ftab" onclick="setFtab('retro',this)">📼 Retrô</div>
+      <div class="ftab" onclick="setFtab('fantasia',this)">🐉 Fantasia</div>
+      <div class="ftab" onclick="setFtab('ilustracao',this)">✏️ Ilustração</div>
+      <div class="ftab" onclick="setFtab('iluminacao',this)">💡 Iluminação</div>
+      <div class="ftab" onclick="setFtab('composicao',this)">📐 Composição</div>
+      <div class="ftab" onclick="setFtab('angulos',this)">🎥 Ângulos & Planos</div>
+      <div class="ftab" onclick="setFtab('conceito',this)">🧠 Método</div>
     </div>
   </div>
-
   <div class="sg-count" id="sg-count"></div>
   <div class="grid" id="grid"></div>
 </div>
 
+<!-- ══════════════════════════════════════════════
+     PAINEL 2 — PROMPT BUILDER
+══════════════════════════════════════════════ -->
+<div class="panel" id="panel-builder">
+  <div class="builder">
+    <div class="builder-col">
+      <div class="section-title">Monte seu prompt</div>
+
+      <div class="field-label">Seu sujeito (o que está na imagem)</div>
+      <input class="field-input" id="b-subject" placeholder="ex: uma mulher de cabelo ruivo, uma cidade, um produto..." oninput="buildPrompt()">
+
+      <div class="field-label">Estilo visual</div>
+      <select class="field-select" id="b-style" onchange="buildPrompt()">
+        <option value="">— Escolha um estilo —</option>
+      </select>
+
+      <div class="field-label">Iluminação</div>
+      <div class="chip-group" id="b-lighting-chips"></div>
+
+      <div class="field-label">Ângulo / Plano de câmera</div>
+      <div class="chip-group" id="b-angle-chips"></div>
+
+      <div class="field-label">Humor / Atmosfera</div>
+      <div class="chip-group" id="b-mood-chips"></div>
+
+      <div class="field-label">Paleta de cor</div>
+      <div class="chip-group" id="b-color-chips"></div>
+
+      <div class="field-label">Qualidade técnica</div>
+      <div class="chip-group" id="b-quality-chips"></div>
+
+      <div class="field-label">O que preservar</div>
+      <div class="chip-group" id="b-preserve-chips"></div>
+
+      <div class="field-label">O que evitar (negativo)</div>
+      <div class="chip-group" id="b-avoid-chips"></div>
+    </div>
+
+    <div class="builder-col">
+      <div class="builder-preview">
+        <div class="preview-title">Prompt gerado</div>
+        <div class="preview-lang">
+          <button class="preview-lang-btn active" onclick="setBLang('en',this)">🇺🇸 English</button>
+          <button class="preview-lang-btn" onclick="setBLang('pt',this)">🇧🇷 Português</button>
+        </div>
+        <div class="preview-box" id="b-preview">Preencha os campos ao lado para gerar seu prompt personalizado.</div>
+        <button class="btn-build-copy" id="b-copy-btn" onclick="copyBuilderPrompt()">Copiar prompt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAINEL 3 — COMBINADOR
+══════════════════════════════════════════════ -->
+<div class="panel" id="panel-combo">
+  <div style="margin-bottom:1rem">
+    <div class="section-title">Combine até 4 estilos</div>
+    <div style="font-size:12px;color:var(--text3)">Selecione um item de cada coluna e gere um prompt único que mescla tudo.</div>
+  </div>
+  <div class="combo-grid">
+    <div>
+      <div class="combo-col-title">Estilo Visual</div>
+      <div id="combo-col-style"></div>
+    </div>
+    <div>
+      <div class="combo-col-title">Iluminação</div>
+      <div id="combo-col-light"></div>
+    </div>
+    <div>
+      <div class="combo-col-title">Ângulo</div>
+      <div id="combo-col-angle"></div>
+    </div>
+  </div>
+  <div class="combo-result">
+    <div class="combo-result-title">Combinação selecionada</div>
+    <div class="combo-tags" id="combo-tags"><span style="font-size:12px;color:var(--text3);font-style:italic">Nenhum estilo selecionado ainda</span></div>
+    <div class="combo-lang">
+      <button class="combo-lang-btn active" onclick="setCLang('en',this)">🇺🇸 English</button>
+      <button class="combo-lang-btn" onclick="setCLang('pt',this)">🇧🇷 Português</button>
+    </div>
+    <div class="combo-box" id="combo-box">Selecione estilos acima para combinar.</div>
+    <button class="btn-combo-copy" id="combo-copy-btn" onclick="copyCombo()">Copiar prompt combinado</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAINEL 4 — PALETAS DE COR
+══════════════════════════════════════════════ -->
+<div class="panel" id="panel-paletas">
+  <div class="palettes-grid" id="palettes-grid"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAINEL 5 — FAVORITOS
+══════════════════════════════════════════════ -->
+<div class="panel" id="panel-favoritos">
+  <div class="grid" id="fav-grid"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAINEL 6 — HISTÓRICO
+══════════════════════════════════════════════ -->
+<div class="panel" id="panel-historico">
+  <div class="hist-clear"><button class="btn-clear" onclick="clearHist()">Limpar histórico</button></div>
+  <div id="hist-list"></div>
+</div>
+
+</div><!-- /main -->
+
 <script>
-/* =====================================================
-   DADOS — Prompts reescritos para Gemini (transformação)
-   ===================================================== */
 const SG_DATA = [
   {cat:"fotografia", icon:"📷", title:"Fotorrealista",
    desc:"Transforma a imagem em fotografia ultra-realista com detalhes precisos.",
@@ -917,91 +875,541 @@ const SG_DATA = [
 ];
 
 /* =====================================================
-   ESTADO & RENDER
+   PALETAS DE COR
    ===================================================== */
-let sgTab = 'all';
-let sgOpen = null;
+const PALETTES = [
+  {title:"Monocromático",desc:"Um só matiz em variações de tom e saturação. Elegante e coeso.",swatches:["#1a1a2e","#2d2d5a","#4a4a8a","#7474b8","#a8a8d4"],
+   prompts:[
+     "Transform this image into a monochromatic color palette. Use a single base hue in varying tones from deep shadow to bright highlight. Remove all competing colors. Preserve original subject and composition.",
+     "Convert this image to monochromatic style. Apply a unified single-color scheme with dark, mid and light tones of one hue only. Keep original subject. Do not add colors outside the chosen hue family.",
+     "Transforme esta imagem em uma paleta de cores monocromática. Use um único matiz base em tons variados do escuro ao claro. Remova todas as cores concorrentes. Preserve o sujeito e composição originais."
+   ]},
+  {title:"Duotone",desc:"Dois tons contrastantes que substituem as sombras e os destaques.",swatches:["#0a0a0a","#1a1a1a","#6c5ce7","#a898ff","#ffffff"],
+   prompts:[
+     "Transform this image into a duotone style using two contrasting colors. Replace shadows with a deep dark tone and highlights with a vivid accent color. All midtones blend between these two. Preserve original subject.",
+     "Convert this image to a duotone color treatment. Apply one color to the shadow areas and a contrasting color to the highlights, creating a bold graphic two-tone effect. Keep original composition.",
+     "Transforme esta imagem em estilo duotone usando duas cores contrastantes. Substitua as sombras por um tom escuro profundo e os destaques por uma cor de acento vívida. Preserve o sujeito original."
+   ]},
+  {title:"Paleta Quente",desc:"Vermelhos, laranjas e amarelos. Energia, paixão e calor.",swatches:["#7c2d12","#c2410c","#ea580c","#fb923c","#fde68a"],
+   prompts:[
+     "Transform this image with a warm color palette. Shift all tones toward reds, oranges, and warm yellows. Enhance warmth in shadows and highlights. Create a passionate, energetic, or cozy atmosphere. Preserve original subject.",
+     "Convert this image to warm tones only. Apply a color grade that pushes toward amber, sienna, and burnt orange. Remove cool blues and greens. Keep original subject and composition.",
+     "Transforme esta imagem com uma paleta de cores quentes. Desloque todos os tons para vermelhos, laranjas e amarelos quentes. Crie uma atmosfera apaixonada, energética ou aconchegante. Preserve o sujeito original."
+   ]},
+  {title:"Paleta Fria",desc:"Azuis, verdes e roxos. Calma, melancolia e profundidade.",swatches:["#0c1445","#1e3a8a","#2563eb","#60a5fa","#bfdbfe"],
+   prompts:[
+     "Transform this image with a cool color palette. Shift all tones toward blues, teals, and cool greens. Create a calm, melancholic, or mysterious atmosphere. Remove warm reds and oranges. Preserve original subject.",
+     "Convert this image to cool tones. Apply a color grade pushing toward ice blue, steel, and deep indigo. Desaturate warm tones and enhance cool tones. Keep original subject and composition.",
+     "Transforme esta imagem com uma paleta de cores frias. Desloque todos os tons para azuis, teais e verdes frios. Crie uma atmosfera calma, melancólica ou misteriosa. Remova vermelhos e laranjas quentes. Preserve o sujeito."
+   ]},
+  {title:"Pastel",desc:"Tons suaves e desbotados. Delicadeza, nostalgia e romantismo.",swatches:["#fce7f3","#fbcfe8","#c7d2fe","#bfdbfe","#d1fae5"],
+   prompts:[
+     "Transform this image into a pastel color palette. Soften and desaturate all colors, adding white to each tone to create light airy pastels. Reduce contrast slightly. Create a delicate, romantic, or nostalgic feel. Preserve original subject.",
+     "Convert this image to a soft pastel aesthetic. Apply washed-out light tones, add a slight white haze to all colors, reduce saturation significantly while keeping the lightest possible version of each hue. Keep original subject.",
+     "Transforme esta imagem em uma paleta de cores pastel. Suavize e dessature todas as cores, adicionando branco a cada tom para criar pastéis leves e arejados. Crie uma sensação delicada, romântica ou nostálgica."
+   ]},
+  {title:"Neon / High Saturation",desc:"Cores ultra-saturadas e vibrantes. Energia máxima e impacto visual.",swatches:["#0d0d0d","#ff0080","#00ffcc","#7700ff","#ffee00"],
+   prompts:[
+     "Transform this image with neon high-saturation colors. Push all colors to maximum vibrance and saturation. Add glowing neon quality to the brightest areas. Create maximum visual impact and energy. Preserve original subject.",
+     "Convert this image to an ultra-saturated neon color treatment. Amplify all colors to electric intensity, add bloom/glow to bright elements, create a hyper-vivid otherworldly palette. Keep original subject.",
+     "Transforme esta imagem com cores neon de alta saturação. Leve todas as cores à máxima vibração e saturação. Adicione qualidade brilhante de neon às áreas mais claras. Crie impacto visual máximo. Preserve o sujeito original."
+   ]},
+  {title:"Dessaturado / Muted",desc:"Cores apagadas e acinzentadas. Melancolia, seriedade e cinema.",swatches:["#2d2d2d","#4a4a4a","#6b6b6b","#9a9a9a","#c8c8c8"],
+   prompts:[
+     "Transform this image with a desaturated muted color palette. Remove vibrancy from all colors, pushing toward grey and flat tones. Create a cinematic, serious, or melancholic atmosphere. Preserve original subject.",
+     "Convert this image to a muted desaturated treatment. Pull the saturation down significantly on all channels, leaving only subtle color hints. Apply a slight color grade toward cool or warm grey. Keep original subject.",
+     "Transforme esta imagem com uma paleta de cores dessaturada e apagada. Remova a vibração de todas as cores, empurrando para tons cinza e planos. Crie uma atmosfera cinematográfica, séria ou melancólica."
+   ]},
+  {title:"Complementar",desc:"Cores opostas no círculo cromático. Contraste máximo e dinâmico.",swatches:["#1e3a8a","#2563eb","#7f1d1d","#dc2626","#fca5a5"],
+   prompts:[
+     "Transform this image using a complementary color scheme. Apply two opposite colors on the color wheel (e.g. blue and orange, or purple and yellow) as the dominant palette. Create dynamic vibrant contrast. Preserve original subject.",
+     "Convert this image to a complementary color palette treatment. Use colors directly opposite each other on the color wheel to maximize contrast and visual tension. Classic pairs: teal & orange, purple & yellow, red & green. Keep subject.",
+     "Transforme esta imagem usando um esquema de cores complementares. Aplique duas cores opostas no círculo cromático como paleta dominante. Crie contraste dinâmico e vibrante. Preserve o sujeito original."
+   ]},
+  {title:"Análogo",desc:"Cores vizinhas no círculo cromático. Harmonia e coerência visual.",swatches:["#166534","#15803d","#4ade80","#86efac","#bbf7d0"],
+   prompts:[
+     "Transform this image using an analogous color scheme. Apply colors that sit adjacent to each other on the color wheel (e.g. blue, blue-green, and green). Create a harmonious, unified, and peaceful color atmosphere. Preserve original subject.",
+     "Convert this image to an analogous color palette. Use 3-4 neighboring colors on the color wheel for a cohesive flowing aesthetic. Avoid complementary contrast. Create natural color harmony. Keep original subject.",
+     "Transforme esta imagem usando um esquema de cores análogo. Aplique cores que ficam adjacentes no círculo cromático. Crie uma atmosfera de cores harmoniosa, unificada e tranquila. Preserve o sujeito original."
+   ]},
+  {title:"Sépia / Vintage",desc:"Tons marrons envelhecidos. Nostalgia e memória fotográfica.",swatches:["#1c0a00","#3d1f00","#8B4513","#c8a06a","#e8d5b0"],
+   prompts:[
+     "Transform this image with a sepia vintage color treatment. Apply warm brown-orange aged tones replacing all colors, add slight vignetting, create an old photograph quality from the early 1900s. Preserve original subject.",
+     "Convert this image to sepia tone. Replace all color information with warm brown-amber tones of varying depth, add subtle aging effects and slight paper texture quality. Keep original subject and composition.",
+     "Transforme esta imagem com um tratamento de cor sépia vintage. Aplique tons marrom-laranja envelhecidos substituindo todas as cores, adicione leve vinheta, crie uma qualidade de fotografia antiga do início do século XX."
+   ]},
+  {title:"Preto e Branco",desc:"Sem cor, só luminosidade. Atemporal, dramático e artístico.",swatches:["#000000","#1a1a1a","#555555","#aaaaaa","#ffffff"],
+   prompts:[
+     "Transform this image into black and white. Remove all color information and render only in luminosity values. Enhance contrast between light and shadow. Preserve original subject and composition. Do not tint with any color.",
+     "Convert this image to high-contrast black and white photography. Apply strong tonal contrast with deep blacks and bright whites, minimal midtones. Create a dramatic graphic quality. Keep original subject.",
+     "Transforme esta imagem em preto e branco. Remova todas as informações de cor e renderize apenas em valores de luminosidade. Acentue o contraste entre luz e sombra. Preserve o sujeito e a composição originais."
+   ]},
+  {title:"Sunset Gradient",desc:"Degradê do pôr do sol — roxo, rosa, laranja e amarelo.",swatches:["#2d0050","#7c2d8a","#c2410c","#ea580c","#fbbf24"],
+   prompts:[
+     "Transform this image with a sunset gradient color palette. Apply warm gradient tones from deep purple at the top through pink and orange to golden yellow at the bottom or brightest areas. Preserve original subject.",
+     "Convert this image using sunset gradient colors — purple, magenta, orange, and gold blending across the scene. Apply these sunset tones as an overall color wash while preserving original subject details.",
+     "Transforme esta imagem com uma paleta de gradiente de pôr do sol. Aplique tons de gradiente quente do roxo profundo passando pelo rosa e laranja até o amarelo dourado. Preserve o sujeito original."
+   ]},
+];
 
-function sgSetTab(t, el) {
-  sgTab = t;
-  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+/* =====================================================
+   ESTADO GLOBAL
+   ===================================================== */
+let activePanel = 'guia';
+let sgCat = 'all';
+let sgOpenIdx = null;
+let favorites = JSON.parse(localStorage.getItem('sg_favs')||'[]');
+let history = JSON.parse(localStorage.getItem('sg_hist')||'[]');
+
+// Builder state
+let bLang = 'en';
+let bLighting = '';
+let bAngle = '';
+let bMood = '';
+let bColor = '';
+let bQuality = '';
+let bPreserve = '';
+let bAvoid = '';
+
+// Combo state
+let cLang = 'en';
+let comboSel = {style:null,light:null,angle:null};
+
+/* =====================================================
+   NAVEGAÇÃO
+   ===================================================== */
+function showPanel(id, el) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
   el.classList.add('active');
-  sgOpen = null;
-  const ab = document.getElementById('anatomy-box');
-  if (ab) ab.style.display = (t==='all'||t==='conceito') ? '' : 'none';
-  render();
+  activePanel = id;
+  if(id==='favoritos') renderFavoritos();
+  if(id==='historico') renderHistorico();
+  if(id==='combo') renderComboLists();
+  if(id==='paletas') renderPaletas();
+  if(id==='builder') initBuilder();
 }
 
-function render() {
-  const q = (document.getElementById('sg-search').value||'').toLowerCase();
-  const filtered = SG_DATA.filter(d => {
-    const mc = sgTab==='all' || d.cat===sgTab;
+/* =====================================================
+   GUIA DE ESTILOS
+   ===================================================== */
+const CAT_LABELS = {fotografia:'Fotografia',pintura:'Pintura & Arte',digital:'Digital & 3D',retro:'Retrô & Vintage',fantasia:'Fantasia & Sci-Fi',ilustracao:'Ilustração',iluminacao:'Iluminação',composicao:'Composição',angulos:'Ângulos & Planos',conceito:'Conceito & Método'};
+
+function setFtab(cat, el) {
+  sgCat = cat;
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  sgOpenIdx = null;
+  renderGuia();
+}
+
+function renderGuia() {
+  const q = (document.getElementById('sg-search').value||'[space]').toLowerCase().replace('[space]','');
+  const filtered = SG_DATA.map((d,i)=>({...d,_i:i})).filter(d => {
+    const mc = sgCat==='all' || d.cat===sgCat;
     const mq = !q || d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.prompts.join(' ').toLowerCase().includes(q);
     return mc && mq;
   });
-  const countEl = document.getElementById('sg-count');
-  countEl.textContent = filtered.length + ' estilo' + (filtered.length!==1?'s':'') + ' encontrado' + (filtered.length!==1?'s':'');
+  document.getElementById('sg-count').textContent = filtered.length + ' estilo' + (filtered.length!==1?'s':'') + ' encontrado' + (filtered.length!==1?'s':'');
   const grid = document.getElementById('grid');
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty">Nenhum estilo encontrado.</div>';
-    return;
-  }
-  grid.innerHTML = filtered.map((d,i) => {
-    const isOpen = sgOpen === i;
-    const catLabels = {fotografia:'Fotografia',pintura:'Pintura & Arte',digital:'Digital & 3D',retro:'Retrô & Vintage',fantasia:'Fantasia & Sci-Fi',ilustracao:'Ilustração',iluminacao:'Iluminação',composicao:'Composição',angulos:'Ângulos & Planos',conceito:'Conceito & Método'};
-    return `<div class="card${isOpen?' expanded':''}" id="card-${i}" onclick="toggle(${i})">
-      <div class="card-body">
+  if(!filtered.length){grid.innerHTML='<div class="empty">Nenhum estilo encontrado.</div>';return;}
+  grid.innerHTML = filtered.map(d => {
+    const i = d._i;
+    const isOpen = sgOpenIdx === i;
+    const isFav = favorites.includes(d.title);
+    return `<div class="card${isOpen?' expanded':''}" id="card-${i}">
+      <div class="card-body" onclick="toggleCard(${i})">
+        <span class="card-fav${isFav?' active':''}" onclick="toggleFav(event,'${d.title.replace(/'/g,"\\'")}')">⭐</span>
         <div class="card-header">
           <div class="card-title">${d.icon} ${d.title}</div>
           <span class="card-arrow">▼</span>
         </div>
-        <div class="card-cat">${catLabels[d.cat]||d.cat}</div>
+        <div class="card-cat">${CAT_LABELS[d.cat]||d.cat}</div>
         <div class="card-desc">${d.desc}</div>
       </div>
       <div class="card-prompts">
         ${d.prompts.map((p,pi)=>{
-          const labels = ['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
-          const label = labels[pi] || `Prompt ${pi+1}`;
-          return `
-          <div class="prompt-num">${label}</div>
+          const labels=['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
+          return `<div class="prompt-num">${labels[pi]||'Prompt '+(pi+1)}</div>
           <div class="prompt-block" id="pb-${i}-${pi}">${p}</div>
-          <button class="btn-copy" onclick="cp(event,${i},${pi})">Copiar</button>
-        `}).join('')}
-        <button class="btn-use" onclick="use(event,'${d.title.replace(/'/g,"\\'")}')">Usar este estilo no meu projeto →</button>
+          <button class="btn-copy" onclick="copyPrompt(event,${i},${pi},'${d.title.replace(/'/g,"\\'")}',${pi})">Copiar</button>`;
+        }).join('')}
+        <button class="btn-use" onclick="addToComboFromGuia('${d.title.replace(/'/g,"\\'")}')">+ Adicionar ao Combinador →</button>
       </div>
     </div>`;
   }).join('');
 }
 
-function toggle(i) {
-  sgOpen = (sgOpen===i) ? null : i;
-  render();
-  if (sgOpen!==null) {
-    const el = document.getElementById('card-'+sgOpen);
-    if (el) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+function toggleCard(i) {
+  sgOpenIdx = (sgOpenIdx===i)?null:i;
+  renderGuia();
+  if(sgOpenIdx!==null){
+    const el=document.getElementById('card-'+sgOpenIdx);
+    if(el) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
   }
 }
 
-function cp(e, i, pi) {
+function copyPrompt(e, i, pi, title, langIdx) {
   e.stopPropagation();
   const el = document.getElementById('pb-'+i+'-'+pi);
-  if (!el) return;
-  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
+  if(!el) return;
+  const txt = el.textContent.trim();
+  navigator.clipboard.writeText(txt).catch(()=>{});
   const btn = e.target;
-  btn.textContent = '✓ Copiado!';
-  btn.classList.add('ok');
-  setTimeout(()=>{ btn.textContent='Copiar prompt'; btn.classList.remove('ok'); }, 1800);
+  btn.textContent='✓ Copiado!';btn.classList.add('ok');
+  setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok');},1800);
+  addToHistory(title, txt, langIdx===0?'EN1':langIdx===1?'EN2':'PT');
 }
 
-function use(e, title) {
+/* =====================================================
+   FAVORITOS
+   ===================================================== */
+function toggleFav(e, title) {
   e.stopPropagation();
-  const d = SG_DATA.find(x=>x.title===title);
-  if (!d) return;
-  document.dispatchEvent(new CustomEvent('sgStyleSelected',{detail:{title:d.title,category:d.cat,description:d.desc,prompts:d.prompts},bubbles:true}));
-  if (typeof window.onSgStyleSelected==='function') window.onSgStyleSelected({title:d.title,category:d.cat,description:d.desc,prompts:d.prompts});
+  const idx = favorites.indexOf(title);
+  if(idx===-1) favorites.push(title);
+  else favorites.splice(idx,1);
+  localStorage.setItem('sg_favs', JSON.stringify(favorites));
+  renderGuia();
 }
 
-render();
+function renderFavoritos() {
+  const grid = document.getElementById('fav-grid');
+  const favData = SG_DATA.map((d,i)=>({...d,_i:i})).filter(d=>favorites.includes(d.title));
+  if(!favData.length){
+    grid.innerHTML='<div class="fav-empty">Nenhum favorito ainda.<br><small>Clique na ⭐ nos cards do Guia para salvar.</small></div>';
+    return;
+  }
+  grid.innerHTML = favData.map(d => {
+    const i = d._i;
+    return `<div class="card" id="fav-${i}">
+      <div class="card-body" onclick="toggleFavCard(${i})">
+        <span class="card-fav active" onclick="toggleFav(event,'${d.title.replace(/'/g,"\\'")}')">⭐</span>
+        <div class="card-header">
+          <div class="card-title">${d.icon} ${d.title}</div>
+          <span class="card-arrow">▼</span>
+        </div>
+        <div class="card-cat">${CAT_LABELS[d.cat]||d.cat}</div>
+        <div class="card-desc">${d.desc}</div>
+      </div>
+      <div class="card-prompts" id="fav-prompts-${i}" style="display:none">
+        ${d.prompts.map((p,pi)=>{
+          const labels=['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
+          return `<div class="prompt-num">${labels[pi]||'Prompt '+(pi+1)}</div>
+          <div class="prompt-block" id="fpb-${i}-${pi}">${p}</div>
+          <button class="btn-copy" onclick="copyFavPrompt(event,${i},${pi},'${d.title.replace(/'/g,"\\'")}',${pi})">Copiar</button>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleFavCard(i) {
+  const pp = document.getElementById('fav-prompts-'+i);
+  const card = pp?.closest('.card');
+  if(!pp) return;
+  const open = pp.style.display==='block';
+  pp.style.display=open?'none':'block';
+  if(card) card.classList.toggle('expanded',!open);
+}
+
+function copyFavPrompt(e,i,pi,title,langIdx){
+  e.stopPropagation();
+  const el=document.getElementById('fpb-'+i+'-'+pi);
+  if(!el)return;
+  const txt=el.textContent.trim();
+  navigator.clipboard.writeText(txt).catch(()=>{});
+  const btn=e.target;
+  btn.textContent='✓ Copiado!';btn.classList.add('ok');
+  setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok');},1800);
+  addToHistory(title,txt,langIdx===0?'EN1':langIdx===1?'EN2':'PT');
+}
+
+/* =====================================================
+   HISTÓRICO
+   ===================================================== */
+function addToHistory(style, txt, lang) {
+  history.unshift({style, txt, lang, time: new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});
+  if(history.length>50) history = history.slice(0,50);
+  localStorage.setItem('sg_hist', JSON.stringify(history));
+}
+
+function renderHistorico() {
+  const el = document.getElementById('hist-list');
+  if(!history.length){el.innerHTML='<div class="hist-empty">Nenhum prompt copiado ainda.<br><small>Copie prompts do Guia, Builder ou Combinador para ver aqui.</small></div>';return;}
+  el.innerHTML = history.map((h,i)=>`
+    <div class="hist-item">
+      <div class="hist-meta">
+        <div class="hist-style">${h.style||''}</div>
+        <div class="hist-time">${h.lang} · ${h.time}</div>
+      </div>
+      <div class="hist-text">${h.txt}</div>
+      <div class="hist-actions">
+        <button class="hist-btn" id="hbtn-${i}" onclick="copyHist(${i})">Copiar</button>
+      </div>
+    </div>`).join('');
+}
+
+function copyHist(i) {
+  navigator.clipboard.writeText(history[i].txt).catch(()=>{});
+  const btn=document.getElementById('hbtn-'+i);
+  if(btn){btn.textContent='✓';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok');},1500);}
+}
+
+function clearHist(){history=[];localStorage.setItem('sg_hist','[]');renderHistorico();}
+
+/* =====================================================
+   PROMPT BUILDER
+   ===================================================== */
+const BUILDER_OPTIONS = {
+  style: SG_DATA.filter(d=>d.cat==='fotografia'||d.cat==='pintura'||d.cat==='digital'||d.cat==='retro'||d.cat==='fantasia'||d.cat==='ilustracao').map(d=>d.title),
+  lighting: ['Golden Hour','Rembrandt / Chiaroscuro','Studio Lighting','Candlelight','Blue Hour','Bioluminescente','Luz Difusa / Overcast','Backlight / Silhueta','Neon Light','Natural Daylight'],
+  angle: ['Plano Geral','Plano Médio','Close-Up','Plano Detalhe','Plongée','Contre-Plongée','Bird's Eye View','Worm's Eye View','Over the Shoulder','POV'],
+  mood: ['Dramático','Melancólico','Épico','Romântico','Misterioso','Alegre','Tenso','Sonhador','Sombrio','Minimalista'],
+  color: ['Tons quentes','Tons frios','Pastel','Monocromático','Neon saturado','Dessaturado','Sépia','Preto e branco','Complementar','Sunset gradient'],
+  quality: ['Ultra-detalhado','8K','Fotorrealista','Bokeh suave','Grão de filme','HDR','Iluminação cinemática','Qualidade editorial'],
+  preserve: ['Sujeito original','Composição original','Rosto / aparência','Cores originais','Enquadramento original'],
+  avoid: ['Não adicionar texto','Não adicionar pessoas','Não tornar cartoon','Não borrar','Não mudar composição','Não adicionar marca d'água']
+};
+
+const B_TRANSLATIONS = {
+  'Golden Hour':'golden hour warm light','Rembrandt / Chiaroscuro':'Rembrandt dramatic lighting','Studio Lighting':'professional studio lighting','Candlelight':'warm candlelight','Blue Hour':'blue hour twilight','Bioluminescente':'bioluminescent glow','Luz Difusa / Overcast':'soft diffused overcast light','Backlight / Silhueta':'backlight silhouette effect','Neon Light':'neon lighting','Natural Daylight':'natural daylight',
+  'Plano Geral':'extreme wide shot','Plano Médio':'medium shot waist up','Close-Up':'close-up shot face only','Plano Detalhe':'extreme close-up detail shot','Plongée':'high angle looking down','Contre-Plongée':'low angle looking up','Bird's Eye View':'bird's eye view directly overhead','Worm's Eye View':'worm's eye view ground level','Over the Shoulder':'over the shoulder shot','POV':'point of view first person',
+  'Dramático':'dramatic mood','Melancólico':'melancholic atmosphere','Épico':'epic cinematic atmosphere','Romântico':'romantic dreamy mood','Misterioso':'mysterious atmosphere','Alegre':'bright joyful mood','Tenso':'tense unsettling atmosphere','Sonhador':'dreamlike ethereal mood','Sombrio':'dark gloomy atmosphere','Minimalista':'minimalist clean atmosphere',
+  'Tons quentes':'warm orange-amber tones','Tons frios':'cool blue-teal tones','Pastel':'soft pastel palette','Monocromático':'monochromatic single hue','Neon saturado':'ultra-saturated neon colors','Dessaturado':'desaturated muted tones','Sépia':'sepia vintage tones','Preto e branco':'black and white','Complementar':'complementary color contrast','Sunset gradient':'sunset gradient purple to gold',
+  'Ultra-detalhado':'ultra-detailed','8K':'8K resolution','Fotorrealista':'photorealistic quality','Bokeh suave':'soft bokeh background','Grão de filme':'film grain texture','HDR':'HDR quality','Iluminação cinemática':'cinematic lighting','Qualidade editorial':'editorial photography quality',
+  'Sujeito original':'Preserve the original subject','Composição original':'Keep the original composition','Rosto / aparência':'Do not change the subject appearance or face','Cores originais':'Maintain original color identity of subject','Enquadramento original':'Keep original framing and crop',
+  'Não adicionar texto':'Do not add text or watermarks','Não adicionar pessoas':'Do not add people not in original','Não tornar cartoon':'Do not make it cartoonish','Não borrar':'Do not blur or soften the image','Não mudar composição':'Do not change the original composition','Não adicionar marca d'água':'Do not add watermarks or logos'
+};
+
+function initBuilder() {
+  // Populate style select
+  const sel = document.getElementById('b-style');
+  if(sel.options.length<2) {
+    BUILDER_OPTIONS.style.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o);});
+  }
+  // Render chip groups
+  const groups = [
+    {id:'b-lighting-chips',key:'lighting',stateKey:'bLighting'},
+    {id:'b-angle-chips',key:'angle',stateKey:'bAngle'},
+    {id:'b-mood-chips',key:'mood',stateKey:'bMood'},
+    {id:'b-color-chips',key:'color',stateKey:'bColor'},
+    {id:'b-quality-chips',key:'quality',stateKey:'bQuality'},
+    {id:'b-preserve-chips',key:'preserve',stateKey:'bPreserve'},
+    {id:'b-avoid-chips',key:'avoid',stateKey:'bAvoid'},
+  ];
+  groups.forEach(g=>{
+    const el=document.getElementById(g.id);
+    if(el.children.length) return;
+    BUILDER_OPTIONS[g.key].forEach(opt=>{
+      const c=document.createElement('div');
+      c.className='chip';c.textContent=opt;
+      c.onclick=()=>toggleChip(c,opt,g.stateKey);
+      el.appendChild(c);
+    });
+  });
+  buildPrompt();
+}
+
+function toggleChip(el, val, stateKey) {
+  const current = window[stateKey];
+  if(current===val){window[stateKey]='';el.classList.remove('sel');}
+  else{
+    // deselect sibling
+    el.closest('.chip-group').querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
+    window[stateKey]=val;el.classList.add('sel');
+  }
+  buildPrompt();
+}
+
+function setBLang(l,el){bLang=l;document.querySelectorAll('.preview-lang-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');buildPrompt();}
+
+function buildPrompt() {
+  const subj = document.getElementById('b-subject')?.value?.trim()||'[seu sujeito]';
+  const style = document.getElementById('b-style')?.value||'[estilo]';
+  
+  if(bLang==='en') {
+    const t = B_TRANSLATIONS;
+    const parts = [
+      `Transform this image into ${style} style.`,
+      subj!=='[seu sujeito]' ? `The main subject is: ${subj}.` : '',
+      bLighting ? `Apply ${t[bLighting]||bLighting}.` : '',
+      bAngle ? `Use ${t[bAngle]||bAngle}.` : '',
+      bMood ? `Create a ${t[bMood]||bMood}.` : '',
+      bColor ? `Apply ${t[bColor]||bColor}.` : '',
+      bQuality ? `Render with ${t[bQuality]||bQuality}.` : '',
+      bPreserve ? `${t[bPreserve]||bPreserve}.` : '',
+      bAvoid ? `${t[bAvoid]||bAvoid}.` : ''
+    ].filter(Boolean).join(' ');
+    document.getElementById('b-preview').textContent=parts;
+  } else {
+    const parts = [
+      `Transforme esta imagem em estilo ${style}.`,
+      subj!=='[seu sujeito]' ? `O sujeito principal é: ${subj}.` : '',
+      bLighting ? `Aplique ${bLighting}.` : '',
+      bAngle ? `Use ${bAngle}.` : '',
+      bMood ? `Crie uma atmosfera ${bMood}.` : '',
+      bColor ? `Aplique ${bColor}.` : '',
+      bQuality ? `Renderize com qualidade ${bQuality}.` : '',
+      bPreserve ? `${bPreserve}.` : '',
+      bAvoid ? `${bAvoid}.` : ''
+    ].filter(Boolean).join(' ');
+    document.getElementById('b-preview').textContent=parts;
+  }
+}
+
+function copyBuilderPrompt() {
+  const txt = document.getElementById('b-preview').textContent;
+  if(!txt||txt==='Preencha os campos ao lado para gerar seu prompt personalizado.') return;
+  navigator.clipboard.writeText(txt).catch(()=>{});
+  const btn=document.getElementById('b-copy-btn');
+  btn.textContent='✓ Copiado!';btn.classList.add('ok');
+  setTimeout(()=>{btn.textContent='Copiar prompt';btn.classList.remove('ok');},1800);
+  const style=document.getElementById('b-style')?.value||'Builder';
+  addToHistory(style, txt, bLang==='en'?'EN':'PT');
+}
+
+/* =====================================================
+   COMBINADOR
+   ===================================================== */
+const COMBO_STYLES = SG_DATA.filter(d=>d.cat==='fotografia'||d.cat==='pintura'||d.cat==='digital'||d.cat==='retro'||d.cat==='fantasia'||d.cat==='ilustracao').slice(0,20);
+const COMBO_LIGHTS = SG_DATA.filter(d=>d.cat==='iluminacao');
+const COMBO_ANGLES = SG_DATA.filter(d=>d.cat==='angulos');
+
+function renderComboLists() {
+  const render = (containerId, items, col) => {
+    const el=document.getElementById(containerId);
+    if(el.children.length) return;
+    items.forEach(d=>{
+      const div=document.createElement('div');
+      div.className='combo-item';
+      div.innerHTML=`<span class="combo-item-icon">${d.icon}</span><div class="combo-item-text"><div class="combo-item-title">${d.title}</div></div>`;
+      div.onclick=()=>selectCombo(col,d,div,containerId);
+      el.appendChild(div);
+    });
+  };
+  render('combo-col-style',COMBO_STYLES,'style');
+  render('combo-col-light',COMBO_LIGHTS,'light');
+  render('combo-col-angle',COMBO_ANGLES,'angle');
+}
+
+function selectCombo(col, d, el, containerId) {
+  document.querySelectorAll('#'+containerId+' .combo-item').forEach(i=>i.classList.remove('sel'));
+  if(comboSel[col]?.title===d.title){comboSel[col]=null;}
+  else{comboSel[col]=d;el.classList.add('sel');}
+  updateComboResult();
+}
+
+function setCLang(l,el){cLang=l;document.querySelectorAll('.combo-lang-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');updateComboResult();}
+
+function updateComboResult() {
+  const tags=document.getElementById('combo-tags');
+  const selected=Object.values(comboSel).filter(Boolean);
+  if(!selected.length){tags.innerHTML='<span style="font-size:12px;color:var(--text3);font-style:italic">Nenhum estilo selecionado ainda</span>';document.getElementById('combo-box').textContent='Selecione estilos acima para combinar.';return;}
+  tags.innerHTML=selected.map(d=>`<span class="combo-tag">${d.icon} ${d.title} <span class="combo-tag-x" onclick="removeCombo('${Object.keys(comboSel).find(k=>comboSel[k]===d)}')">×</span></span>`).join('');
+  
+  if(cLang==='en') {
+    const prompts=selected.map(d=>d.prompts[0].replace(/Transform this image into |Convert this image to /gi,'').replace(/\..*$/,'').trim());
+    const result=`Transform this image combining these visual styles: ${prompts.map((p,i)=>'('+selected[i].title+': '+p+')').join('; ')}. Blend all these characteristics seamlessly. Preserve the original subject and composition throughout.`;
+    document.getElementById('combo-box').textContent=result;
+  } else {
+    const prompts=selected.map(d=>d.prompts[2]||d.prompts[0]);
+    const result=`Transforme esta imagem combinando os seguintes estilos visuais: ${selected.map(d=>d.title).join(' + ')}. Mescle todas as características de forma harmoniosa. Preserve o sujeito e a composição originais.`;
+    document.getElementById('combo-box').textContent=result;
+  }
+}
+
+function removeCombo(col){
+  if(!comboSel[col]) return;
+  const title=comboSel[col].title;
+  comboSel[col]=null;
+  const containerId=col==='style'?'combo-col-style':col==='light'?'combo-col-light':'combo-col-angle';
+  document.querySelectorAll('#'+containerId+' .combo-item').forEach(el=>{if(el.querySelector('.combo-item-title')?.textContent===title)el.classList.remove('sel');});
+  updateComboResult();
+}
+
+function addToComboFromGuia(title){
+  showPanel('combo',document.querySelectorAll('.nav-tab')[2]);
+  setTimeout(()=>{
+    renderComboLists();
+    ['combo-col-style','combo-col-light','combo-col-angle'].forEach(cid=>{
+      document.querySelectorAll('#'+cid+' .combo-item').forEach(el=>{
+        if(el.querySelector('.combo-item-title')?.textContent===title){
+          const col=cid==='combo-col-style'?'style':cid==='combo-col-light'?'light':'angle';
+          selectCombo(col,SG_DATA.find(d=>d.title===title),el,cid);
+        }
+      });
+    });
+  },50);
+}
+
+function copyCombo(){
+  const txt=document.getElementById('combo-box').textContent;
+  if(!txt||txt==='Selecione estilos acima para combinar.') return;
+  navigator.clipboard.writeText(txt).catch(()=>{});
+  const btn=document.getElementById('combo-copy-btn');
+  btn.textContent='✓ Copiado!';btn.classList.add('ok');
+  setTimeout(()=>{btn.textContent='Copiar prompt combinado';btn.classList.remove('ok');},1800);
+  const names=Object.values(comboSel).filter(Boolean).map(d=>d.title).join(' + ');
+  addToHistory(names,txt,cLang==='en'?'EN':'PT');
+}
+
+/* =====================================================
+   PALETAS
+   ===================================================== */
+let palOpen = null;
+function renderPaletas(){
+  const grid=document.getElementById('palettes-grid');
+  if(grid.children.length) return;
+  PALETTES.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='palette-card';
+    card.innerHTML=`
+      <div class="palette-swatches">${p.swatches.map(s=>`<div class="swatch" style="background:${s}"></div>`).join('')}</div>
+      <div class="palette-body" onclick="togglePal(${i})">
+        <div class="palette-title">${p.title}</div>
+        <div class="palette-desc">${p.desc}</div>
+      </div>
+      <div class="palette-prompts" id="pal-${i}">
+        ${p.prompts.map((pt,pi)=>{
+          const labels=['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
+          return `<div class="prompt-num">${labels[pi]||'Prompt '+(pi+1)}</div>
+          <div class="prompt-block" id="palp-${i}-${pi}">${pt}</div>
+          <button class="btn-copy" onclick="copyPal(event,${i},${pi},'${p.title.replace(/'/g,"\\'")}',${pi})">Copiar</button>`;
+        }).join('')}
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function togglePal(i){
+  const el=document.getElementById('pal-'+i);
+  const card=el?.closest('.palette-card');
+  if(!el)return;
+  if(palOpen!==null&&palOpen!==i){const prev=document.getElementById('pal-'+palOpen);if(prev){prev.style.display='none';prev.closest('.palette-card')?.classList.remove('expanded');}}
+  const open=el.style.display==='block';
+  el.style.display=open?'none':'block';
+  card?.classList.toggle('expanded',!open);
+  palOpen=open?null:i;
+}
+
+function copyPal(e,i,pi,title,langIdx){
+  e.stopPropagation();
+  const el=document.getElementById('palp-'+i+'-'+pi);
+  if(!el)return;
+  const txt=el.textContent.trim();
+  navigator.clipboard.writeText(txt).catch(()=>{});
+  const btn=e.target;
+  btn.textContent='✓ Copiado!';btn.classList.add('ok');
+  setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok');},1800);
+  addToHistory(title,txt,langIdx===0?'EN1':langIdx===1?'EN2':'PT');
+}
+
+/* =====================================================
+   INIT
+   ===================================================== */
+renderGuia();
 </script>
 </body>
 </html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Estilos de Imagem</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f0f13;
+    --bg2: #16161c;
+    --bg3: #1e1e27;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #e8e8f0;
+    --text2: #9090a8;
+    --text3: #5a5a72;
+    --accent: #7c6af7;
+    --accent2: #5b4fd4;
+    --accent-glow: rgba(124,106,247,0.2);
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --coral: #f87171;
+    --teal: #2dd4bf;
+    --radius: 10px;
+    --radius-lg: 14px;
+    --font: 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Cascadia Code', 'Fira Code', monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ===== CONTAINER PRINCIPAL ===== */
+  #styles-guide {
+    padding: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ===== HEADER ===== */
+  .sg-header {
+    margin-bottom: 1.5rem;
+  }
+  .sg-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .sg-subtitle {
+    font-size: 13px;
+    color: var(--text3);
+  }
+
+  /* ===== CONCEITO ===== */
+  .sg-concept {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .sg-concept-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .sg-concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+  .sg-concept-item {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+  }
+  .sg-concept-item-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 3px;
+    letter-spacing: 0.05em;
+  }
+  .sg-concept-item-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .sg-concept-item-desc {
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.45;
+  }
+
+  /* ===== SEARCH ===== */
+  .sg-search-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .sg-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    font-size: 14px;
+    pointer-events: none;
+  }
+  #sg-search {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 9px 12px 9px 36px;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: var(--font);
+  }
+  #sg-search::placeholder { color: var(--text3); }
+  #sg-search:focus { border-color: var(--accent); }
+
+  /* ===== TABS ===== */
+  .sg-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 1rem;
+  }
+  .sg-tab {
+    padding: 5px 13px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text2);
+    background: var(--bg2);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .sg-tab:hover { border-color: var(--border2); color: var(--text); }
+  .sg-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  /* ===== COUNT ===== */
+  .sg-count {
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+
+  /* ===== GRID DE CARDS ===== */
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 10px;
+  }
+
+  /* ===== CARD ===== */
+  .sg-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+  .sg-card:hover { border-color: var(--border2); }
+  .sg-card.expanded {
+    border-color: var(--accent);
+    background: var(--bg3);
+  }
+
+  .sg-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .sg-card-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+  }
+  .sg-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .sg-card-cat {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 6px;
+    padding-left: 40px;
+  }
+  .sg-card-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .sg-card-arrow {
+    float: right;
+    font-size: 11px;
+    color: var(--text3);
+    transition: transform 0.2s;
+    margin-top: -18px;
+  }
+  .sg-card.expanded .sg-card-arrow { transform: rotate(180deg); color: var(--accent); }
+
+  /* ===== PROMPTS EXPANDIDOS ===== */
+  .sg-prompts {
+    display: none;
+    margin-top: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .sg-card.expanded .sg-prompts { display: block; }
+
+  .sg-prompt-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.55;
+    font-family: var(--font-mono);
+    word-break: break-word;
+  }
+
+  .sg-prompt-actions {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .sg-btn-copy {
+    padding: 4px 10px;
+    font-size: 11px;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--bg3);
+    color: var(--text2);
+    font-family: var(--font);
+    transition: all 0.15s;
+  }
+  .sg-btn-copy:hover { background: var(--border); color: var(--text); }
+  .sg-btn-copy.copied { border-color: var(--green); color: var(--green); }
+
+  /* ===== BOTÃO USE ESTE ESTILO ===== */
+  .sg-btn-use {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    cursor: pointer;
+    background: var(--accent-glow);
+    color: var(--accent);
+    font-family: var(--font);
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .sg-btn-use:hover { background: var(--accent); color: #fff; }
+
+  /* ===== EMPTY STATE ===== */
+  .sg-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+</style>
+</head>
+<body>
+
+<div id="styles-guide">
+
+  <!-- HEADER -->
+  <div class="sg-header">
+    <div class="sg-title">Guia de Estilos de Imagem</div>
+    <div class="sg-subtitle">Clique em um estilo para ver os prompts prontos</div>
+  </div>
+
+  <!-- ANATOMIA DO PROMPT -->
+  <div class="sg-concept" id="sg-concept-box">
+    <div class="sg-concept-title">Anatomia de um prompt</div>
+    <div class="sg-concept-grid">
+      <div class="sg-concept-item">
+        <div class="sg-concept-item-num">01</div>
+        <div class="sg-concept-item-title">Sujeito</div>
+        <div class="sg-concept-item-desc">O que/quem aparece. Seja específico.</div>
+      </div>
+      <div class="sg-concept-item">
+        <div class="sg-concept-item-num">02</div>
+        <div class="sg-concept-item-title">Estilo / Mídia</div>
+        <div class="sg-concept-item-desc">Fotografia, aquarela, 3D render, anime…</div>
+      </div>
+      <div class="sg-concept-item">
+        <div class="sg-concept-item-num">03</div>
+        <div class="sg-concept-item-title">Iluminação</div>
+        <div class="sg-concept-item-desc">Golden hour, Rembrandt, neon, backlight…</div>
+      </div>
+      <div class="sg-concept-item">
+        <div class="sg-concept-item-num">04</div>
+        <div class="sg-concept-item-title">Composição</div>
+        <div class="sg-concept-item-desc">Wide shot, close-up, bird's eye, Dutch angle…</div>
+      </div>
+      <div class="sg-concept-item">
+        <div class="sg-concept-item-num">05</div>
+        <div class="sg-concept-item-title">Cor / Mood</div>
+        <div class="sg-concept-item-desc">Paleta quente, monocromático, pastel, neon…</div>
+      </div>
+      <div class="sg-concept-item">
+        <div class="sg-concept-item-num">06</div>
+        <div class="sg-concept-item-title">Qualidade</div>
+        <div class="sg-concept-item-desc">8K, hyperrealistic, bokeh, cinematic, HDR…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSCA -->
+  <div class="sg-search-wrap">
+    <span class="sg-search-icon">⌕</span>
+    <input type="text" id="sg-search" placeholder="Buscar estilo, técnica ou palavra-chave..." oninput="sgFilterCards()">
+  </div>
+
+  <!-- TABS -->
+  <div class="sg-tabs" id="sg-tabs">
+    <div class="sg-tab active" onclick="sgSetTab('all', this)">Todos</div>
+    <div class="sg-tab" onclick="sgSetTab('fotografia', this)">📷 Fotografia</div>
+    <div class="sg-tab" onclick="sgSetTab('pintura', this)">🖌 Pintura</div>
+    <div class="sg-tab" onclick="sgSetTab('digital', this)">🖥 Digital & 3D</div>
+    <div class="sg-tab" onclick="sgSetTab('retro', this)">📼 Retrô</div>
+    <div class="sg-tab" onclick="sgSetTab('fantasia', this)">🐉 Fantasia</div>
+    <div class="sg-tab" onclick="sgSetTab('ilustracao', this)">📖 Ilustração</div>
+    <div class="sg-tab" onclick="sgSetTab('iluminacao', this)">💡 Iluminação</div>
+    <div class="sg-tab" onclick="sgSetTab('composicao', this)">📐 Composição</div>
+    <div class="sg-tab" onclick="sgSetTab('conceito', this)">🧠 Método</div>
+  </div>
+
+  <!-- COUNT -->
+  <div class="sg-count" id="sg-count"></div>
+
+  <!-- GRID -->
+  <div class="sg-grid" id="sg-grid"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   DADOS — Estilos de Imagem
+   ============================================================ */
+const SG_DATA = [
+  // FOTOGRAFIA
+  {cat:"fotografia", icon:"📷", title:"Fotorrealista / Hyperrealistic",
+   desc:"Imagem que parece uma fotografia real, altamente detalhada e precisa.",
+   prompts:[
+     "hyperrealistic photo of [subject], ultra-detailed, 8K, sharp focus, natural lighting",
+     "photorealistic portrait, shot on Sony A7 III, 85mm lens, shallow depth of field, catchlight in eyes, detailed skin texture, visible pores"
+   ]},
+  {cat:"fotografia", icon:"🎬", title:"Cinematográfico",
+   desc:"Estética de filme de Hollywood com cor, enquadramento e iluminação épicos.",
+   prompts:[
+     "cinematic photography, teal and orange color grading, dramatic lighting, [subject], wide angle shot, shallow depth of field, movie still",
+     "cinematic still, anamorphic lens, film grain, ultra-detailed, [scene], shot on ARRI Alexa, epic composition"
+   ]},
+  {cat:"fotografia", icon:"👗", title:"Editorial / Moda",
+   desc:"Estilo de revistas de moda, limpo, polido e controlado.",
+   prompts:[
+     "editorial fashion photography, controlled studio lighting, polished composition, Vogue magazine style, [subject]",
+     "fashion editorial, soft natural window light, shallow depth of field, 50mm lens, elegant and minimalist, --ar 2:3"
+   ]},
+  {cat:"fotografia", icon:"🌆", title:"Street Photography",
+   desc:"Fotografia documental urbana, crua e autêntica.",
+   prompts:[
+     "documentary street photography, raw realism, unposed subjects, storytelling focus, [city scene], candid, natural light",
+     "35mm film street photography, Leica M6, grain, [city/subject], gritty urban atmosphere, black and white"
+   ]},
+  {cat:"fotografia", icon:"🌌", title:"Astrofotografia",
+   desc:"Céu noturno, via láctea, exposição longa.",
+   prompts:[
+     "hyperrealistic astrophotography shot of the Milky Way, silhouette of [foreground], long exposure, dark sky, ultra-detailed stars",
+     "night sky photography, star trails, [landscape], blue hour, wide angle 14mm, ISO 3200"
+   ]},
+  {cat:"fotografia", icon:"🎭", title:"Retrato Dramático",
+   desc:"Retrato com alta carga emocional e iluminação trabalhada.",
+   prompts:[
+     "dramatic portrait of [subject], single key light, deep shadows, intense expression, 85mm lens, shallow depth of field, cinematic",
+     "moody portrait, [subject], side lighting, textured background, desaturated tones, editorial quality, medium format camera"
+   ]},
+
+  // PINTURA
+  {cat:"pintura", icon:"🖌", title:"Óleo sobre Tela",
+   desc:"Pintura clássica com textura rica e pinceladas visíveis.",
+   prompts:[
+     "oil painting of [subject], rich brushstrokes, warm tones, layered textures, canvas texture, Rembrandt style",
+     "classical oil portrait, impasto technique, palette knife texture, Old Masters style, dramatic chiaroscuro, [subject]"
+   ]},
+  {cat:"pintura", icon:"💧", title:"Aquarela",
+   desc:"Cores suaves fluindo com bordas difusas e toque artesanal.",
+   prompts:[
+     "soft watercolor painting of [subject], gentle brushstrokes, flowing colors, delicate hand-painted feel, white paper texture",
+     "watercolor illustration, wet-on-wet technique, luminous washes, botanical style, [subject], minimal brushwork"
+   ]},
+  {cat:"pintura", icon:"🌿", title:"Impressionismo",
+   desc:"Inspirado em Monet e Renoir, pinceladas soltas e luz natural.",
+   prompts:[
+     "Impressionist painting, visible brushstrokes, soft dappled light, en plein air, [subject], Monet-inspired palette",
+     "Post-Impressionist oil painting, bold colors, expressive brushwork, Van Gogh style, [scene], swirling sky"
+   ]},
+  {cat:"pintura", icon:"✏️", title:"Esboço / Pencil Art",
+   desc:"Desenho a lápis ou carvão com traços expressivos.",
+   prompts:[
+     "detailed pencil sketch of [subject], graphite on paper, cross-hatching, fine line work, realistic shading",
+     "charcoal drawing, expressive strokes, high contrast, dramatic shadows, [subject], textured paper"
+   ]},
+  {cat:"pintura", icon:"🌸", title:"Art Nouveau",
+   desc:"Linhas orgânicas curvas, ornamentos florais, estética 1900.",
+   prompts:[
+     "Art Nouveau illustration of [subject], flowing organic lines, floral ornaments, Alphonse Mucha style, decorative borders, muted golden palette",
+     "Art Nouveau poster design, sinuous curves, botanical motifs, [subject], Klimt-inspired, flat color areas with intricate detail"
+   ]},
+  {cat:"pintura", icon:"🖼", title:"Expressionismo",
+   desc:"Distorção emocional da realidade, cores intensas e formas angulosas.",
+   prompts:[
+     "Expressionist painting of [subject], distorted forms, intense colors, raw emotion, Edvard Munch style, visceral atmosphere",
+     "German Expressionism style, angular shapes, clashing colors, dark themes, woodcut influence, [scene]"
+   ]},
+
+  // DIGITAL & 3D
+  {cat:"digital", icon:"🖥", title:"3D Render / CGI",
+   desc:"Renderização tridimensional computadorizada, realista ou estilizada.",
+   prompts:[
+     "3D render of [subject], octane render, photorealistic materials, global illumination, studio lighting, 8K, ultra-detailed",
+     "CGI animation still, Pixar-style 3D, subsurface scattering, soft shadows, [character/scene], cinematic lighting"
+   ]},
+  {cat:"digital", icon:"🔷", title:"Isométrico",
+   desc:"Perspectiva isométrica 45°, popular em design e jogos.",
+   prompts:[
+     "isometric 3D illustration of [scene], clean flat colors, minimal shadows, game art style, top-down 45-degree view",
+     "isometric pixel art, [subject/world], colorful, detailed, clean lines, game UI aesthetic"
+   ]},
+  {cat:"digital", icon:"🌃", title:"Cyberpunk / Neon",
+   desc:"Estética futurista sombria com luzes neon e atmosfera noir.",
+   prompts:[
+     "cyberpunk cityscape, neon lights reflecting on rain-slick streets, [subject], moody atmospheric fog, teal and magenta palette, cinematic",
+     "cyberpunk portrait, neon backlight, dramatic shadows, glowing tattoos, high-tech low-life aesthetic, [character]"
+   ]},
+  {cat:"digital", icon:"🔺", title:"Low Poly",
+   desc:"Arte geométrica com formas poligonais e visual minimalista.",
+   prompts:[
+     "low poly art of [subject], geometric triangulated mesh, flat shading, minimal color palette, clean lines",
+     "low poly landscape, triangular geometry, gradient sky, [scene], digital art, minimalist"
+   ]},
+  {cat:"digital", icon:"⚡", title:"Glitch Art",
+   desc:"Efeito de falha digital, distorções e artefatos visuais.",
+   prompts:[
+     "glitch art portrait of [subject], digital corruption, RGB split, pixel displacement, scan lines, VHS artifact effect",
+     "glitchy digital artwork, data corruption aesthetic, fragmented image, colorful artifacts, [subject], cyberpunk vibe"
+   ]},
+  {cat:"digital", icon:"💎", title:"Concept Art",
+   desc:"Arte conceitual para jogos, filmes e entretenimento.",
+   prompts:[
+     "concept art of [subject], professional game illustration, detailed environment, atmospheric perspective, matte painting style",
+     "character concept art sheet, [character], multiple views, detailed annotations, professional game industry style, Artstation quality"
+   ]},
+
+  // RETRÔ & VINTAGE
+  {cat:"retro", icon:"📼", title:"Vaporwave / Synthwave",
+   desc:"Estética nostálgica dos anos 80-90 com neon pastel e vibes retro-futuristas.",
+   prompts:[
+     "vaporwave aesthetic, pastel pink and cyan, retro grid, [subject], nostalgic 80s vibes, glowing synthwave sunset",
+     "synthwave album cover art, [scene], neon grid horizon, purple and orange sky, retro-futuristic, chrome text"
+   ]},
+  {cat:"retro", icon:"📷", title:"Filme Analógico / Lo-Fi",
+   desc:"Grão de filme, cores desbotadas e textura analógica.",
+   prompts:[
+     "35mm film photography, Kodak Portra 400, light grain, warm tones, slight overexposure, [subject], lo-fi aesthetic",
+     "analog film photo, Fujifilm Superia, faded colors, vignetting, candid moment, [scene], nostalgic"
+   ]},
+  {cat:"retro", icon:"🏛", title:"Art Deco",
+   desc:"Elegância geométrica dos anos 20, dourado e simetria.",
+   prompts:[
+     "Art Deco illustration, geometric patterns, 1920s glamour, gold accents, symmetrical composition, [subject], luxurious and sophisticated",
+     "Art Deco revival poster, bold geometric shapes, chevron patterns, rich jewel tones, [subject], vintage elegance"
+   ]},
+  {cat:"retro", icon:"🟨", title:"Pop Art",
+   desc:"Inspirado em Warhol e Lichtenstein, cores vibrantes e ícones culturais.",
+   prompts:[
+     "Andy Warhol-inspired pop art of [subject], high contrast, bold flat color blocks, repetition, silkscreen effect",
+     "Roy Lichtenstein comic pop art, halftone dots, bold outlines, primary colors, [subject], thought bubble, retro graphic"
+   ]},
+  {cat:"retro", icon:"🎞", title:"Film Noir",
+   desc:"Preto e branco dramático, sombras expressivas, atmosfera noir.",
+   prompts:[
+     "film noir cinematography, black and white, high contrast shadows, venetian blind shadow pattern, [subject], moody atmosphere",
+     "noir detective scene, 1940s style, rain-slicked streets, dramatic side lighting, cigarette smoke, [character/scene]"
+   ]},
+
+  // FANTASIA & SCI-FI
+  {cat:"fantasia", icon:"🐉", title:"Fantasy / Alta Fantasia",
+   desc:"Mundos épicos com criaturas mágicas, heróis e paisagens imensuráveis.",
+   prompts:[
+     "epic fantasy landscape, [scene], dramatic volumetric lighting, misty mountains, ancient ruins, highly detailed, concept art style",
+     "high fantasy character concept art, [character], ornate armor, magical effects, heroic pose, dramatic backlighting, oil painting style"
+   ]},
+  {cat:"fantasia", icon:"🌑", title:"Dark Fantasy / Gothic",
+   desc:"Fantasia sombria com atmosfera opressiva e estética gótica.",
+   prompts:[
+     "dark fantasy illustration, gothic architecture, moonlit shadows, [subject], ominous atmosphere, detailed linework, muted palette",
+     "gothic fantasy portrait of [character], crumbling cathedral background, candlelight, dramatic shadows, Brom-inspired style"
+   ]},
+  {cat:"fantasia", icon:"🚀", title:"Sci-Fi / Ficção Científica",
+   desc:"Futurismo, espaço sideral e tecnologia avançada.",
+   prompts:[
+     "sci-fi concept art, [scene], bioluminescent elements, futuristic architecture, epic scale, cinematic lighting, Syd Mead inspired",
+     "space science fiction illustration, [scene], nebula background, hard surface design, dramatic lighting, ultra-detailed"
+   ]},
+  {cat:"fantasia", icon:"🍃", title:"Studio Ghibli",
+   desc:"Estética encantada e melancólica dos filmes do estúdio japonês.",
+   prompts:[
+     "Studio Ghibli style, [scene], soft watercolor backgrounds, hand-drawn feel, magical atmosphere, warm natural light, Miyazaki aesthetic",
+     "Ghibli-inspired illustration, [character/landscape], lush greenery, whimsical mood, golden hour light, gentle brushwork"
+   ]},
+  {cat:"fantasia", icon:"🧛", title:"Horror / Suspense",
+   desc:"Atmosfera de terror, tensão e horror visual.",
+   prompts:[
+     "horror movie still, [scene], desaturated palette, deep shadows, unsettling composition, fog, isolation, dread atmosphere",
+     "psychological horror illustration, [subject], distorted reality, muted tones with blood red accent, hyper-detailed, unnerving"
+   ]},
+
+  // ILUSTRAÇÃO
+  {cat:"ilustracao", icon:"📖", title:"Livro Infantil",
+   desc:"Ilustrações suaves e afetuosas para livros infantis.",
+   prompts:[
+     "children's book illustration of [subject], soft watercolor, rounded shapes, warm colors, whimsical and friendly, storybook style",
+     "picture book art, [scene], Beatrix Potter-inspired, gentle pastel palette, cozy atmosphere, hand-painted texture"
+   ]},
+  {cat:"ilustracao", icon:"🎌", title:"Anime / Manga",
+   desc:"Estilo animação japonesa, olhos grandes, traços limpos.",
+   prompts:[
+     "Japanese anime style, [character], big expressive eyes, clean linework, vibrant colors, dynamic pose, Makoto Shinkai inspired",
+     "manga illustration, [scene], detailed screentones, dramatic perspective, black and white ink with highlights"
+   ]},
+  {cat:"ilustracao", icon:"🔷", title:"Flat Design / Vector",
+   desc:"Design limpo com formas simples, sem sombras, estilo corporativo moderno.",
+   prompts:[
+     "flat design illustration, [subject], simplified geometric forms, soft colors, no outlines, modern minimal aesthetic, SaaS product style",
+     "vector flat illustration, [scene], bold shapes, limited color palette, clean and professional, infographic style"
+   ]},
+  {cat:"ilustracao", icon:"🖊", title:"Line Art",
+   desc:"Traços finos e elegantes, sem preenchimento ou com coloração mínima.",
+   prompts:[
+     "detailed line art of [subject], fine linework, intricate patterns, minimal shading, black ink on white paper, technical illustration",
+     "botanical line art, [plant/subject], precise scientific illustration, delicate strokes, clean composition"
+   ]},
+  {cat:"ilustracao", icon:"🎪", title:"Claymation / Stop Motion",
+   desc:"Aspecto de argila colorida com texturas artesanais.",
+   prompts:[
+     "claymation style render of [subject], clay texture, vivid colors, stop-motion aesthetic, playful and handcrafted, soft lighting",
+     "clay animation scene, [character/scene], textured surfaces, Aardman Animations style, warm studio lighting"
+   ]},
+  {cat:"ilustracao", icon:"🧩", title:"Sticker / Kawaii",
+   desc:"Estilo fofinho com bordas grossas e cores suaves.",
+   prompts:[
+     "cute sticker-style illustration of [subject], thick white outline, bold flat colors, kawaii aesthetic, chibi proportions",
+     "kawaii sticker sheet, [character/object], soft pastel colors, chunky outlines, minimal shading, adorable expression"
+   ]},
+
+  // ILUMINAÇÃO
+  {cat:"iluminacao", icon:"🌅", title:"Golden Hour",
+   desc:"Luz quente e dourada logo após o nascer ou antes do pôr do sol.",
+   prompts:[
+     "[subject/scene], golden hour lighting, warm amber tones, long shadows, soft directional sunlight, magical and cinematic",
+     "golden hour portrait, warm backlit glow, lens flare, silhouette elements, [subject], dreamy atmosphere"
+   ]},
+  {cat:"iluminacao", icon:"🌓", title:"Chiaroscuro / Rembrandt",
+   desc:"Contraste dramático entre luz e sombra, técnica clássica.",
+   prompts:[
+     "Rembrandt lighting portrait, triangular highlight on cheek, deep dramatic shadows, [subject], painterly atmosphere --no painting",
+     "chiaroscuro photography, strong contrast, single key light, dark background, [subject], Renaissance style"
+   ]},
+  {cat:"iluminacao", icon:"💫", title:"Bioluminescente",
+   desc:"Luz que emana do próprio sujeito ou cenário, tonalidades vibrantes.",
+   prompts:[
+     "bioluminescent [subject], glowing organic forms, deep dark background, teal and blue light emission, underwater fantasy",
+     "bioluminescent forest scene, glowing flora and fauna, deep blacks, magical atmosphere, [scene]"
+   ]},
+  {cat:"iluminacao", icon:"🕯", title:"Candlelight / Low Key",
+   desc:"Iluminação dramática por velas ou fonte única de luz baixa.",
+   prompts:[
+     "candlelight portrait, [subject], warm flickering light, deep shadows, intimate atmosphere, painterly quality, low key",
+     "low-key dramatic lighting, single candle source, [subject], moody and atmospheric, high contrast, textured shadows"
+   ]},
+  {cat:"iluminacao", icon:"🌤", title:"Luz Difusa / Overcast",
+   desc:"Luz suave de dia nublado, sem sombras duras.",
+   prompts:[
+     "soft diffused natural light, overcast sky, [subject/scene], even illumination, gentle shadows, clean and fresh mood",
+     "window light portrait, soft diffused sidelight, [subject], natural and flattering, shallow depth of field, bokeh background"
+   ]},
+  {cat:"iluminacao", icon:"🔵", title:"Blue Hour",
+   desc:"Hora azul antes do nascer ou após o pôr do sol.",
+   prompts:[
+     "blue hour cityscape, deep blue sky, glowing city lights, [scene], twilight atmosphere, long exposure, ultra-detailed",
+     "blue hour portrait, [subject], cool blue ambient light, warm artificial light contrast, moody urban environment"
+   ]},
+  {cat:"iluminacao", icon:"💡", title:"Studio Lighting",
+   desc:"Iluminação profissional de estúdio, controlada e polida.",
+   prompts:[
+     "professional studio lighting, three-point light setup, [subject], softbox lights, clean white background, commercial quality",
+     "high-key studio portrait, [subject], even bright lighting, minimal shadows, beauty photography style, Hasselblad quality"
+   ]},
+
+  // COMPOSIÇÃO
+  {cat:"composicao", icon:"📐", title:"Regra dos Terços",
+   desc:"Composição clássica dividindo o frame em grade 3x3.",
+   prompts:[
+     "[subject], rule of thirds composition, subject positioned on left third, negative space on right, balanced framing",
+     "landscape photography, rule of thirds, horizon on lower third, dramatic sky filling upper portion, [scene]"
+   ]},
+  {cat:"composicao", icon:"🦅", title:"Bird's Eye View",
+   desc:"Câmera diretamente acima do sujeito, perspectiva aérea.",
+   prompts:[
+     "bird's eye view photograph of [subject/scene], directly overhead, flat lay composition, clean background, graphic quality",
+     "aerial top-down view, [subject], striking geometric composition, minimal distractions, --ar 1:1"
+   ]},
+  {cat:"composicao", icon:"🌀", title:"Leading Lines",
+   desc:"Linhas que guiam o olho até o sujeito principal.",
+   prompts:[
+     "[scene] with strong leading lines, [road/path/architecture] drawing eye toward [subject], dynamic perspective, wide angle",
+     "converging lines composition, [perspective scene], vanishing point at center, dramatic depth, [subject in distance]"
+   ]},
+  {cat:"composicao", icon:"🎭", title:"Dutch Angle",
+   desc:"Câmera inclinada para criar tensão ou desorientação dramática.",
+   prompts:[
+     "Dutch angle composition, [subject/scene], camera tilted 20 degrees, cinematic tension, dramatic mood",
+     "canted framing, [character portrait], disorienting tilt, psychological thriller aesthetic, moody lighting"
+   ]},
+  {cat:"composicao", icon:"🔭", title:"Close-up / Macro",
+   desc:"Aproximação extrema revelando detalhes invisíveis a olho nu.",
+   prompts:[
+     "macro photography of [subject], extreme close-up, shallow depth of field, ultra-detailed textures, bokeh background, sharp focus",
+     "beauty close-up portrait, [subject], 105mm macro lens, skin texture detail, catchlight in eyes, minimal makeup"
+   ]},
+  {cat:"composicao", icon:"🖼", title:"Enquadramento Simétrico",
+   desc:"Composição com simetria central, monumentalidade e equilíbrio.",
+   prompts:[
+     "perfectly symmetrical composition, [subject/architecture], centered framing, Wes Anderson style, flat and graphic, pastel palette",
+     "symmetrical architecture photography, [building/interior], centered vanishing point, geometric perfection, [time of day]"
+   ]},
+
+  // CONCEITO & MÉTODO
+  {cat:"conceito", icon:"🧠", title:"Prompt Layering (Camadas)",
+   desc:"Técnica de empilhar elementos do mais ao menos importante.",
+   prompts:[
+     "ESTRUTURA: [sujeito principal] + [estilo/mídia] + [iluminação] + [composição] + [cor/mood] + [qualidade técnica]",
+     "EXEMPLO: 'lone astronaut on Mars | cinematic photography | dramatic volumetric light | wide shot | dusty orange and purple palette | ultra-detailed 8K'"
+   ]},
+  {cat:"conceito", icon:"🔄", title:"Iteração Sistemática",
+   desc:"Mudar UMA variável por vez para entender o impacto de cada elemento.",
+   prompts:[
+     "MÉTODO: Comece simples → adicione iluminação → adicione composição → adicione estilo → adicione qualidade. Observe a cada etapa.",
+     "DICA: Se o resultado não agradou, remova o último elemento adicionado para isolar o problema."
+   ]},
+  {cat:"conceito", icon:"🚫", title:"Negative Prompts",
+   desc:"Dizer ao modelo O QUE EVITAR é tão importante quanto o que gerar.",
+   prompts:[
+     "NEGATIVOS COMUNS: --no blurry, low quality, distorted, watermark, text, oversaturated, extra limbs, deformed hands",
+     "NEGATIVOS PARA RETRATO: --no painting, --no cartoon, --no overprocessed skin, --no uncanny valley, --no illustration"
+   ]},
+  {cat:"conceito", icon:"🎯", title:"Referências de Artistas",
+   desc:"Citar artistas transfere toda a linguagem visual deles.",
+   prompts:[
+     "FOTOGRAFIA: Annie Leibovitz (retrato dramático) | Ansel Adams (paisagem P&B) | Steve McCurry (retrato documental colorido)",
+     "PINTURA: Rembrandt (luz dramática) | Monet (impressionismo) | Yoshitaka Amano (fantasia japonesa) | Bierstadt (paisagem épica)"
+   ]},
+  {cat:"conceito", icon:"📷", title:"Terminologia de Câmera",
+   desc:"Vocabulário fotográfico técnico melhora drasticamente o realismo.",
+   prompts:[
+     "LENTES: 24mm (grande angular) | 50mm (natural) | 85mm (retrato) | 135mm (compressão) | macro (close-up extremo)",
+     "PARÂMETROS: f/1.4 (bokeh intenso) | f/8 (tudo em foco) | shot on Hasselblad | shot on Sony A7 III | shot on Leica M6"
+   ]},
+  {cat:"conceito", icon:"🎞", title:"Film Stocks",
+   desc:"Filmes analógicos referenciais para características visuais autênticas.",
+   prompts:[
+     "Kodak Portra 400 (tons quentes, pele natural) | Fujifilm Velvia 50 (saturado, paisagens) | Kodak Tri-X (P&B contrastado)",
+     "Ilford HP5 (P&B granulado) | Cinestill 800T (cidade noturna com halo) | Agfa Vista 200 (casual e colorido)"
+   ]},
+];
+
+/* ============================================================
+   ESTADO
+   ============================================================ */
+let sgActiveTab = 'all';
+let sgExpandedIndex = null;
+
+/* ============================================================
+   FUNÇÕES
+   ============================================================ */
+function sgSetTab(tab, el) {
+  sgActiveTab = tab;
+  document.querySelectorAll('.sg-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const conceptBox = document.getElementById('sg-concept-box');
+  if (conceptBox) conceptBox.style.display = (tab === 'all' || tab === 'conceito') ? '' : 'none';
+  sgExpandedIndex = null;
+  sgRender();
+}
+
+function sgFilterCards() {
+  sgExpandedIndex = null;
+  sgRender();
+}
+
+function sgCatLabel(c) {
+  const m = {
+    fotografia:'Fotografia', pintura:'Pintura & Arte',
+    digital:'Digital & 3D', retro:'Retrô & Vintage',
+    fantasia:'Fantasia & Sci-Fi', ilustracao:'Ilustração',
+    iluminacao:'Iluminação', composicao:'Composição', conceito:'Conceito & Método'
+  };
+  return m[c] || c;
+}
+
+function sgRender() {
+  const q = (document.getElementById('sg-search').value || '').toLowerCase();
+  const filtered = SG_DATA.filter((d, i) => {
+    const matchCat = sgActiveTab === 'all' || d.cat === sgActiveTab;
+    const matchQ = !q || d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.prompts.join(' ').toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  document.getElementById('sg-count').textContent = filtered.length + ' estilo' + (filtered.length !== 1 ? 's' : '') + ' encontrado' + (filtered.length !== 1 ? 's' : '');
+
+  const grid = document.getElementById('sg-grid');
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="sg-empty">Nenhum estilo encontrado. Tente outro termo.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((d, idx) => {
+    const isOpen = sgExpandedIndex === idx;
+    return `
+    <div class="sg-card${isOpen ? ' expanded' : ''}" id="sg-card-${idx}" onclick="sgToggleCard(${idx})">
+      <div class="sg-card-header">
+        <div class="sg-card-icon">${d.icon}</div>
+        <div class="sg-card-title">${d.title}</div>
+      </div>
+      <div class="sg-card-cat">${sgCatLabel(d.cat)}</div>
+      <div class="sg-card-desc">${d.desc}</div>
+      <span class="sg-card-arrow">▼</span>
+      <div class="sg-prompts">
+        ${d.prompts.map((p, pi) => `
+          <div class="sg-prompt-item" id="sg-p-${idx}-${pi}">${p}</div>
+          <div class="sg-prompt-actions">
+            <button class="sg-btn-copy" onclick="sgCopy(event, ${idx}, ${pi})">Copiar prompt</button>
+          </div>
+        `).join('')}
+        <button class="sg-btn-use" onclick="sgUseStyle(event, '${d.title.replace(/'/g,"\\'")}')">
+          Usar estilo: ${d.title} →
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function sgToggleCard(idx) {
+  if (sgExpandedIndex === idx) {
+    sgExpandedIndex = null;
+  } else {
+    sgExpandedIndex = idx;
+  }
+  sgRender();
+  if (sgExpandedIndex !== null) {
+    const card = document.getElementById('sg-card-' + sgExpandedIndex);
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function sgCopy(e, idx, pi) {
+  e.stopPropagation();
+  const el = document.getElementById('sg-p-' + idx + '-' + pi);
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent.trim()).catch(() => {});
+  const btn = e.target;
+  btn.textContent = '✓ Copiado!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = 'Copiar prompt'; btn.classList.remove('copied'); }, 1800);
+}
+
+/*
+ * ============================================================
+ * sgUseStyle — CALLBACK CUSTOMIZÁVEL
+ * ============================================================
+ * Esta função é chamada quando o usuário clica em "Usar estilo".
+ * Por padrão, ela despacha um CustomEvent 'sgStyleSelected' com
+ * o título do estilo e os prompts relacionados.
+ *
+ * No seu sistema, você pode:
+ *   1. Ouvir o evento: document.addEventListener('sgStyleSelected', e => { ... })
+ *   2. Ou sobrescrever window.onSgStyleSelected(styleData) diretamente
+ * ============================================================
+ */
+function sgUseStyle(e, title) {
+  e.stopPropagation();
+  const styleData = SG_DATA.find(d => d.title === title);
+  if (!styleData) return;
+
+  // Dispara evento customizado — integre no seu sistema ouvindo este evento
+  const event = new CustomEvent('sgStyleSelected', {
+    detail: {
+      title: styleData.title,
+      category: styleData.cat,
+      description: styleData.desc,
+      prompts: styleData.prompts
+    },
+    bubbles: true
+  });
+  document.dispatchEvent(event);
+
+  // Callback alternativo para integração direta
+  if (typeof window.onSgStyleSelected === 'function') {
+    window.onSgStyleSelected({
+      title: styleData.title,
+      category: styleData.cat,
+      description: styleData.desc,
+      prompts: styleData.prompts
+    });
+  }
+}
+
+// Init
+sgRender();
+</script>
+
+</body>
+</html>

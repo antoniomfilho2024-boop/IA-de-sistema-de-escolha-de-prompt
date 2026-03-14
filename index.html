@@ -3,874 +3,1005 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guia de Estilos de Imagem</title>
+<title>Guia de Estilos de Imagem — Gemini</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* ===== RESET & BASE ===== */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0f0f13;
-    --bg2: #16161c;
-    --bg3: #1e1e27;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.15);
-    --text: #e8e8f0;
-    --text2: #9090a8;
-    --text3: #5a5a72;
-    --accent: #7c6af7;
-    --accent2: #5b4fd4;
-    --accent-glow: rgba(124,106,247,0.2);
-    --green: #4ade80;
-    --amber: #fbbf24;
-    --coral: #f87171;
-    --teal: #2dd4bf;
-    --radius: 10px;
-    --radius-lg: 14px;
-    --font: 'Segoe UI', system-ui, sans-serif;
-    --font-mono: 'Cascadia Code', 'Fira Code', monospace;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0;
-  }
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #18181f;
+  --bg4: #1e1e28;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --border3: rgba(255,255,255,0.22);
+  --text: #ededf5;
+  --text2: #8888a8;
+  --text3: #44445a;
+  --accent: #6c5ce7;
+  --accent-light: rgba(108,92,231,0.15);
+  --accent-glow: rgba(108,92,231,0.3);
+  --green: #00cba9;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+}
 
-  /* ===== CONTAINER PRINCIPAL ===== */
-  #styles-guide {
-    padding: 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
 
-  /* ===== HEADER ===== */
-  .sg-header {
-    margin-bottom: 1.5rem;
-  }
-  .sg-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: -0.3px;
-    margin-bottom: 4px;
-  }
-  .sg-subtitle {
-    font-size: 13px;
-    color: var(--text3);
-  }
+/* ── HEADER ── */
+.header {
+  padding: 3rem 2rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+.header-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: var(--font-display);
+}
+.header-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.header-title span { color: var(--accent); }
+.header-sub {
+  font-size: 14px;
+  color: var(--text2);
+  max-width: 520px;
+}
+.gemini-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 5px 12px;
+  background: rgba(66,133,244,0.12);
+  border: 1px solid rgba(66,133,244,0.25);
+  border-radius: 20px;
+  font-size: 12px;
+  color: #74aaf8;
+  font-weight: 500;
+}
+.gemini-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #74aaf8;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-  /* ===== CONCEITO ===== */
-  .sg-concept {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
-  .sg-concept-title {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-  .sg-concept-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 8px;
-  }
-  .sg-concept-item {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 10px 12px;
-  }
-  .sg-concept-item-num {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 3px;
-    letter-spacing: 0.05em;
-  }
-  .sg-concept-item-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 3px;
-  }
-  .sg-concept-item-desc {
-    font-size: 11px;
-    color: var(--text2);
-    line-height: 1.45;
-  }
+/* ── MAIN LAYOUT ── */
+.main { max-width: 1200px; margin: 0 auto; padding: 0 2rem 4rem; }
 
-  /* ===== SEARCH ===== */
-  .sg-search-wrap {
-    position: relative;
-    margin-bottom: 1rem;
-  }
-  .sg-search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text3);
-    font-size: 14px;
-    pointer-events: none;
-  }
-  #sg-search {
-    width: 100%;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 9px 12px 9px 36px;
-    font-size: 13px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s;
-    font-family: var(--font);
-  }
-  #sg-search::placeholder { color: var(--text3); }
-  #sg-search:focus { border-color: var(--accent); }
+/* ── SEARCH + FILTERS ── */
+.controls { margin-bottom: 1.5rem; }
+.search-wrap { position: relative; margin-bottom: 1rem; }
+.search-icon {
+  position: absolute; left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text3); font-size: 16px; pointer-events: none;
+}
+#sg-search {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 11px 14px 11px 40px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  font-family: var(--font-body);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#sg-search::placeholder { color: var(--text3); }
+#sg-search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
 
-  /* ===== TABS ===== */
-  .sg-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 1rem;
-  }
-  .sg-tab {
-    padding: 5px 13px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 12px;
-    color: var(--text2);
-    background: var(--bg2);
-    transition: all 0.15s;
-    user-select: none;
-  }
-  .sg-tab:hover { border-color: var(--border2); color: var(--text); }
-  .sg-tab.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-    font-weight: 500;
-  }
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.tab {
+  padding: 6px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--bg2);
+  transition: all 0.15s;
+  user-select: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+.tab:hover { border-color: var(--border3); color: var(--text); }
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
 
-  /* ===== COUNT ===== */
-  .sg-count {
-    font-size: 12px;
-    color: var(--text3);
-    margin-bottom: 12px;
-  }
+.sg-count {
+  font-size: 12px; color: var(--text3);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
 
-  /* ===== GRID DE CARDS ===== */
-  .sg-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 10px;
-  }
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
 
-  /* ===== CARD ===== */
-  .sg-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1rem;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    user-select: none;
-  }
-  .sg-card:hover { border-color: var(--border2); }
-  .sg-card.expanded {
-    border-color: var(--accent);
-    background: var(--bg3);
-  }
+/* ── CARD ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.card.expanded { border-color: var(--accent); transform: none; }
 
-  .sg-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
-  }
-  .sg-card-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-  }
-  .sg-card-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.3;
-  }
-  .sg-card-cat {
-    font-size: 11px;
-    color: var(--text3);
-    margin-bottom: 6px;
-    padding-left: 40px;
-  }
-  .sg-card-desc {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.5;
-  }
-  .sg-card-arrow {
-    float: right;
-    font-size: 11px;
-    color: var(--text3);
-    transition: transform 0.2s;
-    margin-top: -18px;
-  }
-  .sg-card.expanded .sg-card-arrow { transform: rotate(180deg); color: var(--accent); }
 
-  /* ===== PROMPTS EXPANDIDOS ===== */
-  .sg-prompts {
-    display: none;
-    margin-top: 12px;
-    border-top: 1px solid var(--border);
-    padding-top: 12px;
-  }
-  .sg-card.expanded .sg-prompts { display: block; }
+/* ── CARD BODY ── */
+.card-body { padding: 14px 16px; }
+.card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.card-title { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.card-arrow { font-size: 10px; color: var(--text3); margin-top: 3px; transition: transform 0.2s, color 0.2s; flex-shrink: 0; }
+.card.expanded .card-arrow { transform: rotate(180deg); color: var(--accent); }
+.card-cat { font-size: 11px; color: var(--text3); margin-bottom: 6px; letter-spacing: 0.04em; font-weight: 500; }
+.card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; }
 
-  .sg-prompt-item {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 8px 10px;
-    margin-bottom: 6px;
-    font-size: 11px;
-    color: var(--text2);
-    line-height: 1.55;
-    font-family: var(--font-mono);
-    word-break: break-word;
-  }
+/* ── PROMPTS ── */
+.card-prompts {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 14px 16px;
+  background: var(--bg3);
+}
+.card.expanded .card-prompts { display: block; }
 
-  .sg-prompt-actions {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-  }
+.prompt-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+.prompt-block {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 11.5px;
+  color: #c8c8e8;
+  line-height: 1.6;
+  font-family: var(--font-mono);
+  word-break: break-word;
+  position: relative;
+}
+.prompt-num {
+  font-size: 10px;
+  color: var(--text3);
+  font-family: var(--font-display);
+  margin-bottom: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.btn-copy {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 5px 10px;
+  font-size: 11px;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg2);
+  color: var(--text2);
+  font-family: var(--font-body);
+  transition: all 0.15s;
+  text-align: center;
+}
+.btn-copy:hover { background: var(--bg4); color: var(--text); border-color: var(--border3); }
+.btn-copy.ok { border-color: var(--green); color: var(--green); }
 
-  .sg-btn-copy {
-    padding: 4px 10px;
-    font-size: 11px;
-    border: 1px solid var(--border2);
-    border-radius: 6px;
-    cursor: pointer;
-    background: var(--bg3);
-    color: var(--text2);
-    font-family: var(--font);
-    transition: all 0.15s;
-  }
-  .sg-btn-copy:hover { background: var(--border); color: var(--text); }
-  .sg-btn-copy.copied { border-color: var(--green); color: var(--green); }
+.btn-use {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-family: var(--font-display);
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.btn-use:hover { background: var(--accent); color: #fff; }
 
-  /* ===== BOTÃO USE ESTE ESTILO ===== */
-  .sg-btn-use {
-    width: 100%;
-    margin-top: 10px;
-    padding: 8px 14px;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid var(--accent);
-    border-radius: var(--radius);
-    cursor: pointer;
-    background: var(--accent-glow);
-    color: var(--accent);
-    font-family: var(--font);
-    transition: all 0.15s;
-    text-align: center;
-  }
-  .sg-btn-use:hover { background: var(--accent); color: #fff; }
+/* ── ANATOMY SECTION ── */
+.anatomy {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.anatomy-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.anatomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 8px;
+}
+.anatomy-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+.anatomy-num { font-size: 10px; font-weight: 700; color: var(--accent); margin-bottom: 3px; font-family: var(--font-display); letter-spacing: 0.08em; }
+.anatomy-name { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 3px; font-family: var(--font-display); }
+.anatomy-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
 
-  /* ===== EMPTY STATE ===== */
-  .sg-empty {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text3);
-    font-size: 14px;
-  }
+/* ── EMPTY ── */
+.empty { text-align: center; padding: 4rem 1rem; color: var(--text3); font-size: 14px; }
 
-  /* ===== SCROLLBAR ===== */
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
 </style>
 </head>
 <body>
 
-<div id="styles-guide">
-
-  <!-- HEADER -->
-  <div class="sg-header">
-    <div class="sg-title">Guia de Estilos de Imagem</div>
-    <div class="sg-subtitle">Clique em um estilo para ver os prompts prontos</div>
+<div class="header">
+  <div class="header-eyebrow">Style Reference Guide</div>
+  <div class="header-title">Guia de Estilos<br>de <span>Imagem</span></div>
+  <div class="header-sub">Prompts prontos para transformar qualquer imagem no Gemini. Anexe sua imagem e cole o prompt.</div>
+  <div class="gemini-badge">
+    <span class="gemini-dot"></span>
+    Otimizado para Gemini
   </div>
+</div>
 
-  <!-- ANATOMIA DO PROMPT -->
-  <div class="sg-concept" id="sg-concept-box">
-    <div class="sg-concept-title">Anatomia de um prompt</div>
-    <div class="sg-concept-grid">
-      <div class="sg-concept-item">
-        <div class="sg-concept-item-num">01</div>
-        <div class="sg-concept-item-title">Sujeito</div>
-        <div class="sg-concept-item-desc">O que/quem aparece. Seja específico.</div>
+<div class="main">
+
+  <div class="anatomy" id="anatomy-box">
+    <div class="anatomy-title">Como usar no Gemini</div>
+    <div class="anatomy-grid">
+      <div class="anatomy-item">
+        <div class="anatomy-num">01</div>
+        <div class="anatomy-name">Anexe a imagem</div>
+        <div class="anatomy-desc">No Gemini, clique no ícone de imagem e envie sua foto</div>
       </div>
-      <div class="sg-concept-item">
-        <div class="sg-concept-item-num">02</div>
-        <div class="sg-concept-item-title">Estilo / Mídia</div>
-        <div class="sg-concept-item-desc">Fotografia, aquarela, 3D render, anime…</div>
+      <div class="anatomy-item">
+        <div class="anatomy-num">02</div>
+        <div class="anatomy-name">Cole o prompt</div>
+        <div class="anatomy-desc">Copie o prompt do estilo desejado e cole na caixa de texto</div>
       </div>
-      <div class="sg-concept-item">
-        <div class="sg-concept-item-num">03</div>
-        <div class="sg-concept-item-title">Iluminação</div>
-        <div class="sg-concept-item-desc">Golden hour, Rembrandt, neon, backlight…</div>
+      <div class="anatomy-item">
+        <div class="anatomy-num">03</div>
+        <div class="anatomy-name">Ajuste [subject]</div>
+        <div class="anatomy-desc">Se o prompt tiver [subject], substitua pelo seu tema específico</div>
       </div>
-      <div class="sg-concept-item">
-        <div class="sg-concept-item-num">04</div>
-        <div class="sg-concept-item-title">Composição</div>
-        <div class="sg-concept-item-desc">Wide shot, close-up, bird's eye, Dutch angle…</div>
+      <div class="anatomy-item">
+        <div class="anatomy-num">04</div>
+        <div class="anatomy-name">Itere</div>
+        <div class="anatomy-desc">Adicione "more dramatic" ou "less saturated" para refinar o resultado</div>
       </div>
-      <div class="sg-concept-item">
-        <div class="sg-concept-item-num">05</div>
-        <div class="sg-concept-item-title">Cor / Mood</div>
-        <div class="sg-concept-item-desc">Paleta quente, monocromático, pastel, neon…</div>
+      <div class="anatomy-item">
+        <div class="anatomy-num">05</div>
+        <div class="anatomy-name">Preserve</div>
+        <div class="anatomy-desc">Adicione "preserve original composition and subject" para manter a estrutura</div>
       </div>
-      <div class="sg-concept-item">
-        <div class="sg-concept-item-num">06</div>
-        <div class="sg-concept-item-title">Qualidade</div>
-        <div class="sg-concept-item-desc">8K, hyperrealistic, bokeh, cinematic, HDR…</div>
+      <div class="anatomy-item">
+        <div class="anatomy-num">06</div>
+        <div class="anatomy-name">Negatize</div>
+        <div class="anatomy-desc">Adicione "do not add [x]" para evitar elementos indesejados</div>
       </div>
     </div>
   </div>
 
-  <!-- BUSCA -->
-  <div class="sg-search-wrap">
-    <span class="sg-search-icon">⌕</span>
-    <input type="text" id="sg-search" placeholder="Buscar estilo, técnica ou palavra-chave..." oninput="sgFilterCards()">
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="sg-search" placeholder="Buscar estilo..." oninput="sgRender()">
+    </div>
+    <div class="tabs" id="tabs">
+      <div class="tab active" onclick="sgTab('all',this)">Todos</div>
+      <div class="tab" onclick="sgTab('fotografia',this)">📷 Fotografia</div>
+      <div class="tab" onclick="sgTab('pintura',this)">🖌 Pintura</div>
+      <div class="tab" onclick="sgTab('digital',this)">🖥 Digital & 3D</div>
+      <div class="tab" onclick="sgTab('retro',this)">📼 Retrô</div>
+      <div class="tab" onclick="sgTab('fantasia',this)">🐉 Fantasia</div>
+      <div class="tab" onclick="sgTab('ilustracao',this)">✏️ Ilustração</div>
+      <div class="tab" onclick="sgTab('iluminacao',this)">💡 Iluminação</div>
+      <div class="tab" onclick="sgTab('composicao',this)">📐 Composição</div>
+      <div class="tab" onclick="sgTab('angulos',this)">🎥 Ângulos & Planos</div>
+      <div class="tab" onclick="sgTab('conceito',this)">🧠 Método</div>
+    </div>
   </div>
 
-  <!-- TABS -->
-  <div class="sg-tabs" id="sg-tabs">
-    <div class="sg-tab active" onclick="sgSetTab('all', this)">Todos</div>
-    <div class="sg-tab" onclick="sgSetTab('fotografia', this)">📷 Fotografia</div>
-    <div class="sg-tab" onclick="sgSetTab('pintura', this)">🖌 Pintura</div>
-    <div class="sg-tab" onclick="sgSetTab('digital', this)">🖥 Digital & 3D</div>
-    <div class="sg-tab" onclick="sgSetTab('retro', this)">📼 Retrô</div>
-    <div class="sg-tab" onclick="sgSetTab('fantasia', this)">🐉 Fantasia</div>
-    <div class="sg-tab" onclick="sgSetTab('ilustracao', this)">📖 Ilustração</div>
-    <div class="sg-tab" onclick="sgSetTab('iluminacao', this)">💡 Iluminação</div>
-    <div class="sg-tab" onclick="sgSetTab('composicao', this)">📐 Composição</div>
-    <div class="sg-tab" onclick="sgSetTab('conceito', this)">🧠 Método</div>
-  </div>
-
-  <!-- COUNT -->
   <div class="sg-count" id="sg-count"></div>
-
-  <!-- GRID -->
-  <div class="sg-grid" id="sg-grid"></div>
-
+  <div class="grid" id="grid"></div>
 </div>
 
 <script>
-/* ============================================================
-   DADOS — Estilos de Imagem
-   ============================================================ */
+/* =====================================================
+   DADOS — Prompts reescritos para Gemini (transformação)
+   ===================================================== */
 const SG_DATA = [
-  // FOTOGRAFIA
-  {cat:"fotografia", icon:"📷", title:"Fotorrealista / Hyperrealistic",
-   desc:"Imagem que parece uma fotografia real, altamente detalhada e precisa.",
+  {cat:"fotografia", icon:"📷", title:"Fotorrealista",
+   desc:"Transforma a imagem em fotografia ultra-realista com detalhes precisos.",
    prompts:[
-     "hyperrealistic photo of [subject], ultra-detailed, 8K, sharp focus, natural lighting",
-     "photorealistic portrait, shot on Sony A7 III, 85mm lens, shallow depth of field, catchlight in eyes, detailed skin texture, visible pores"
+     "Transform this image into a photorealistic photograph. Enhance textures and fine details as if shot on a Sony A7 III with an 85mm lens, f/1.8 aperture, and natural lighting. Preserve the original subject and composition. Do not add elements not present in the original.",
+     "Convert this image to a hyperrealistic photo style. Add natural skin texture with visible pores, authentic lighting with catchlight in the eyes, and shallow depth of field with soft bokeh background. Keep the original composition intact."
+   ,
+     "Transforme esta imagem em uma fotografia ultra-realista. Aprimore texturas e detalhes como se fosse capturada com câmera Sony A7 III, lente 85mm, abertura f/1.8 e iluminação natural. Preserve o sujeito e a composição originais. Não adicione elementos que não estejam no original."
    ]},
   {cat:"fotografia", icon:"🎬", title:"Cinematográfico",
-   desc:"Estética de filme de Hollywood com cor, enquadramento e iluminação épicos.",
+   desc:"Aplica grading de cor e estética de filme de cinema épico.",
    prompts:[
-     "cinematic photography, teal and orange color grading, dramatic lighting, [subject], wide angle shot, shallow depth of field, movie still",
-     "cinematic still, anamorphic lens, film grain, ultra-detailed, [scene], shot on ARRI Alexa, epic composition"
+     "Transform this image into a cinematic movie still. Apply teal and orange color grading, add slight film grain, letterbox crop (black bars), and enhance the dramatic depth of field. Preserve the original subject and framing.",
+     "Convert this image to a cinematic photography style as if shot on an ARRI Alexa. Apply desaturated tones with boosted shadows, anamorphic lens flare effect, and moody atmospheric quality. Keep original subject intact."
+   ,
+     "Transforme esta imagem em um fotograma de filme cinematográfico. Aplique gradação de cor teal e laranja, adicione leve grão de filme, barras de letterbox e profundidade de campo dramática. Preserve o sujeito e o enquadramento originais."
    ]},
   {cat:"fotografia", icon:"👗", title:"Editorial / Moda",
-   desc:"Estilo de revistas de moda, limpo, polido e controlado.",
+   desc:"Converte para o visual limpo e polido de revistas de moda.",
    prompts:[
-     "editorial fashion photography, controlled studio lighting, polished composition, Vogue magazine style, [subject]",
-     "fashion editorial, soft natural window light, shallow depth of field, 50mm lens, elegant and minimalist, --ar 2:3"
+     "Transform this image into an editorial fashion photography style as seen in Vogue magazine. Apply controlled studio lighting, enhance contrast and clarity, create a clean polished look. Preserve the original subject and composition.",
+     "Convert this image to a high-fashion editorial style. Add soft natural window light from the left side, shallow depth of field, elegant and minimalist mood. Keep original subject, do not add people or objects."
+   ,
+     "Transforme esta imagem em estilo de fotografia editorial de moda como nas páginas da Vogue. Aplique iluminação de estúdio controlada, aumente o contraste e a clareza, crie um visual limpo e polido. Preserve o sujeito e a composição originais."
    ]},
   {cat:"fotografia", icon:"🌆", title:"Street Photography",
-   desc:"Fotografia documental urbana, crua e autêntica.",
+   desc:"Transforma em fotografia documental urbana, crua e autêntica.",
    prompts:[
-     "documentary street photography, raw realism, unposed subjects, storytelling focus, [city scene], candid, natural light",
-     "35mm film street photography, Leica M6, grain, [city/subject], gritty urban atmosphere, black and white"
+     "Transform this image into a documentary street photography style. Convert to black and white with strong contrast, add 35mm film grain, create an unposed candid feel with natural harsh light and shadows.",
+     "Convert this image to street photography style as if shot on a Leica M6 with Kodak Tri-X film. Apply gritty urban atmosphere, high contrast black and white tones, visible grain texture. Preserve original composition."
+   ,
+     "Transforme esta imagem em estilo de fotografia documental de rua. Converta para preto e branco com alto contraste, adicione grão de filme 35mm, crie uma sensação espontânea com luz natural dura. Preserve a composição original."
    ]},
   {cat:"fotografia", icon:"🌌", title:"Astrofotografia",
-   desc:"Céu noturno, via láctea, exposição longa.",
+   desc:"Aplica estética de fotografia noturna do céu estrelado.",
    prompts:[
-     "hyperrealistic astrophotography shot of the Milky Way, silhouette of [foreground], long exposure, dark sky, ultra-detailed stars",
-     "night sky photography, star trails, [landscape], blue hour, wide angle 14mm, ISO 3200"
+     "Transform this image into an astrophotography style. Apply deep dark sky atmosphere, enhance any existing light sources to appear as stars or cosmic elements, add a Milky Way-style star field in the background while preserving the original foreground subject.",
+     "Convert this image to a long-exposure night sky photography style. Apply a deep blue-black sky, add visible stars and soft nebula tones, enhance silhouette contrast of the foreground subject. Keep original composition."
+   ,
+     "Transforme esta imagem em estilo de astrofotografia noturna. Aplique atmosfera de céu escuro profundo, adicione campo de estrelas estilo Via Láctea ao fundo, preservando o sujeito em primeiro plano como silhueta contrastante."
    ]},
   {cat:"fotografia", icon:"🎭", title:"Retrato Dramático",
-   desc:"Retrato com alta carga emocional e iluminação trabalhada.",
+   desc:"Aplica iluminação dramática e carga emocional intensa ao retrato.",
    prompts:[
-     "dramatic portrait of [subject], single key light, deep shadows, intense expression, 85mm lens, shallow depth of field, cinematic",
-     "moody portrait, [subject], side lighting, textured background, desaturated tones, editorial quality, medium format camera"
+     "Transform this image into a dramatic portrait style. Apply a single key light from the upper left, deep shadows on the opposite side, desaturated color palette with warm skin tones. Preserve original subject, do not change their appearance.",
+     "Convert this image to a dramatic moody portrait style shot on medium format camera. Apply strong directional side lighting, dark textured background, cinematic color grade. Keep original subject and their expression."
+   ,
+     "Transforme esta imagem em um retrato dramático. Aplique uma única luz principal vinda do alto à esquerda, sombras profundas no lado oposto, paleta de cores dessaturada com tons quentes de pele. Preserve o sujeito original sem alterar sua aparência."
    ]},
 
   // PINTURA
   {cat:"pintura", icon:"🖌", title:"Óleo sobre Tela",
-   desc:"Pintura clássica com textura rica e pinceladas visíveis.",
+   desc:"Converte para pintura clássica com textura rica e pinceladas visíveis.",
    prompts:[
-     "oil painting of [subject], rich brushstrokes, warm tones, layered textures, canvas texture, Rembrandt style",
-     "classical oil portrait, impasto technique, palette knife texture, Old Masters style, dramatic chiaroscuro, [subject]"
+     "Transform this image into an oil painting on canvas style. Add visible impasto brushstrokes, rich layered textures, warm classical color palette inspired by Old Masters. Preserve original subject and composition. Do not change the depicted scene.",
+     "Convert this image to a traditional oil painting style with palette knife texture, deep chiaroscuro lighting, and canvas grain texture. Apply warm earth tones and visible paint layers. Keep original subject intact."
+   ,
+     "Transforme esta imagem em pintura a óleo sobre tela. Adicione pinceladas de impasto visíveis, texturas ricas e sobrepostas, paleta clássica aquecida inspirada nos Grandes Mestres. Preserve o sujeito e a composição originais."
    ]},
   {cat:"pintura", icon:"💧", title:"Aquarela",
-   desc:"Cores suaves fluindo com bordas difusas e toque artesanal.",
+   desc:"Transforma em pintura de aquarela com cores fluindo suavemente.",
    prompts:[
-     "soft watercolor painting of [subject], gentle brushstrokes, flowing colors, delicate hand-painted feel, white paper texture",
-     "watercolor illustration, wet-on-wet technique, luminous washes, botanical style, [subject], minimal brushwork"
+     "Transform this image into a soft watercolor painting. Apply gentle flowing brushstrokes, colors bleeding into each other at the edges, white paper texture visible in highlights. Preserve original subject and composition.",
+     "Convert this image to a watercolor illustration style using wet-on-wet technique. Add transparent luminous washes, soft undefined edges, minimal detail with expressive color. Keep the original subject and scene."
+   ,
+     "Transforme esta imagem em uma pintura de aquarela suave. Aplique pinceladas fluidas e delicadas, cores se misturando nas bordas, textura de papel branco visível nos destaques. Preserve o sujeito e a composição originais."
    ]},
   {cat:"pintura", icon:"🌿", title:"Impressionismo",
-   desc:"Inspirado em Monet e Renoir, pinceladas soltas e luz natural.",
+   desc:"Aplica pinceladas soltas e luz natural ao estilo impressionista.",
    prompts:[
-     "Impressionist painting, visible brushstrokes, soft dappled light, en plein air, [subject], Monet-inspired palette",
-     "Post-Impressionist oil painting, bold colors, expressive brushwork, Van Gogh style, [scene], swirling sky"
+     "Transform this image into an Impressionist painting in the style of Claude Monet. Apply short visible brushstrokes, soft dappled natural light, slightly blurred outlines with vibrant color patches. Preserve original subject and overall composition.",
+     "Convert this image to a Post-Impressionist style inspired by Van Gogh. Apply thick swirling expressive brushstrokes, bold saturated colors, dynamic textural energy. Keep original subject and scene composition."
+   ,
+     "Transforme esta imagem em uma pintura impressionista no estilo de Claude Monet. Aplique pinceladas curtas e visíveis, luz natural suave e moteada, contornos levemente desfocados com manchas de cores vibrantes. Preserve o sujeito original."
    ]},
   {cat:"pintura", icon:"✏️", title:"Esboço / Pencil Art",
-   desc:"Desenho a lápis ou carvão com traços expressivos.",
+   desc:"Converte para desenho a lápis ou carvão com traços expressivos.",
    prompts:[
-     "detailed pencil sketch of [subject], graphite on paper, cross-hatching, fine line work, realistic shading",
-     "charcoal drawing, expressive strokes, high contrast, dramatic shadows, [subject], textured paper"
+     "Transform this image into a detailed pencil sketch on white paper. Apply graphite tones with cross-hatching for shadows, fine precise linework for details, and textured paper grain visible in lighter areas. Preserve original subject and composition.",
+     "Convert this image to a charcoal drawing style. Apply expressive bold strokes, high contrast between dark and light areas, smudged tonal transitions, and rough paper texture. Keep original subject intact."
+   ,
+     "Transforme esta imagem em um esboço detalhado a lápis sobre papel branco. Aplique tons de grafite com hachura para as sombras, traços finos e precisos nos detalhes, grão de papel visível nas áreas mais claras. Preserve o sujeito original."
    ]},
   {cat:"pintura", icon:"🌸", title:"Art Nouveau",
-   desc:"Linhas orgânicas curvas, ornamentos florais, estética 1900.",
+   desc:"Aplica linhas orgânicas curvas e ornamentos florais do estilo 1900.",
    prompts:[
-     "Art Nouveau illustration of [subject], flowing organic lines, floral ornaments, Alphonse Mucha style, decorative borders, muted golden palette",
-     "Art Nouveau poster design, sinuous curves, botanical motifs, [subject], Klimt-inspired, flat color areas with intricate detail"
+     "Transform this image into an Art Nouveau illustration in the style of Alphonse Mucha. Apply flowing organic lines, floral ornamental borders, muted golden and earth-tone palette, decorative patterned background. Preserve original subject.",
+     "Convert this image to Art Nouveau style inspired by Gustav Klimt. Add sinuous curved lines, botanical motifs surrounding the subject, flat gold decorative areas with intricate pattern details. Keep original subject prominent."
+   ,
+     "Transforme esta imagem em uma ilustração Art Nouveau no estilo de Alphonse Mucha. Aplique linhas orgânicas fluidas, bordas ornamentais florais, paleta dourada e tons terrosos suaves. Preserve o sujeito original."
    ]},
   {cat:"pintura", icon:"🖼", title:"Expressionismo",
-   desc:"Distorção emocional da realidade, cores intensas e formas angulosas.",
+   desc:"Distorce emocionalmente a realidade com cores intensas e formas angulosas.",
    prompts:[
-     "Expressionist painting of [subject], distorted forms, intense colors, raw emotion, Edvard Munch style, visceral atmosphere",
-     "German Expressionism style, angular shapes, clashing colors, dark themes, woodcut influence, [scene]"
+     "Transform this image into an Expressionist painting style inspired by Edvard Munch. Apply distorted forms, intense clashing colors, raw emotional quality with angular aggressive brushwork. Preserve original subject while exaggerating emotional elements.",
+     "Convert this image to German Expressionism style. Apply angular distorted shapes, dark oppressive atmosphere, intense non-realistic colors, heavy black outlines with woodcut-like quality. Keep original subject recognizable."
+   ,
+     "Transforme esta imagem em uma pintura expressionista inspirada em Edvard Munch. Aplique formas distorcidas, cores intensas e contrastantes, qualidade emocional crua com pinceladas angulares e agressivas. Preserve o sujeito original."
    ]},
 
   // DIGITAL & 3D
   {cat:"digital", icon:"🖥", title:"3D Render / CGI",
-   desc:"Renderização tridimensional computadorizada, realista ou estilizada.",
+   desc:"Converte para renderização 3D fotorrealista computadorizada.",
    prompts:[
-     "3D render of [subject], octane render, photorealistic materials, global illumination, studio lighting, 8K, ultra-detailed",
-     "CGI animation still, Pixar-style 3D, subsurface scattering, soft shadows, [character/scene], cinematic lighting"
+     "Transform this image into a photorealistic 3D CGI render style. Apply subsurface scattering on skin, ray-traced reflections on surfaces, global illumination, and physically accurate materials. Preserve original subject and composition.",
+     "Convert this image to a high-quality 3D render aesthetic as if produced in Octane Render. Apply realistic material shaders, studio HDRI lighting, perfect ambient occlusion, and ultra-detailed textures. Keep original subject intact."
+   ,
+     "Transforme esta imagem em um render 3D CGI fotorrealista. Aplique dispersão subsuperficial na pele, reflexos rastreados de raios nas superfícies, iluminação global e materiais fisicamente precisos. Preserve o sujeito e a composição originais."
    ]},
   {cat:"digital", icon:"🔷", title:"Isométrico",
-   desc:"Perspectiva isométrica 45°, popular em design e jogos.",
+   desc:"Transforma em ilustração isométrica 3D com visual de jogo.",
    prompts:[
-     "isometric 3D illustration of [scene], clean flat colors, minimal shadows, game art style, top-down 45-degree view",
-     "isometric pixel art, [subject/world], colorful, detailed, clean lines, game UI aesthetic"
+     "Transform this image into an isometric 3D illustration style as seen in mobile game art. Apply a 45-degree bird's eye view perspective, clean flat colors with minimal shadows, geometric simplified forms. Preserve original subject themes.",
+     "Convert this image to an isometric design illustration. Apply a top-down 45-degree angle, bold flat color fills, clean graphic lines, game UI aesthetic with slight drop shadows for depth. Keep original subject content."
+   ,
+     "Transforme esta imagem em uma ilustração isométrica 3D estilo arte de jogo mobile. Aplique perspectiva em ângulo de 45 graus, cores planas e limpas com sombras mínimas, formas geométricas simplificadas. Preserve os elementos originais."
    ]},
   {cat:"digital", icon:"🌃", title:"Cyberpunk / Neon",
-   desc:"Estética futurista sombria com luzes neon e atmosfera noir.",
+   desc:"Aplica estética futurista sombria com luzes neon e chuva.",
    prompts:[
-     "cyberpunk cityscape, neon lights reflecting on rain-slick streets, [subject], moody atmospheric fog, teal and magenta palette, cinematic",
-     "cyberpunk portrait, neon backlight, dramatic shadows, glowing tattoos, high-tech low-life aesthetic, [character]"
+     "Transform this image into a cyberpunk aesthetic. Apply teal and magenta neon lighting, rain-slicked reflective surfaces, moody atmospheric fog, dark shadows with vibrant neon accents. Preserve original subject and composition.",
+     "Convert this image to a cyberpunk neon noir style. Apply dramatic neon backlighting in cyan and pink, dark desaturated base tones, urban gritty atmosphere, glowing light reflections. Keep original subject recognizable."
+   ,
+     "Transforme esta imagem em estética cyberpunk. Aplique iluminação neon em teal e magenta, superfícies reflexivas molhadas pela chuva, névoa atmosférica sombria, sombras escuras com acentos neon vibrantes. Preserve o sujeito e a composição originais."
    ]},
   {cat:"digital", icon:"🔺", title:"Low Poly",
-   desc:"Arte geométrica com formas poligonais e visual minimalista.",
+   desc:"Transforma em arte geométrica poligonal minimalista.",
    prompts:[
-     "low poly art of [subject], geometric triangulated mesh, flat shading, minimal color palette, clean lines",
-     "low poly landscape, triangular geometry, gradient sky, [scene], digital art, minimalist"
+     "Transform this image into a low poly geometric art style. Apply triangulated polygon mesh representation of the original subject, flat shading within each polygon face, clean minimal color palette. Preserve recognizable elements of original image.",
+     "Convert this image to a low poly illustration. Apply geometric triangular facets to represent forms, simplified color blocking, sharp polygon edges, digital art aesthetic. Keep original subject's overall shape and color palette."
+   ,
+     "Transforme esta imagem em estilo de arte geométrica low poly. Aplique representação em malha de polígonos triangulados, sombreamento plano em cada face poligonal, paleta de cores mínima e limpa. Preserve os elementos reconhecíveis da imagem original."
    ]},
   {cat:"digital", icon:"⚡", title:"Glitch Art",
-   desc:"Efeito de falha digital, distorções e artefatos visuais.",
+   desc:"Aplica efeito de falha digital com distorções e artefatos visuais.",
    prompts:[
-     "glitch art portrait of [subject], digital corruption, RGB split, pixel displacement, scan lines, VHS artifact effect",
-     "glitchy digital artwork, data corruption aesthetic, fragmented image, colorful artifacts, [subject], cyberpunk vibe"
+     "Transform this image into a glitch art style. Apply RGB color channel separation, horizontal scan line displacement, digital corruption artifacts, VHS tracking error effects. Preserve original subject while applying glitch distortions.",
+     "Convert this image to a digital glitch aesthetic. Add pixel displacement in random horizontal bands, chromatic aberration with red and cyan channel splits, scan line overlay, data corruption visual noise. Keep original subject recognizable."
+   ,
+     "Transforme esta imagem em estilo de glitch art. Aplique separação de canais de cor RGB, deslocamento de linhas de varredura horizontais, artefatos de corrupção digital, efeitos de rastreamento de fita VHS. Preserve o sujeito com as distorções aplicadas."
    ]},
   {cat:"digital", icon:"💎", title:"Concept Art",
-   desc:"Arte conceitual para jogos, filmes e entretenimento.",
+   desc:"Transforma em arte conceitual profissional para games ou cinema.",
    prompts:[
-     "concept art of [subject], professional game illustration, detailed environment, atmospheric perspective, matte painting style",
-     "character concept art sheet, [character], multiple views, detailed annotations, professional game industry style, Artstation quality"
+     "Transform this image into a professional concept art style for a video game or film production. Apply atmospheric perspective, painterly detail with clear focal point, matte painting quality background. Preserve original subject as the main concept.",
+     "Convert this image to concept art illustration quality. Apply dramatic environmental lighting, detailed foreground with atmospheric background blur, professional game industry color palette and rendering style. Keep original subject as focal point."
+   ,
+     "Transforme esta imagem em arte conceitual profissional estilo game ou cinema. Aplique perspectiva atmosférica, detalhes pictóricos com ponto focal claro, qualidade de matte painting no fundo. Preserve o sujeito original como conceito principal."
    ]},
 
-  // RETRÔ & VINTAGE
+  // RETRÔ
   {cat:"retro", icon:"📼", title:"Vaporwave / Synthwave",
-   desc:"Estética nostálgica dos anos 80-90 com neon pastel e vibes retro-futuristas.",
+   desc:"Aplica estética nostálgica dos anos 80-90 com neon pastel.",
    prompts:[
-     "vaporwave aesthetic, pastel pink and cyan, retro grid, [subject], nostalgic 80s vibes, glowing synthwave sunset",
-     "synthwave album cover art, [scene], neon grid horizon, purple and orange sky, retro-futuristic, chrome text"
+     "Transform this image into a vaporwave aesthetic. Apply pastel pink and cyan color palette, retro grid floor perspective, subtle VHS scanlines, 80s nostalgic atmosphere. Preserve original subject while placing it in this aesthetic context.",
+     "Convert this image to a synthwave aesthetic. Apply neon purple and pink tones, retro-futuristic 80s atmosphere, chrome text effects if applicable, sunset gradient background. Keep original subject recognizable."
+   ,
+     "Transforme esta imagem em estética vaporwave. Aplique paleta de cores em rosa pastel e ciano, grade retrô no chão, linhas de scan sutis estilo VHS, atmosfera nostálgica dos anos 80. Preserve o sujeito original neste contexto estético."
    ]},
   {cat:"retro", icon:"📷", title:"Filme Analógico / Lo-Fi",
-   desc:"Grão de filme, cores desbotadas e textura analógica.",
+   desc:"Simula características do filme fotográfico analógico.",
    prompts:[
-     "35mm film photography, Kodak Portra 400, light grain, warm tones, slight overexposure, [subject], lo-fi aesthetic",
-     "analog film photo, Fujifilm Superia, faded colors, vignetting, candid moment, [scene], nostalgic"
+     "Transform this image to look like it was shot on Kodak Portra 400 film. Apply warm analog tones, fine film grain, slight vignetting on edges, faded highlights with lifted shadows. Preserve original subject and composition.",
+     "Convert this image to analog film photography aesthetic as if shot on Fujifilm Superia 400. Apply faded colors, heavy grain texture, color cross-processing effect with slightly shifted greens and blues. Keep original subject intact."
+   ,
+     "Transforme esta imagem para parecer fotografada em filme Kodak Portra 400. Aplique tons analógicos quentes, grão de filme fino, leve vinheta nas bordas, destaques desbotados com sombras levantadas. Preserve o sujeito e a composição originais."
    ]},
   {cat:"retro", icon:"🏛", title:"Art Deco",
-   desc:"Elegância geométrica dos anos 20, dourado e simetria.",
+   desc:"Aplica elegância geométrica dos anos 20 com dourado e simetria.",
    prompts:[
-     "Art Deco illustration, geometric patterns, 1920s glamour, gold accents, symmetrical composition, [subject], luxurious and sophisticated",
-     "Art Deco revival poster, bold geometric shapes, chevron patterns, rich jewel tones, [subject], vintage elegance"
+     "Transform this image into an Art Deco design style. Apply geometric gold accent borders, symmetrical composition, 1920s glamour aesthetic with rich jewel tones and metallic elements. Preserve original subject.",
+     "Convert this image to Art Deco illustration style. Add bold geometric chevron patterns, gold and black color scheme, stylized simplified forms inspired by 1920s design movement. Keep original subject as focal point."
+   ,
+     "Transforme esta imagem em estilo de design Art Deco. Aplique bordas geométricas douradas, composição simétrica, estética glamorosa dos anos 1920 com tons joia ricos e elementos metálicos. Preserve o sujeito original."
    ]},
   {cat:"retro", icon:"🟨", title:"Pop Art",
-   desc:"Inspirado em Warhol e Lichtenstein, cores vibrantes e ícones culturais.",
+   desc:"Transforma em arte pop vibrante ao estilo Warhol ou Lichtenstein.",
    prompts:[
-     "Andy Warhol-inspired pop art of [subject], high contrast, bold flat color blocks, repetition, silkscreen effect",
-     "Roy Lichtenstein comic pop art, halftone dots, bold outlines, primary colors, [subject], thought bubble, retro graphic"
+     "Transform this image into an Andy Warhol-inspired pop art style. Apply bold flat color blocks, high contrast graphic treatment, halftone dot pattern on shadows, repeated graphic quality. Preserve original subject.",
+     "Convert this image to a Roy Lichtenstein pop art style. Apply Ben-Day halftone dots, bold black outlines, primary color fills, comic book aesthetic. Keep original subject but stylize as comic illustration."
+   ,
+     "Transforme esta imagem em estilo pop art inspirado em Andy Warhol. Aplique blocos de cores planas e ousadas, tratamento gráfico de alto contraste, padrão de pontos de meio-tom nas sombras. Preserve o sujeito original."
    ]},
   {cat:"retro", icon:"🎞", title:"Film Noir",
-   desc:"Preto e branco dramático, sombras expressivas, atmosfera noir.",
+   desc:"Converte para preto e branco dramático com sombras expressivas.",
    prompts:[
-     "film noir cinematography, black and white, high contrast shadows, venetian blind shadow pattern, [subject], moody atmosphere",
-     "noir detective scene, 1940s style, rain-slicked streets, dramatic side lighting, cigarette smoke, [character/scene]"
+     "Transform this image into a classic film noir style. Convert to black and white with extreme high contrast, deep impenetrable shadows, venetian blind shadow patterns, moody 1940s cinematic atmosphere. Preserve original subject.",
+     "Convert this image to film noir cinematography style. Apply dramatic black and white with crushed blacks, single hard key light creating long shadows, smoky atmospheric quality. Keep original subject and composition."
+   ,
+     "Transforme esta imagem em estilo clássico de film noir. Converta para preto e branco com contraste extremo, sombras profundas, padrões de sombra de persiana veneziana, atmosfera cinematográfica sombria dos anos 1940. Preserve o sujeito original."
    ]},
 
-  // FANTASIA & SCI-FI
+  // FANTASIA
   {cat:"fantasia", icon:"🐉", title:"Fantasy / Alta Fantasia",
-   desc:"Mundos épicos com criaturas mágicas, heróis e paisagens imensuráveis.",
+   desc:"Transforma em arte de fantasia épica com luz volumétrica.",
    prompts:[
-     "epic fantasy landscape, [scene], dramatic volumetric lighting, misty mountains, ancient ruins, highly detailed, concept art style",
-     "high fantasy character concept art, [character], ornate armor, magical effects, heroic pose, dramatic backlighting, oil painting style"
+     "Transform this image into an epic high fantasy illustration style. Apply dramatic volumetric lighting rays, enhance atmosphere with mist and magic particle effects, add painterly fantasy art quality. Preserve original subject, enhance the epic scale.",
+     "Convert this image to a high fantasy concept art style. Apply rich jewel-tone color palette, dramatic backlighting with rim light effects, misty atmospheric depth. Keep original subject but elevate to heroic fantasy quality."
+   ,
+     "Transforme esta imagem em uma ilustração de fantasia épica. Aplique raios de luz volumétrica dramáticos, neblina e efeitos de partículas mágicas, qualidade pictórica de arte fantástica. Preserve o sujeito original, ampliando a escala épica."
    ]},
   {cat:"fantasia", icon:"🌑", title:"Dark Fantasy / Gothic",
-   desc:"Fantasia sombria com atmosfera opressiva e estética gótica.",
+   desc:"Aplica atmosfera sombria e estética gótica opressiva.",
    prompts:[
-     "dark fantasy illustration, gothic architecture, moonlit shadows, [subject], ominous atmosphere, detailed linework, muted palette",
-     "gothic fantasy portrait of [character], crumbling cathedral background, candlelight, dramatic shadows, Brom-inspired style"
+     "Transform this image into a dark fantasy gothic style. Apply muted desaturated palette with deep shadows, crumbling stone texture to surfaces, candlelit atmosphere, ominous oppressive mood. Preserve original subject.",
+     "Convert this image to a dark gothic fantasy illustration style inspired by artists like Brom. Apply deep blacks with cool moonlight tones, detailed gothic architectural elements if fitting, eerie atmospheric fog. Keep original subject."
+   ,
+     "Transforme esta imagem em estilo dark fantasy gótico. Aplique paleta dessaturada com sombras profundas, textura de pedra desgastada nas superfícies, atmosfera à luz de velas, clima opressivo e sombrio. Preserve o sujeito original."
    ]},
   {cat:"fantasia", icon:"🚀", title:"Sci-Fi / Ficção Científica",
-   desc:"Futurismo, espaço sideral e tecnologia avançada.",
+   desc:"Converte para arte de ficção científica futurista e espacial.",
    prompts:[
-     "sci-fi concept art, [scene], bioluminescent elements, futuristic architecture, epic scale, cinematic lighting, Syd Mead inspired",
-     "space science fiction illustration, [scene], nebula background, hard surface design, dramatic lighting, ultra-detailed"
+     "Transform this image into a science fiction concept art style. Apply bioluminescent color accents, futuristic surface materials and textures, epic space or technological atmosphere. Preserve original subject while placing in sci-fi context.",
+     "Convert this image to a hard sci-fi illustration style inspired by Syd Mead. Apply metallic and glass material aesthetics, dramatic nebula or tech-lit atmosphere, precise technical detail quality. Keep original subject as focal point."
+   ,
+     "Transforme esta imagem em arte conceitual de ficção científica. Aplique acentos de cor bioluminescente, materiais e texturas de superfície futuristas, atmosfera épica espacial ou tecnológica. Preserve o sujeito original inserindo-o no contexto sci-fi."
    ]},
   {cat:"fantasia", icon:"🍃", title:"Studio Ghibli",
-   desc:"Estética encantada e melancólica dos filmes do estúdio japonês.",
+   desc:"Aplica a estética encantada e melancólica dos filmes do Ghibli.",
    prompts:[
-     "Studio Ghibli style, [scene], soft watercolor backgrounds, hand-drawn feel, magical atmosphere, warm natural light, Miyazaki aesthetic",
-     "Ghibli-inspired illustration, [character/landscape], lush greenery, whimsical mood, golden hour light, gentle brushwork"
+     "Transform this image into Studio Ghibli animation style by Hayao Miyazaki. Apply soft watercolor-like backgrounds, hand-drawn quality with warm natural light, lush organic details in greenery and environment. Preserve original subject.",
+     "Convert this image to a Ghibli-inspired illustrated style. Apply gentle golden hour lighting, whimsical atmospheric quality, simplified but expressive character features, painterly background details. Keep original subject and scene."
+   ,
+     "Transforme esta imagem em estilo de animação do Studio Ghibli de Hayao Miyazaki. Aplique fundos suaves estilo aquarela, qualidade de desenho à mão com luz natural quente, detalhes orgânicos luxuriantes no ambiente. Preserve o sujeito original."
    ]},
   {cat:"fantasia", icon:"🧛", title:"Horror / Suspense",
-   desc:"Atmosfera de terror, tensão e horror visual.",
+   desc:"Aplica atmosfera de terror, tensão e horror visual.",
    prompts:[
-     "horror movie still, [scene], desaturated palette, deep shadows, unsettling composition, fog, isolation, dread atmosphere",
-     "psychological horror illustration, [subject], distorted reality, muted tones with blood red accent, hyper-detailed, unnerving"
+     "Transform this image into a psychological horror style. Apply desaturated muted tones with a single unsettling color accent, deep oppressive shadows, isolation and dread atmosphere. Preserve original subject but make it unsettling.",
+     "Convert this image to a horror movie still aesthetic. Apply crushed blacks, cold blue-green tones, heavy film grain, atmospheric fog effects that obscure details. Keep original subject but enhance ominous quality."
+   ,
+     "Transforme esta imagem em estilo de horror psicológico. Aplique tons frios e dessaturados com um único acento de cor perturbador, sombras opressivas profundas, atmosfera de isolamento e pavor. Preserve o sujeito original tornando-o inquietante."
    ]},
 
   // ILUSTRAÇÃO
   {cat:"ilustracao", icon:"📖", title:"Livro Infantil",
-   desc:"Ilustrações suaves e afetuosas para livros infantis.",
+   desc:"Converte para ilustração suave de livro infantil.",
    prompts:[
-     "children's book illustration of [subject], soft watercolor, rounded shapes, warm colors, whimsical and friendly, storybook style",
-     "picture book art, [scene], Beatrix Potter-inspired, gentle pastel palette, cozy atmosphere, hand-painted texture"
+     "Transform this image into a children's picture book illustration style. Apply soft watercolor-like textures, rounded simplified shapes, warm friendly color palette, hand-painted storybook quality. Preserve original subject in a child-friendly way.",
+     "Convert this image to a classic children's book illustration style inspired by Beatrix Potter. Apply gentle pastel colors, cozy warm atmosphere, simplified but charming details, textured paper quality. Keep original subject."
+   ,
+     "Transforme esta imagem em uma ilustração de livro infantil. Aplique texturas suaves estilo aquarela, formas arredondadas e simplificadas, paleta de cores quente e amigável, qualidade artesanal de livro de histórias. Preserve o sujeito de forma adequada para crianças."
    ]},
   {cat:"ilustracao", icon:"🎌", title:"Anime / Manga",
-   desc:"Estilo animação japonesa, olhos grandes, traços limpos.",
+   desc:"Converte para estilo de animação japonesa com traços limpos.",
    prompts:[
-     "Japanese anime style, [character], big expressive eyes, clean linework, vibrant colors, dynamic pose, Makoto Shinkai inspired",
-     "manga illustration, [scene], detailed screentones, dramatic perspective, black and white ink with highlights"
+     "Transform this image into a Japanese anime illustration style inspired by Makoto Shinkai. Apply large expressive eyes if applicable, clean sharp linework, vibrant saturated colors, dynamic lighting with rim light highlights. Preserve original subject.",
+     "Convert this image to a manga illustration style. Apply bold black ink outlines, screentone-style shading in grey areas, dramatic perspective if applicable, expressive stylized features. Keep original subject and composition."
+   ,
+     "Transforme esta imagem em estilo de ilustração anime japonesa inspirado em Makoto Shinkai. Aplique olhos grandes e expressivos se aplicável, traços limpos e nítidos, cores vibrantes e saturadas, destaques de rim light dinâmicos. Preserve o sujeito original."
    ]},
   {cat:"ilustracao", icon:"🔷", title:"Flat Design / Vector",
-   desc:"Design limpo com formas simples, sem sombras, estilo corporativo moderno.",
+   desc:"Transforma em ilustração vetorial plana e minimalista.",
    prompts:[
-     "flat design illustration, [subject], simplified geometric forms, soft colors, no outlines, modern minimal aesthetic, SaaS product style",
-     "vector flat illustration, [scene], bold shapes, limited color palette, clean and professional, infographic style"
+     "Transform this image into a flat design vector illustration style. Apply simplified geometric shapes with no gradients or shadows, limited bold color palette, clean modern minimal aesthetic. Preserve original subject in simplified form.",
+     "Convert this image to a flat illustration style as seen in SaaS product design. Apply solid color fills, simplified abstract representation of the subject, clean sans-serif typographic quality to any text. Keep original subject recognizable."
+   ,
+     "Transforme esta imagem em uma ilustração vetorial flat design. Aplique formas geométricas simplificadas sem gradientes ou sombras, paleta de cores limitada e ousada, estética moderna e minimalista. Preserve o sujeito original de forma simplificada."
    ]},
-  {cat:"ilustracao", icon:"🖊", title:"Line Art",
-   desc:"Traços finos e elegantes, sem preenchimento ou com coloração mínima.",
+  {cat:"ilustracao", icon:"✏️", title:"Line Art",
+   desc:"Converte para arte de traços finos sem preenchimento.",
    prompts:[
-     "detailed line art of [subject], fine linework, intricate patterns, minimal shading, black ink on white paper, technical illustration",
-     "botanical line art, [plant/subject], precise scientific illustration, delicate strokes, clean composition"
+     "Transform this image into a detailed line art illustration. Apply fine precise black ink lines on white background, use line weight variation for depth (thicker outlines, thinner interior details), minimal to no shading fills. Preserve original subject.",
+     "Convert this image to clean line art style. Apply single-weight consistent ink lines, intricate pattern details within shapes, black on white aesthetic with no color fills. Keep original subject and composition exactly."
+   ,
+     "Transforme esta imagem em ilustração de line art detalhada. Aplique linhas finas e precisas de tinta preta sobre fundo branco, variação de espessura de linha para profundidade, sombreamento mínimo sem preenchimentos de cor. Preserve o sujeito original."
    ]},
   {cat:"ilustracao", icon:"🎪", title:"Claymation / Stop Motion",
-   desc:"Aspecto de argila colorida com texturas artesanais.",
+   desc:"Transforma em cena de argila colorida com texturas artesanais.",
    prompts:[
-     "claymation style render of [subject], clay texture, vivid colors, stop-motion aesthetic, playful and handcrafted, soft lighting",
-     "clay animation scene, [character/scene], textured surfaces, Aardman Animations style, warm studio lighting"
+     "Transform this image into a claymation style render. Apply clay-like surface texture to all elements, slightly imperfect handmade quality, vivid saturated colors, stop-motion animation aesthetic. Preserve original subject and scene.",
+     "Convert this image to a clay animation style inspired by Aardman. Apply smooth clay surface sheen, visible fingerprint-like texture in close areas, exaggerated rounded forms, warm studio lighting. Keep original subject."
+   ,
+     "Transforme esta imagem em estilo de claymation. Aplique textura de superfície argilosa em todos os elementos, qualidade artesanal levemente imperfeita, cores vívidas e saturadas, estética de animação stop-motion. Preserve o sujeito e a cena originais."
    ]},
   {cat:"ilustracao", icon:"🧩", title:"Sticker / Kawaii",
-   desc:"Estilo fofinho com bordas grossas e cores suaves.",
+   desc:"Converte para estilo fofo de sticker com bordas grossas.",
    prompts:[
-     "cute sticker-style illustration of [subject], thick white outline, bold flat colors, kawaii aesthetic, chibi proportions",
-     "kawaii sticker sheet, [character/object], soft pastel colors, chunky outlines, minimal shading, adorable expression"
+     "Transform this image into a kawaii sticker illustration style. Apply a thick white outline around the subject, bold flat pastel colors, simplified cute chibi proportions, minimal shadow with soft highlight spots. Preserve original subject.",
+     "Convert this image to a cute sticker style. Apply thick white border suitable for die-cutting, simplified adorable features, soft cheerful color palette, minimal linework inside. Keep original subject recognizable in cute form."
+   ,
+     "Transforme esta imagem em estilo de sticker kawaii. Aplique um contorno branco grosso ao redor do sujeito, cores pastel planas e ousadas, proporções chibi fofas simplificadas, ponto de destaque suave mínimo. Preserve o sujeito original."
    ]},
 
   // ILUMINAÇÃO
   {cat:"iluminacao", icon:"🌅", title:"Golden Hour",
-   desc:"Luz quente e dourada logo após o nascer ou antes do pôr do sol.",
+   desc:"Aplica luz quente e dourada do nascer ou pôr do sol.",
    prompts:[
-     "[subject/scene], golden hour lighting, warm amber tones, long shadows, soft directional sunlight, magical and cinematic",
-     "golden hour portrait, warm backlit glow, lens flare, silhouette elements, [subject], dreamy atmosphere"
+     "Transform the lighting in this image to golden hour style. Apply warm amber and golden tones, soft directional side light casting long shadows, gentle lens flare effect. Preserve original subject and composition, only change the lighting.",
+     "Convert the lighting of this image to match a sunset golden hour. Add warm orange-gold color cast, soften shadows to golden light quality, add slight atmospheric haze. Keep all original subjects and composition intact."
+   ,
+     "Transforme a iluminação desta imagem para estilo de golden hour. Aplique tons âmbar e dourados quentes, luz direcional suave projetando sombras longas, leve efeito de lens flare. Preserve o sujeito e a composição originais, alterando apenas a iluminação."
    ]},
   {cat:"iluminacao", icon:"🌓", title:"Chiaroscuro / Rembrandt",
-   desc:"Contraste dramático entre luz e sombra, técnica clássica.",
+   desc:"Aplica contraste dramático clássico de luz e sombra.",
    prompts:[
-     "Rembrandt lighting portrait, triangular highlight on cheek, deep dramatic shadows, [subject], painterly atmosphere --no painting",
-     "chiaroscuro photography, strong contrast, single key light, dark background, [subject], Renaissance style"
+     "Transform the lighting in this image to Rembrandt lighting style. Apply a single key light from upper left creating a triangular highlight on the cheek, deep dramatic shadows on the opposite side. Preserve original subject, only modify the lighting.",
+     "Convert the lighting to chiaroscuro style. Apply extreme contrast between lit and shadow areas, single hard light source, deep impenetrable blacks in shadow zones. Keep original subject, only alter the lighting conditions."
+   ,
+     "Transforme a iluminação desta imagem para estilo Rembrandt. Aplique uma única luz principal vinda do alto à esquerda criando um destaque triangular na bochecha, sombras dramáticas e profundas no lado oposto. Preserve o sujeito original, modificando apenas a iluminação."
    ]},
   {cat:"iluminacao", icon:"💫", title:"Bioluminescente",
-   desc:"Luz que emana do próprio sujeito ou cenário, tonalidades vibrantes.",
+   desc:"Faz o sujeito ou o cenário emanar luz própria com tonalidades vibrantes.",
    prompts:[
-     "bioluminescent [subject], glowing organic forms, deep dark background, teal and blue light emission, underwater fantasy",
-     "bioluminescent forest scene, glowing flora and fauna, deep blacks, magical atmosphere, [scene]"
+     "Transform this image so the subject appears bioluminescent. Apply a glowing teal and blue light emission from the main subject, deep dark surrounding background that contrasts the glow, organic particle light effects. Preserve original subject.",
+     "Convert this image to a bioluminescent aesthetic. Make organic elements emit soft inner glow in teal, cyan and violet tones, set against near-black deep environment. Keep original subject and composition."
+   ,
+     "Transforme esta imagem para que o sujeito pareça bioluminescente. Aplique emissão de luz em teal e azul vinda do sujeito principal, fundo escuro e profundo contrastando o brilho, efeitos de partículas de luz orgânicas. Preserve o sujeito original."
    ]},
   {cat:"iluminacao", icon:"🕯", title:"Candlelight / Low Key",
-   desc:"Iluminação dramática por velas ou fonte única de luz baixa.",
+   desc:"Aplica iluminação íntima e dramática de vela ou fonte única.",
    prompts:[
-     "candlelight portrait, [subject], warm flickering light, deep shadows, intimate atmosphere, painterly quality, low key",
-     "low-key dramatic lighting, single candle source, [subject], moody and atmospheric, high contrast, textured shadows"
+     "Transform the lighting in this image to candlelight style. Apply warm flickering amber single-source light, deep shadows consuming most of the image, intimate low-key atmosphere. Preserve original subject, only change the lighting.",
+     "Convert this image lighting to a single candle source. Apply warm orange-amber light affecting only nearest surfaces, everything else falls into near-black shadow, painterly low-key quality. Keep original subject."
+   ,
+     "Transforme a iluminação desta imagem para estilo à luz de velas. Aplique luz âmbar quente de fonte única cintilante, sombras profundas consumindo a maior parte da imagem, atmosfera íntima e dramática. Preserve o sujeito original."
    ]},
   {cat:"iluminacao", icon:"🌤", title:"Luz Difusa / Overcast",
-   desc:"Luz suave de dia nublado, sem sombras duras.",
+   desc:"Aplica luz suave e uniforme de dia nublado sem sombras duras.",
    prompts:[
-     "soft diffused natural light, overcast sky, [subject/scene], even illumination, gentle shadows, clean and fresh mood",
-     "window light portrait, soft diffused sidelight, [subject], natural and flattering, shallow depth of field, bokeh background"
+     "Transform the lighting in this image to soft overcast daylight. Remove harsh shadows, apply even soft diffused illumination from above, clean fresh color rendering. Preserve original subject and composition, only modify lighting.",
+     "Convert this image to soft window light photography style. Apply gentle diffused natural light from one side, minimal shadow depth, clean and flattering even illumination. Keep original subject intact."
+   ,
+     "Transforme a iluminação desta imagem para luz natural suave de dia nublado. Remova sombras duras, aplique iluminação difusa e uniforme vinda de cima, renderização de cores limpa e fresca. Preserve o sujeito e a composição originais."
    ]},
   {cat:"iluminacao", icon:"🔵", title:"Blue Hour",
-   desc:"Hora azul antes do nascer ou após o pôr do sol.",
+   desc:"Aplica o azul profundo do crepúsculo com contraste de luzes artificiais.",
    prompts:[
-     "blue hour cityscape, deep blue sky, glowing city lights, [scene], twilight atmosphere, long exposure, ultra-detailed",
-     "blue hour portrait, [subject], cool blue ambient light, warm artificial light contrast, moody urban environment"
+     "Transform the lighting of this image to blue hour twilight style. Apply deep blue ambient sky tone, warm artificial light sources glowing against the cool blue atmosphere, moody urban quality. Preserve original subject and composition.",
+     "Convert this image lighting to blue hour atmosphere. Apply cool blue-indigo ambient light, enhance any artificial warm light sources to glow against the cool backdrop. Keep original subject, only alter lighting and atmosphere."
+   ,
+     "Transforme a iluminação desta imagem para estilo blue hour crepuscular. Aplique tom azul profundo no ambiente, fontes de luz artificial quente brilhando contra o fundo azul frio, qualidade urbana e sombria. Preserve o sujeito e a composição originais."
    ]},
   {cat:"iluminacao", icon:"💡", title:"Studio Lighting",
-   desc:"Iluminação profissional de estúdio, controlada e polida.",
+   desc:"Aplica iluminação profissional de estúdio com três pontos.",
    prompts:[
-     "professional studio lighting, three-point light setup, [subject], softbox lights, clean white background, commercial quality",
-     "high-key studio portrait, [subject], even bright lighting, minimal shadows, beauty photography style, Hasselblad quality"
+     "Transform the lighting in this image to professional studio photography style. Apply three-point lighting setup with key light, fill light, and rim/hair light, clean seamless background quality. Preserve original subject, only enhance the lighting.",
+     "Convert this image to a high-key studio lighting style. Apply bright even commercial lighting, eliminate harsh shadows, clean white or neutral background. Keep original subject but give a professional product photo or headshot quality."
+   ,
+     "Transforme a iluminação desta imagem para estilo de fotografia profissional de estúdio. Aplique configuração de três pontos de luz com luz principal, luz de preenchimento e rim light, qualidade de fundo limpo e contínuo. Preserve o sujeito original."
    ]},
 
   // COMPOSIÇÃO
   {cat:"composicao", icon:"📐", title:"Regra dos Terços",
-   desc:"Composição clássica dividindo o frame em grade 3x3.",
+   desc:"Recompõe a imagem seguindo a divisão clássica em grade 3x3.",
    prompts:[
-     "[subject], rule of thirds composition, subject positioned on left third, negative space on right, balanced framing",
-     "landscape photography, rule of thirds, horizon on lower third, dramatic sky filling upper portion, [scene]"
+     "Recompose this image following the rule of thirds. Place the main subject at one of the four intersection points of a 3x3 grid, allow negative space on the opposite side. Preserve original subjects, only adjust the crop and composition.",
+     "Crop and reframe this image using the rule of thirds. Position the horizon line on the lower third if applicable, place key subject on a grid intersection point. Keep all original elements, only adjust framing."
+   ,
+     "Recomponha esta imagem seguindo a regra dos terços. Posicione o sujeito principal em um dos quatro pontos de interseção de uma grade 3x3, permita espaço negativo no lado oposto. Preserve os sujeitos originais, ajuste apenas o enquadramento."
    ]},
   {cat:"composicao", icon:"🦅", title:"Bird's Eye View",
-   desc:"Câmera diretamente acima do sujeito, perspectiva aérea.",
+   desc:"Reencadra a cena de uma perspectiva aérea diretamente acima.",
    prompts:[
-     "bird's eye view photograph of [subject/scene], directly overhead, flat lay composition, clean background, graphic quality",
-     "aerial top-down view, [subject], striking geometric composition, minimal distractions, --ar 1:1"
+     "Transform the perspective of this image to a bird's eye view, looking directly downward from above. Reinterpret the scene from a top-down overhead angle. Preserve original subjects and scene elements, only change to aerial perspective.",
+     "Convert this image to a flat lay top-down composition style. Apply a directly overhead 90-degree camera angle, graphic and geometric quality of a bird's eye view. Keep original subjects but reinterpret from above."
+   ,
+     "Transforme a perspectiva desta imagem para visão de pássaro, olhando diretamente de cima. Reinterprete a cena em ângulo aéreo de cima para baixo. Preserve os sujeitos e elementos da cena originais, alterando apenas para perspectiva aérea."
    ]},
   {cat:"composicao", icon:"🌀", title:"Leading Lines",
-   desc:"Linhas que guiam o olho até o sujeito principal.",
+   desc:"Adiciona ou reforça linhas que guiam o olhar até o sujeito.",
    prompts:[
-     "[scene] with strong leading lines, [road/path/architecture] drawing eye toward [subject], dynamic perspective, wide angle",
-     "converging lines composition, [perspective scene], vanishing point at center, dramatic depth, [subject in distance]"
+     "Enhance this image by adding or strengthening leading lines that guide the eye to the main subject. Use perspective lines, roads, paths or architectural elements converging toward the focal point. Preserve original subject.",
+     "Recompose this image to emphasize strong leading lines toward the main subject. Apply a wide angle perspective feel with converging diagonal elements drawing attention to the focal point. Keep original subjects intact."
+   ,
+     "Aprimore esta imagem adicionando ou reforçando linhas que guiam o olhar até o sujeito principal. Use linhas de perspectiva, estradas, caminhos ou elementos arquitetônicos convergindo para o ponto focal. Preserve o sujeito original."
    ]},
   {cat:"composicao", icon:"🎭", title:"Dutch Angle",
-   desc:"Câmera inclinada para criar tensão ou desorientação dramática.",
+   desc:"Inclina o enquadramento para criar tensão cinematográfica.",
    prompts:[
-     "Dutch angle composition, [subject/scene], camera tilted 20 degrees, cinematic tension, dramatic mood",
-     "canted framing, [character portrait], disorienting tilt, psychological thriller aesthetic, moody lighting"
+     "Apply a Dutch angle (canted frame) to this image. Tilt the camera perspective approximately 15-20 degrees to create cinematic tension and psychological unease. Preserve original subject and scene, only apply the tilt.",
+     "Transform this image with a Dutch angle composition. Apply a deliberate camera tilt creating diagonal tension across the frame, psychological thriller atmosphere. Keep original subjects and scene content."
+   ,
+     "Aplique um ângulo holandês (enquadramento inclinado) a esta imagem. Incline a perspectiva da câmera aproximadamente 15-20 graus para criar tensão cinematográfica e desconforto psicológico. Preserve o sujeito e a cena originais."
    ]},
   {cat:"composicao", icon:"🔭", title:"Close-up / Macro",
-   desc:"Aproximação extrema revelando detalhes invisíveis a olho nu.",
+   desc:"Aplica extrema aproximação revelando detalhes invisíveis.",
    prompts:[
-     "macro photography of [subject], extreme close-up, shallow depth of field, ultra-detailed textures, bokeh background, sharp focus",
-     "beauty close-up portrait, [subject], 105mm macro lens, skin texture detail, catchlight in eyes, minimal makeup"
+     "Transform this image into an extreme macro close-up style. Crop dramatically into the most interesting detail area, apply shallow depth of field with soft bokeh background, enhance micro-texture details. Keep original subject but zoom in dramatically.",
+     "Convert this image to a macro photography style. Apply ultra-close framing of the most detailed area of the subject, sharp focus on a narrow plane with blurred foreground and background. Enhance surface texture details."
+   ,
+     "Transforme esta imagem em estilo de close-up extremo macro. Recorte dramaticamente no detalhe mais interessante, aplique profundidade de campo rasa com fundo bokeh suave, aprimore detalhes de micro-textura. Mantenha o sujeito original."
    ]},
   {cat:"composicao", icon:"🖼", title:"Enquadramento Simétrico",
-   desc:"Composição com simetria central, monumentalidade e equilíbrio.",
+   desc:"Aplica composição simétrica central estilo Wes Anderson.",
    prompts:[
-     "perfectly symmetrical composition, [subject/architecture], centered framing, Wes Anderson style, flat and graphic, pastel palette",
-     "symmetrical architecture photography, [building/interior], centered vanishing point, geometric perfection, [time of day]"
+     "Transform the composition of this image to perfect symmetry in the style of Wes Anderson. Center the main subject, balance elements equally on left and right sides, apply a flat graphic perspective. Preserve original subjects.",
+     "Convert this image to a symmetrical centered composition. Apply bilateral symmetry with the main subject perfectly centered, flat graphic framing, equal visual weight on both sides. Keep original subjects, reframe composition."
+   ,
+     "Transforme a composição desta imagem para simetria perfeita no estilo Wes Anderson. Centre o sujeito principal, equilibre os elementos igualmente nos lados esquerdo e direito, aplique perspectiva plana e gráfica. Preserve os sujeitos originais."
    ]},
 
-  // CONCEITO & MÉTODO
-  {cat:"conceito", icon:"🧠", title:"Prompt Layering (Camadas)",
-   desc:"Técnica de empilhar elementos do mais ao menos importante.",
+  // CONCEITO
+  {cat:"conceito", icon:"🧠", title:"Prompt Layering",
+   desc:"Estrutura para empilhar elementos do prompt para o Gemini.",
    prompts:[
-     "ESTRUTURA: [sujeito principal] + [estilo/mídia] + [iluminação] + [composição] + [cor/mood] + [qualidade técnica]",
-     "EXEMPLO: 'lone astronaut on Mars | cinematic photography | dramatic volumetric light | wide shot | dusty orange and purple palette | ultra-detailed 8K'"
+     "GEMINI STRUCTURE: Transform this image [STYLE] + [LIGHTING] + [MOOD/COLOR] + [WHAT TO PRESERVE] + [WHAT TO AVOID]\n\nEXAMPLE: Transform this image into oil painting style. Apply warm dramatic Rembrandt lighting. Use earthy muted tones with deep shadows. Preserve the original subject and composition. Do not add people or objects not in the original.",
+     "QUICK FORMULA: 'Transform this image into [style]. Apply [lighting]. Add [color/mood]. Preserve [what to keep]. Do not [what to avoid].'"
+   ,
+     "ESTRUTURA PARA O GEMINI: Transforme esta imagem [ESTILO] + [ILUMINAÇÃO] + [HUMOR/COR] + [O QUE PRESERVAR] + [O QUE EVITAR]\n\nEXEMPLO: Transforme esta imagem em estilo de pintura a óleo. Aplique iluminação Rembrandt dramática e quente. Use tons terrosos suavizados com sombras profundas. Preserve o sujeito e a composição originais. Não adicione pessoas ou objetos que não estejam no original."
    ]},
   {cat:"conceito", icon:"🔄", title:"Iteração Sistemática",
-   desc:"Mudar UMA variável por vez para entender o impacto de cada elemento.",
+   desc:"Método para refinar prompts mudando uma variável por vez.",
    prompts:[
-     "MÉTODO: Comece simples → adicione iluminação → adicione composição → adicione estilo → adicione qualidade. Observe a cada etapa.",
-     "DICA: Se o resultado não agradou, remova o último elemento adicionado para isolar o problema."
+     "GEMINI ITERATION METHOD:\nv1: 'Transform this image into watercolor style.'\nv2: Add lighting → '...with soft diffused light.'\nv3: Add mood → '...with a melancholic calm atmosphere.'\nv4: Add quality → '...highly detailed, professional illustration quality.'",
+     "REFINEMENT TIPS FOR GEMINI:\n→ Too dark? Add: 'Brighten the overall exposure'\n→ Too cartoon? Add: 'Keep realistic proportions'\n→ Lost subject? Add: 'Preserve the exact original subject and face'\n→ Wrong colors? Add: 'Maintain original color identity of the subject'"
+   ,
+     "MÉTODO DE ITERAÇÃO PARA O GEMINI:\nv1: 'Transforme esta imagem em estilo aquarela.'\nv2: Adicione iluminação → '...com luz natural suave e difusa.'\nv3: Adicione humor → '...com uma atmosfera calma e melancólica.'\nv4: Adicione qualidade → '...altamente detalhado, qualidade de ilustração profissional.'"
    ]},
   {cat:"conceito", icon:"🚫", title:"Negative Prompts",
-   desc:"Dizer ao modelo O QUE EVITAR é tão importante quanto o que gerar.",
+   desc:"Como dizer ao Gemini o que evitar na transformação.",
    prompts:[
-     "NEGATIVOS COMUNS: --no blurry, low quality, distorted, watermark, text, oversaturated, extra limbs, deformed hands",
-     "NEGATIVOS PARA RETRATO: --no painting, --no cartoon, --no overprocessed skin, --no uncanny valley, --no illustration"
+     "GEMINI 'DO NOT' PHRASES:\n• 'Do not add people or objects not in the original'\n• 'Do not change the subject's appearance or face'\n• 'Do not add text or watermarks'\n• 'Do not change the original composition'\n• 'Do not make it cartoonish or unrealistic'",
+     "PRESERVE PHRASES FOR GEMINI:\n• 'Preserve the original subject and their likeness'\n• 'Keep the original composition and framing'\n• 'Maintain the original facial features'\n• 'Only change the style, not the content'\n• 'Keep all original elements present'"
+   ,
+     "FRASES DE RESTRIÇÃO PARA O GEMINI:\n• 'Não adicione pessoas ou objetos que não estejam no original'\n• 'Não altere a aparência ou o rosto do sujeito'\n• 'Não adicione texto ou marcas d'água'\n• 'Não mude a composição original'\n• 'Não torne a imagem caricata ou irreal'"
    ]},
   {cat:"conceito", icon:"🎯", title:"Referências de Artistas",
-   desc:"Citar artistas transfere toda a linguagem visual deles.",
+   desc:"Como usar referências de artistas em prompts no Gemini.",
    prompts:[
-     "FOTOGRAFIA: Annie Leibovitz (retrato dramático) | Ansel Adams (paisagem P&B) | Steve McCurry (retrato documental colorido)",
-     "PINTURA: Rembrandt (luz dramática) | Monet (impressionismo) | Yoshitaka Amano (fantasia japonesa) | Bierstadt (paisagem épica)"
+     "PHOTOGRAPHY REFERENCES:\n• 'in the style of Annie Leibovitz' → dramatic emotional portrait\n• 'Ansel Adams style' → high contrast B&W landscape\n• 'Steve McCurry style' → vivid colorful documentary portrait\n• 'Richard Avedon style' → stark white background editorial",
+     "PAINTING REFERENCES:\n• 'Rembrandt style' → single dramatic light source\n• 'Monet Impressionist style' → visible brushstrokes, soft light\n• 'Yoshitaka Amano style' → ethereal Japanese fantasy illustration\n• 'Norman Rockwell style' → warm narrative American realism"
+   ,
+     "REFERÊNCIAS DE FOTOGRAFIA:\n• 'no estilo de Annie Leibovitz' → retrato dramático e emocional\n• 'estilo Ansel Adams' → paisagem P&B de alto contraste\n• 'estilo Steve McCurry' → retrato documental colorido e vívido\n• 'estilo Richard Avedon' → editorial com fundo branco stark"
    ]},
   {cat:"conceito", icon:"📷", title:"Terminologia de Câmera",
-   desc:"Vocabulário fotográfico técnico melhora drasticamente o realismo.",
+   desc:"Vocabulário fotográfico para usar nos prompts do Gemini.",
    prompts:[
-     "LENTES: 24mm (grande angular) | 50mm (natural) | 85mm (retrato) | 135mm (compressão) | macro (close-up extremo)",
-     "PARÂMETROS: f/1.4 (bokeh intenso) | f/8 (tudo em foco) | shot on Hasselblad | shot on Sony A7 III | shot on Leica M6"
+     "LENS TERMS FOR GEMINI:\n• '24mm wide angle lens feel' → expansive distorted perspective\n• '85mm portrait lens' → natural proportions, background compression\n• '135mm telephoto' → strong background compression, intimate feel\n• 'macro lens close-up' → extreme detail, shallow depth of field",
+     "TECHNICAL TERMS FOR GEMINI:\n• 'f/1.4 aperture' → very soft bokeh background blur\n• 'f/8 aperture' → everything sharp and in focus\n• 'shot on Hasselblad medium format' → ultra-detail, rich tonality\n• 'shot on Sony A7 III' → modern clean digital photography look"
+   ,
+     "TERMOS DE CÂMERA PARA O GEMINI:\n• 'lente grande angular 24mm' → perspectiva expansiva e distorcida\n• 'lente retrato 85mm' → proporções naturais, compressão de fundo\n• 'teleobjetiva 135mm' → forte compressão de fundo, sensação íntima\n• 'close-up macro' → detalhe extremo, profundidade de campo rasa"
    ]},
   {cat:"conceito", icon:"🎞", title:"Film Stocks",
-   desc:"Filmes analógicos referenciais para características visuais autênticas.",
+   desc:"Referenciar filmes analógicos específicos em prompts.",
    prompts:[
-     "Kodak Portra 400 (tons quentes, pele natural) | Fujifilm Velvia 50 (saturado, paisagens) | Kodak Tri-X (P&B contrastado)",
-     "Ilford HP5 (P&B granulado) | Cinestill 800T (cidade noturna com halo) | Agfa Vista 200 (casual e colorido)"
+     "WARM FILM STOCKS:\n• 'Kodak Portra 400' → warm skin tones, natural soft colors\n• 'Kodak Gold 200' → warm sunny colors, slight grain\n• 'Fujifilm Pro 400H' → cool pastel tones, soft highlights\n• 'Cinestill 800T' → tungsten glow, red halation around lights",
+     "SPECIALTY FILM STOCKS:\n• 'Fujifilm Velvia 50' → ultra-saturated, vivid landscapes\n• 'Kodak Tri-X 400' → classic B&W, strong grain, high contrast\n• 'Ilford HP5 Plus' → fine grain B&W, wide tonal range\n• 'Lomography 800' → cross-processed colors, heavy vignette"
+   ,
+     "FILMES FOTOGRÁFICOS PARA O GEMINI:\n• 'Kodak Portra 400' → tons de pele quentes, cores naturais e suaves\n• 'Fujifilm Velvia 50' → cores ultra-saturadas, ideal para paisagens\n• 'Kodak Tri-X 400' → P&B clássico, grão forte, alto contraste\n• 'Ilford HP5 Plus' → P&B de grão fino, ampla gama tonal"
+   ]},
+
+  // ÂNGULOS & PLANOS DE CÂMERA
+  ,{cat:"angulos", icon:"🎥", title:"Plano Geral (Extreme Wide Shot)",
+   desc:"Mostra o sujeito no contexto amplo do ambiente. O cenário domina, o sujeito é pequeno.",
+   prompts:[
+     "Reframe this image as an extreme wide shot. Show the subject as a very small element within a vast expansive environment. The setting and surroundings should dominate the frame, emphasizing scale, isolation, or context. Preserve original subjects.",
+     "Convert this image to an establishing wide shot perspective. Pull the camera back dramatically so the full environment is visible and the main subject occupies only a small portion of the frame. Keep all original elements.",
+     "Reencadre esta imagem como um plano geral extremo. Mostre o sujeito como um elemento pequeno dentro de um ambiente vasto. O cenário deve dominar o quadro, enfatizando escala, isolamento ou contexto. Preserve os sujeitos originais."
+   ]},
+  {cat:"angulos", icon:"🌍", title:"Plano Conjunto (Wide Shot)",
+   desc:"Enquadra o sujeito inteiro com espaço ao redor. Contexto e personagem em equilíbrio.",
+   prompts:[
+     "Reframe this image as a wide shot showing the full subject from head to toe with generous space around them. Balance the character with their environment equally in the frame. Preserve original subjects and scene.",
+     "Convert this image to a full shot composition. Show the complete figure within their environment, with enough context to understand the setting while keeping the subject clearly visible. Keep original subjects.",
+     "Reencadre esta imagem como plano conjunto. Mostre o sujeito completo de cabeça aos pés com espaço generoso ao redor. Equilibre o personagem com o ambiente no quadro. Preserve os sujeitos originais."
+   ]},
+  {cat:"angulos", icon:"🧍", title:"Plano Médio (Medium Shot)",
+   desc:"Enquadra da cintura para cima. O mais usado em cinema e TV para diálogos.",
+   prompts:[
+     "Reframe this image as a medium shot, framing the subject from the waist up. This is the classic conversational framing used in cinema and television. Show facial expression and upper body language clearly. Preserve original subject.",
+     "Convert this image to a waist-up medium shot composition. Crop to show from approximately the hips upward, balancing subject detail with some environmental context. Keep original subject and their expression.",
+     "Reencadre esta imagem como plano médio, enquadrando o sujeito da cintura para cima. Este é o enquadramento clássico de conversação usado em cinema e televisão. Mostre expressão facial e linguagem corporal claramente."
+   ]},
+  {cat:"angulos", icon:"👔", title:"Plano Americano (Medium Long Shot)",
+   desc:"Enquadra do joelho ou coxa para cima. Criado nos westerns para mostrar o coldre.",
+   prompts:[
+     "Reframe this image as a medium long shot (American shot / cowboy shot), framing the subject from mid-thigh or knee upward. This framing originated in Western films to show both face and holster. Preserve original subject.",
+     "Convert this image to a three-quarter shot composition, cropping from approximately the knees up. This framing balances full body language with facial expression and was popularized by classic Western cinema. Keep original subject.",
+     "Reencadre esta imagem como plano americano, enquadrando o sujeito da metade da coxa ou joelho para cima. Este enquadramento nasceu nos filmes de faroeste para mostrar o rosto e o coldre simultaneamente. Preserve o sujeito original."
+   ]},
+  {cat:"angulos", icon:"😐", title:"Primeiro Plano (Medium Close-Up)",
+   desc:"Enquadra do busto ou ombros para cima. Ideal para entrevistas e emoção contida.",
+   prompts:[
+     "Reframe this image as a medium close-up, framing from the chest or shoulders upward. This framing emphasizes facial expression while retaining some body language context, ideal for interview and emotional scenes. Preserve original subject.",
+     "Convert this image to a bust shot composition. Crop to show from approximately the upper chest upward, putting clear emphasis on the face and expression while keeping slight shoulder context. Keep original subject.",
+     "Reencadre esta imagem como primeiro plano, enquadrando do busto ou ombros para cima. Este plano enfatiza a expressão facial mantendo algum contexto de linguagem corporal, ideal para entrevistas e cenas emocionais."
+   ]},
+  {cat:"angulos", icon:"😮", title:"Close-Up (Close Shot)",
+   desc:"Enquadra apenas o rosto ou objeto principal. Expressão e detalhe em foco total.",
+   prompts:[
+     "Reframe this image as a close-up shot focusing tightly on the face or primary subject. Fill the frame with the face from chin to forehead, emphasizing every expression detail and emotional nuance. Preserve original subject's features.",
+     "Convert this image to a close-up composition. Crop tightly to show only the face or the single most important element, eliminating background context entirely. The emotion or detail should fill the frame. Keep original subject.",
+     "Reencadre esta imagem como close-up, focando firmemente no rosto ou sujeito principal. Preencha o quadro com o rosto do queixo à testa, enfatizando cada detalhe de expressão e nuance emocional. Preserve as características originais."
+   ]},
+  {cat:"angulos", icon:"🔬", title:"Plano Detalhe (Extreme Close-Up)",
+   desc:"Isola um detalhe específico: olho, mão, objeto. Tensão e simbolismo máximos.",
+   prompts:[
+     "Reframe this image as an extreme close-up detail shot. Isolate and magnify a single specific detail — an eye, a hand, a small object — filling the entire frame. This creates maximum tension and symbolic impact. Preserve the isolated detail.",
+     "Convert this image to an extreme close-up insert shot. Zoom in dramatically to one isolated detail of the scene, making it fill the entire frame with no other context visible. Enhance micro-textures of the chosen detail.",
+     "Reencadre esta imagem como plano detalhe extremo. Isole e amplie um único detalhe específico — um olho, uma mão, um objeto pequeno — preenchendo todo o quadro. Isso cria máxima tensão e impacto simbólico."
+   ]},
+  {cat:"angulos", icon:"⬇️", title:"Plongée (High Angle)",
+   desc:"Câmera acima do sujeito olhando para baixo. Transmite vulnerabilidade e submissão.",
+   prompts:[
+     "Transform the camera angle of this image to a plongée (high angle shot). Position the camera above the subject looking downward, making the subject appear smaller, vulnerable, or dominated by their environment. Preserve original subject.",
+     "Convert this image to a high angle shot with the camera elevated above the subject looking down. This angle diminishes the subject psychologically, conveying vulnerability, weakness or being surveilled. Keep original subjects.",
+     "Transforme o ângulo de câmera desta imagem para plongée (ângulo alto). Posicione a câmera acima do sujeito olhando para baixo, fazendo o sujeito parecer menor, vulnerável ou dominado pelo ambiente. Preserve o sujeito original."
+   ]},
+  {cat:"angulos", icon:"⬆️", title:"Contre-Plongée (Low Angle)",
+   desc:"Câmera abaixo do sujeito olhando para cima. Transmite poder, grandiosidade e ameaça.",
+   prompts:[
+     "Transform the camera angle of this image to a contre-plongée (low angle shot). Position the camera below the subject looking upward, making the subject appear powerful, dominant, heroic or threatening. Preserve original subject.",
+     "Convert this image to a low angle shot with the camera positioned below the subject's eye level looking up. This angle elevates the subject psychologically, conveying power, authority, and imposing scale. Keep original subjects.",
+     "Transforme o ângulo de câmera desta imagem para contre-plongée (ângulo baixo). Posicione a câmera abaixo do sujeito olhando para cima, fazendo o sujeito parecer poderoso, dominante, heroico ou ameaçador. Preserve o sujeito original."
+   ]},
+  {cat:"angulos", icon:"🪱", title:"Worm's Eye View",
+   desc:"Ângulo extremo do chão olhando para cima. Perspectiva inseto, dramática e distorcida.",
+   prompts:[
+     "Transform this image to a worm's eye view perspective. Position the camera at ground level looking sharply upward, creating extreme foreshortening and dramatic distortion. Subjects loom overhead with architecture or figures towering above. Preserve original subjects.",
+     "Convert this image to an extreme low angle worm's eye view. The camera is at floor level looking steeply upward, making everything tower above the viewer with dramatic forced perspective distortion. Keep original subjects.",
+     "Transforme esta imagem para perspectiva de worm's eye view. Posicione a câmera ao nível do chão olhando fortemente para cima, criando extremo escorço e distorção dramática. Os sujeitos pairam acima com perspectiva forçada dramática."
+   ]},
+  {cat:"angulos", icon:"👥", title:"Over the Shoulder (OTS)",
+   desc:"Câmera atrás e sobre o ombro de um personagem olhando para outro. Clássico de diálogos.",
+   prompts:[
+     "Reframe this image as an over-the-shoulder shot. Position the camera behind and over the shoulder of one subject, looking toward another subject in the scene. The foreground shoulder and back of the head partially frame the image. Classic dialogue framing.",
+     "Convert this image to an over-the-shoulder composition (OTS). Show one subject from behind with their shoulder visible in the foreground corner, while the other subject or object of focus is clearly visible ahead. Keep original subjects.",
+     "Reencadre esta imagem como plano over the shoulder (OTS). Posicione a câmera atrás e sobre o ombro de um sujeito, olhando para outro na cena. O ombro e a nuca enquadram parcialmente a imagem. Enquadramento clássico de diálogos."
+   ]},
+  {cat:"angulos", icon:"👁️", title:"POV (Point of View)",
+   desc:"Câmera nos olhos do personagem. O espectador vê exatamente o que o personagem vê.",
+   prompts:[
+     "Transform this image into a point-of-view (POV) shot. Reframe as if the camera is positioned exactly at eye level of a character looking out at the scene. The viewer should feel they are seeing through the character's eyes. Preserve original scene.",
+     "Convert this image to a first-person POV perspective. Place the camera at human eye height looking directly forward into the scene, as if the viewer themselves is standing there experiencing it. Keep original scene elements.",
+     "Transforme esta imagem em plano POV (ponto de vista). Reencadre como se a câmera estivesse posicionada exatamente na altura dos olhos de um personagem olhando para a cena. O espectador deve sentir que está vendo pelos olhos do personagem."
+   ]},
+  {cat:"angulos", icon:"↔️", title:"Dois Planos (Two Shot)",
+   desc:"Enquadra dois sujeitos no mesmo quadro. Relação, tensão ou conexão entre personagens.",
+   prompts:[
+     "Reframe this image as a two-shot, composing the frame to show two subjects simultaneously with equal visual weight. This framing emphasizes the relationship, tension, or dynamic between the two characters. Preserve original subjects.",
+     "Convert this image to a two-shot composition showing two subjects within the same frame, side by side or facing each other. Balance their visual presence equally to highlight their interaction or contrast. Keep original subjects.",
+     "Reencadre esta imagem como dois planos (two shot), compondo o quadro para mostrar dois sujeitos simultaneamente com peso visual igual. Este enquadramento enfatiza a relação, tensão ou dinâmica entre os dois personagens."
+   ]},
+  {cat:"angulos", icon:"🚁", title:"Drone / Aerial Shot",
+   desc:"Perspectiva aérea de drone, acima das árvores e telhados. Contexto e escala épica.",
+   prompts:[
+     "Transform this image into an aerial drone shot perspective. Show the scene from high above as if captured by a drone, revealing the full landscape layout, patterns from above, and the epic scale of the environment. Preserve original scene elements.",
+     "Convert this image to a high aerial perspective as seen from a drone or helicopter. Pull the viewpoint far above, showing rooftops, treetops, and geographic patterns. The ground becomes a map-like layout. Keep original scene.",
+     "Transforme esta imagem em uma perspectiva de drone aéreo. Mostre a cena de bem acima como se capturada por um drone, revelando o layout completo da paisagem, padrões vistos de cima e a escala épica do ambiente."
    ]},
 ];
 
-/* ============================================================
-   ESTADO
-   ============================================================ */
-let sgActiveTab = 'all';
-let sgExpandedIndex = null;
+/* =====================================================
+   ESTADO & RENDER
+   ===================================================== */
+let sgTab = 'all';
+let sgOpen = null;
 
-/* ============================================================
-   FUNÇÕES
-   ============================================================ */
-function sgSetTab(tab, el) {
-  sgActiveTab = tab;
-  document.querySelectorAll('.sg-tab').forEach(t => t.classList.remove('active'));
+function sgSetTab(t, el) {
+  sgTab = t;
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
   el.classList.add('active');
-  const conceptBox = document.getElementById('sg-concept-box');
-  if (conceptBox) conceptBox.style.display = (tab === 'all' || tab === 'conceito') ? '' : 'none';
-  sgExpandedIndex = null;
-  sgRender();
+  sgOpen = null;
+  const ab = document.getElementById('anatomy-box');
+  if (ab) ab.style.display = (t==='all'||t==='conceito') ? '' : 'none';
+  render();
 }
 
-function sgFilterCards() {
-  sgExpandedIndex = null;
-  sgRender();
-}
-
-function sgCatLabel(c) {
-  const m = {
-    fotografia:'Fotografia', pintura:'Pintura & Arte',
-    digital:'Digital & 3D', retro:'Retrô & Vintage',
-    fantasia:'Fantasia & Sci-Fi', ilustracao:'Ilustração',
-    iluminacao:'Iluminação', composicao:'Composição', conceito:'Conceito & Método'
-  };
-  return m[c] || c;
-}
-
-function sgRender() {
-  const q = (document.getElementById('sg-search').value || '').toLowerCase();
-  const filtered = SG_DATA.filter((d, i) => {
-    const matchCat = sgActiveTab === 'all' || d.cat === sgActiveTab;
-    const matchQ = !q || d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.prompts.join(' ').toLowerCase().includes(q);
-    return matchCat && matchQ;
+function render() {
+  const q = (document.getElementById('sg-search').value||'').toLowerCase();
+  const filtered = SG_DATA.filter(d => {
+    const mc = sgTab==='all' || d.cat===sgTab;
+    const mq = !q || d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.prompts.join(' ').toLowerCase().includes(q);
+    return mc && mq;
   });
-
-  document.getElementById('sg-count').textContent = filtered.length + ' estilo' + (filtered.length !== 1 ? 's' : '') + ' encontrado' + (filtered.length !== 1 ? 's' : '');
-
-  const grid = document.getElementById('sg-grid');
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="sg-empty">Nenhum estilo encontrado. Tente outro termo.</div>';
+  const countEl = document.getElementById('sg-count');
+  countEl.textContent = filtered.length + ' estilo' + (filtered.length!==1?'s':'') + ' encontrado' + (filtered.length!==1?'s':'');
+  const grid = document.getElementById('grid');
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">Nenhum estilo encontrado.</div>';
     return;
   }
-
-  grid.innerHTML = filtered.map((d, idx) => {
-    const isOpen = sgExpandedIndex === idx;
-    return `
-    <div class="sg-card${isOpen ? ' expanded' : ''}" id="sg-card-${idx}" onclick="sgToggleCard(${idx})">
-      <div class="sg-card-header">
-        <div class="sg-card-icon">${d.icon}</div>
-        <div class="sg-card-title">${d.title}</div>
+  grid.innerHTML = filtered.map((d,i) => {
+    const isOpen = sgOpen === i;
+    const catLabels = {fotografia:'Fotografia',pintura:'Pintura & Arte',digital:'Digital & 3D',retro:'Retrô & Vintage',fantasia:'Fantasia & Sci-Fi',ilustracao:'Ilustração',iluminacao:'Iluminação',composicao:'Composição',angulos:'Ângulos & Planos',conceito:'Conceito & Método'};
+    return `<div class="card${isOpen?' expanded':''}" id="card-${i}" onclick="toggle(${i})">
+      <div class="card-body">
+        <div class="card-header">
+          <div class="card-title">${d.icon} ${d.title}</div>
+          <span class="card-arrow">▼</span>
+        </div>
+        <div class="card-cat">${catLabels[d.cat]||d.cat}</div>
+        <div class="card-desc">${d.desc}</div>
       </div>
-      <div class="sg-card-cat">${sgCatLabel(d.cat)}</div>
-      <div class="sg-card-desc">${d.desc}</div>
-      <span class="sg-card-arrow">▼</span>
-      <div class="sg-prompts">
-        ${d.prompts.map((p, pi) => `
-          <div class="sg-prompt-item" id="sg-p-${idx}-${pi}">${p}</div>
-          <div class="sg-prompt-actions">
-            <button class="sg-btn-copy" onclick="sgCopy(event, ${idx}, ${pi})">Copiar prompt</button>
-          </div>
-        `).join('')}
-        <button class="sg-btn-use" onclick="sgUseStyle(event, '${d.title.replace(/'/g,"\\'")}')">
-          Usar estilo: ${d.title} →
-        </button>
+      <div class="card-prompts">
+        ${d.prompts.map((p,pi)=>{
+          const labels = ['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
+          const label = labels[pi] || `Prompt ${pi+1}`;
+          return `
+          <div class="prompt-num">${label}</div>
+          <div class="prompt-block" id="pb-${i}-${pi}">${p}</div>
+          <button class="btn-copy" onclick="cp(event,${i},${pi})">Copiar</button>
+        `}).join('')}
+        <button class="btn-use" onclick="use(event,'${d.title.replace(/'/g,"\\'")}')">Usar este estilo no meu projeto →</button>
       </div>
     </div>`;
   }).join('');
 }
 
-function sgToggleCard(idx) {
-  if (sgExpandedIndex === idx) {
-    sgExpandedIndex = null;
-  } else {
-    sgExpandedIndex = idx;
-  }
-  sgRender();
-  if (sgExpandedIndex !== null) {
-    const card = document.getElementById('sg-card-' + sgExpandedIndex);
-    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+function toggle(i) {
+  sgOpen = (sgOpen===i) ? null : i;
+  render();
+  if (sgOpen!==null) {
+    const el = document.getElementById('card-'+sgOpen);
+    if (el) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
   }
 }
 
-function sgCopy(e, idx, pi) {
+function cp(e, i, pi) {
   e.stopPropagation();
-  const el = document.getElementById('sg-p-' + idx + '-' + pi);
+  const el = document.getElementById('pb-'+i+'-'+pi);
   if (!el) return;
-  navigator.clipboard.writeText(el.textContent.trim()).catch(() => {});
+  navigator.clipboard.writeText(el.textContent.trim()).catch(()=>{});
   const btn = e.target;
   btn.textContent = '✓ Copiado!';
-  btn.classList.add('copied');
-  setTimeout(() => { btn.textContent = 'Copiar prompt'; btn.classList.remove('copied'); }, 1800);
+  btn.classList.add('ok');
+  setTimeout(()=>{ btn.textContent='Copiar prompt'; btn.classList.remove('ok'); }, 1800);
 }
 
-/*
- * ============================================================
- * sgUseStyle — CALLBACK CUSTOMIZÁVEL
- * ============================================================
- * Esta função é chamada quando o usuário clica em "Usar estilo".
- * Por padrão, ela despacha um CustomEvent 'sgStyleSelected' com
- * o título do estilo e os prompts relacionados.
- *
- * No seu sistema, você pode:
- *   1. Ouvir o evento: document.addEventListener('sgStyleSelected', e => { ... })
- *   2. Ou sobrescrever window.onSgStyleSelected(styleData) diretamente
- * ============================================================
- */
-function sgUseStyle(e, title) {
+function use(e, title) {
   e.stopPropagation();
-  const styleData = SG_DATA.find(d => d.title === title);
-  if (!styleData) return;
-
-  // Dispara evento customizado — integre no seu sistema ouvindo este evento
-  const event = new CustomEvent('sgStyleSelected', {
-    detail: {
-      title: styleData.title,
-      category: styleData.cat,
-      description: styleData.desc,
-      prompts: styleData.prompts
-    },
-    bubbles: true
-  });
-  document.dispatchEvent(event);
-
-  // Callback alternativo para integração direta
-  if (typeof window.onSgStyleSelected === 'function') {
-    window.onSgStyleSelected({
-      title: styleData.title,
-      category: styleData.cat,
-      description: styleData.desc,
-      prompts: styleData.prompts
-    });
-  }
+  const d = SG_DATA.find(x=>x.title===title);
+  if (!d) return;
+  document.dispatchEvent(new CustomEvent('sgStyleSelected',{detail:{title:d.title,category:d.cat,description:d.desc,prompts:d.prompts},bubbles:true}));
+  if (typeof window.onSgStyleSelected==='function') window.onSgStyleSelected({title:d.title,category:d.cat,description:d.desc,prompts:d.prompts});
 }
 
-// Init
-sgRender();
+render();
 </script>
-
 </body>
 </html>

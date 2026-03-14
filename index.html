@@ -12,7 +12,7 @@
   --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--border3:rgba(255,255,255,0.22);
   --text:#ededf5;--text2:#8888a8;--text3:#44445a;
   --accent:#6c5ce7;--accent-light:rgba(108,92,231,0.15);
-  --green:#00cba9;--coral:#f87171;
+  --green:#00cba9;--coral:#f87171;--amber:#f59e0b;
   --radius:12px;--radius-lg:16px;--radius-xl:20px;
   --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Cascadia Code','Fira Code',monospace;
 }
@@ -25,6 +25,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .gemini-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:4px 12px;background:rgba(66,133,244,0.12);border:1px solid rgba(66,133,244,0.25);border-radius:20px;font-size:12px;color:#74aaf8;font-weight:500}
 .gemini-dot{width:6px;height:6px;border-radius:50%;background:#74aaf8;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* NAV */
 .nav-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);max-width:1200px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
 .nav-tabs::-webkit-scrollbar{display:none}
 .nav-tab{padding:12px 18px;font-size:13px;font-weight:500;color:var(--text3);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s;font-family:var(--font-display);flex-shrink:0;user-select:none}
@@ -32,32 +33,44 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .main{max-width:1200px;margin:0 auto;padding:1.5rem 2rem 4rem}
 .panel{display:none}.panel.active{display:block}
+/* SEARCH */
 .controls{margin-bottom:1.25rem}
 .search-wrap{position:relative;margin-bottom:.85rem}
 .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:15px;pointer-events:none}
 #sg-search{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px 10px 40px;font-size:14px;color:var(--text);outline:none;font-family:var(--font-body);transition:border-color .2s,box-shadow .2s}
 #sg-search::placeholder{color:var(--text3)}
 #sg-search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-light)}
-.filter-tabs{display:flex;flex-wrap:wrap;gap:5px}
-.ftab{padding:5px 12px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);transition:all .15s;user-select:none;font-family:var(--font-body);font-weight:500}
-.ftab:hover{border-color:var(--border3);color:var(--text)}
-.ftab.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .sg-count{font-size:12px;color:var(--text3);margin-bottom:1rem;font-family:var(--font-display);letter-spacing:.03em}
+/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;transition:border-color .2s,transform .15s;position:relative}
+/* CARD */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:visible;transition:border-color .2s,transform .15s;position:relative}
 .card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.card.expanded{border-color:var(--accent);transform:none}
+.card.expanded{border-color:var(--accent);transform:none;overflow:hidden}
 .card-fav-btn{position:absolute;top:10px;right:10px;font-size:14px;cursor:pointer;opacity:.3;transition:opacity .15s;z-index:2;line-height:1;background:none;border:none;padding:2px}
 .card-fav-btn:hover{opacity:.8}
 .card-fav-btn.on{opacity:1}
-.card-body{padding:14px 16px;cursor:pointer}
-.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px}
-.card-title{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--text);line-height:1.3;padding-right:22px}
+.card-body{padding:14px 16px;cursor:pointer;border-radius:var(--radius-xl)}
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:2px}
+.card-title-row{display:flex;align-items:center;gap:6px;padding-right:22px}
+.card-title{font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--text);line-height:1.3}
+/* INFO BADGE + TOOLTIP */
+.card-info{width:16px;height:16px;border-radius:50%;background:var(--bg4);border:1px solid var(--border2);cursor:default;display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:var(--text3);flex-shrink:0;position:relative;font-weight:700}
+.card-info:hover{border-color:var(--border3);color:var(--text2)}
+.tooltip{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);width:260px;background:#1a1a2e;border:1px solid var(--border2);border-radius:var(--radius);padding:12px 14px;font-size:11.5px;color:var(--text2);line-height:1.6;z-index:100;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.tooltip::before{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:#1a1a2e;border-left:1px solid var(--border2);border-top:1px solid var(--border2);transform:translateX(-50%) rotate(45deg)}
+.card-info:hover .tooltip{opacity:1}
+.tooltip-title{font-family:var(--font-display);font-size:11px;font-weight:700;color:var(--accent);margin-bottom:5px;letter-spacing:.04em;text-transform:uppercase}
+.tooltip-effect{margin-bottom:5px}
+.tooltip-example{font-size:10.5px;color:var(--text3);font-style:italic}
+.tooltip-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.tooltip-tag{padding:2px 7px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;font-size:10px;color:var(--text3)}
+/* */
 .card-arrow{font-size:10px;color:var(--text3);margin-top:3px;transition:transform .2s,color .2s;flex-shrink:0}
 .card.expanded .card-arrow{transform:rotate(180deg);color:var(--accent)}
-.card-cat{font-size:11px;color:var(--text3);margin-bottom:6px;letter-spacing:.04em;font-weight:500}
+.card-cat-badge{display:inline-block;padding:2px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;font-size:10px;color:var(--text3);margin-bottom:7px;font-family:var(--font-display);font-weight:500;letter-spacing:.03em}
 .card-desc{font-size:12px;color:var(--text2);line-height:1.55}
-.card-prompts{display:none;border-top:1px solid var(--border);padding:14px 16px;background:var(--bg3)}
+.card-prompts{display:none;border-top:1px solid var(--border);padding:14px 16px;background:var(--bg3);border-radius:0 0 var(--radius-xl) var(--radius-xl)}
 .card.expanded .card-prompts{display:block}
 .prompt-num{font-size:10px;color:var(--text3);font-family:var(--font-display);margin-bottom:4px;margin-top:10px;font-weight:600;letter-spacing:.05em}
 .prompt-num:first-child{margin-top:0}
@@ -68,31 +81,97 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .btn-use{width:100%;margin-top:10px;padding:9px 14px;font-size:12px;font-weight:600;border:1px solid var(--accent);border-radius:var(--radius);cursor:pointer;background:var(--accent-light);color:var(--accent);font-family:var(--font-display);transition:all .2s}
 .btn-use:hover{background:var(--accent);color:#fff}
 .empty{text-align:center;padding:4rem 1rem;color:var(--text3);font-size:14px}
+/* GUIA VISUAL GRID */
+.guia-controls{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap}
+.guia-filter-tabs{display:flex;flex-wrap:wrap;gap:5px;flex-shrink:0}
+.gftab{padding:5px 12px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:12px;color:var(--text2);background:var(--bg2);transition:all .15s;user-select:none;font-family:var(--font-body);font-weight:500;white-space:nowrap}
+.gftab:hover{border-color:var(--border3);color:var(--text)}
+.gftab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.visual-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+/* VISUAL CARD */
+.vcard{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;position:relative;background:var(--bg3);border:1px solid var(--border);transition:transform .15s,border-color .15s;aspect-ratio:1/1;min-height:160px}
+.vcard:hover{transform:translateY(-3px) scale(1.02);border-color:var(--border2)}
+.vcard-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .4s}
+.vcard-img.loaded{opacity:1}
+.vcard-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:42px;opacity:.18}
+.vcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.05) 100%)}
+.vcard:hover .vcard-overlay{background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.5) 60%,rgba(0,0,0,.1) 100%)}
+.vcard-bottom{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 9px;z-index:1}
+.vcard-name{font-family:var(--font-display);font-size:12px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:2px}
+.vcard-cat{font-size:10px;color:rgba(255,255,255,.5);font-weight:500}
+.vcard-fav{position:absolute;top:7px;right:7px;font-size:13px;opacity:0;transition:opacity .15s;background:rgba(0,0,0,.5);border:none;cursor:pointer;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;z-index:2}
+.vcard:hover .vcard-fav{opacity:.7}
+.vcard-fav:hover{opacity:1 !important}
+.vcard-fav.on{opacity:1 !important}
+/* MODAL */
+.style-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.style-modal-overlay.open{display:flex}
+.style-modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-xl);overflow:hidden;width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:row;position:relative}
+@media(max-width:600px){.style-modal{flex-direction:column;max-height:95vh;overflow-y:auto}}
+.style-modal-close{position:absolute;top:12px;right:12px;z-index:10;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:18px;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;backdrop-filter:blur(4px)}
+.style-modal-close:hover{background:rgba(0,0,0,.8)}
+.style-modal-img-wrap{width:260px;flex-shrink:0;position:relative;overflow:hidden;background:var(--bg3)}
+@media(max-width:600px){.style-modal-img-wrap{width:100%;height:200px}}
+.style-modal-img{width:100%;height:100%;object-fit:cover;display:block}
+.style-modal-cat{position:absolute;bottom:10px;left:10px;padding:3px 10px;background:rgba(0,0,0,.6);border-radius:20px;font-size:10px;color:rgba(255,255,255,.8);font-family:var(--font-display);backdrop-filter:blur(4px)}
+.style-modal-body{flex:1;padding:1.25rem;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.style-modal-header{display:flex;gap:10px;align-items:flex-start}
+.style-modal-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.style-modal-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:3px}
+.style-modal-desc{font-size:12px;color:var(--text2);line-height:1.5}
+.style-modal-fav{margin-left:auto;font-size:18px;background:none;border:none;cursor:pointer;opacity:.4;transition:opacity .15s;flex-shrink:0;padding:2px}
+.style-modal-fav:hover{opacity:.8}
+.style-modal-fav.on{opacity:1}
+.style-modal-effect{background:var(--bg3);border-radius:var(--radius);padding:10px 12px;font-size:12px;color:var(--text2);line-height:1.6;border-left:3px solid var(--accent)}
+.style-modal-prompts{display:flex;flex-direction:column;gap:8px}
+.modal-prompt-block{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px}
+.modal-prompt-label{font-size:10px;color:var(--text3);font-family:var(--font-display);font-weight:600;letter-spacing:.05em;margin-bottom:5px}
+.modal-prompt-text{font-size:11px;color:#c8c8e8;font-family:var(--font-mono);line-height:1.6;word-break:break-word;white-space:pre-wrap;margin-bottom:6px}
+.style-modal-actions{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+/* EMPTY */
+.empty{text-align:center;padding:4rem 1rem;color:var(--text3);font-size:14px}
 /* BUILDER */
 .builder-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 @media(max-width:700px){.builder-layout{grid-template-columns:1fr}}
 .section-title{font-family:var(--font-display);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px}
-.field-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;font-family:var(--font-display);letter-spacing:.03em;margin-top:14px;display:block}
-.field-label:first-of-type{margin-top:0}
+.b-section{margin-bottom:16px}
+.field-label{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:7px;font-family:var(--font-display);letter-spacing:.03em;display:flex;align-items:center;gap:6px}
+.field-multi-hint{font-size:10px;color:var(--text3);font-weight:400;letter-spacing:0}
 .field-input{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:9px 12px;font-size:13px;color:var(--text);outline:none;font-family:var(--font-body);transition:border-color .2s}
 .field-input:focus{border-color:var(--accent)}
 .field-input::placeholder{color:var(--text3)}
 .field-select{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius);padding:9px 12px;font-size:13px;color:var(--text);outline:none;font-family:var(--font-body);cursor:pointer;appearance:none;-webkit-appearance:none}
 .field-select:focus{border-color:var(--accent)}
 .field-select option{background:var(--bg3)}
-.chip-group{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;margin-bottom:2px}
-.chip{padding:4px 10px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text2);background:var(--bg3);transition:all .15s;user-select:none}
+.chip-group{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.chip{padding:4px 10px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text2);background:var(--bg3);transition:all .15s;user-select:none;position:relative}
 .chip:hover{border-color:var(--border3);color:var(--text)}
 .chip.sel{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+/* chip tooltip */
+.chip-tip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1a1a2e;border:1px solid var(--border2);border-radius:8px;padding:6px 10px;font-size:10.5px;color:var(--text2);white-space:nowrap;max-width:220px;white-space:normal;width:max-content;max-width:200px;z-index:50;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 4px 16px rgba(0,0,0,0.5);line-height:1.4;text-align:center}
+.chip:hover .chip-tip{opacity:1}
+.b-sel-count{font-size:10px;color:var(--accent);margin-left:4px;font-weight:600}
 .builder-preview{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-xl);padding:1.25rem;position:sticky;top:1rem}
 .preview-title{font-family:var(--font-display);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:12px}
 .lang-toggle{display:flex;gap:6px;margin-bottom:12px}
 .lang-btn{padding:4px 12px;border:1px solid var(--border2);border-radius:20px;cursor:pointer;font-size:11px;color:var(--text2);background:var(--bg3);font-family:var(--font-body);transition:all .15s}
 .lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.preview-box{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-size:12px;color:#c8c8e8;line-height:1.7;font-family:var(--font-mono);white-space:pre-wrap;word-break:break-word;min-height:120px}
+.preview-box{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-size:12px;color:#c8c8e8;line-height:1.7;font-family:var(--font-mono);white-space:pre-wrap;word-break:break-word;min-height:140px}
 .btn-green{width:100%;margin-top:10px;padding:10px 14px;font-size:13px;font-weight:600;border:1px solid var(--green);border-radius:var(--radius);cursor:pointer;background:rgba(0,203,169,0.1);color:var(--green);font-family:var(--font-display);transition:all .2s}
 .btn-green:hover,.btn-green.ok{background:var(--green);color:#000}
-/* COMBO */
+.btn-reset{width:100%;margin-top:6px;padding:7px 14px;font-size:12px;border:1px solid var(--border2);border-radius:var(--radius);cursor:pointer;background:transparent;color:var(--text3);font-family:var(--font-body);transition:all .15s}
+.btn-reset:hover{color:var(--coral);border-color:var(--coral)}
+/* STYLE GRID — builder */
+.style-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px;margin-top:4px}
+.style-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:10px 10px 8px;cursor:pointer;transition:border-color .15s,background .15s,transform .12s;user-select:none;display:flex;flex-direction:column;gap:4px}
+.style-card:hover{border-color:var(--border2);background:var(--bg4);transform:translateY(-1px)}
+.style-card.sel{border-color:var(--accent);background:var(--accent-light);transform:none}
+.style-card-icon{font-size:18px;line-height:1;margin-bottom:1px}
+.style-card-name{font-size:11.5px;font-weight:600;color:var(--text);font-family:var(--font-display);line-height:1.3}
+.style-card.sel .style-card-name{color:var(--accent)}
+.style-card-cat{font-size:10px;color:var(--text3);font-family:var(--font-body)}
+.style-card.sel .style-card-cat{color:var(--accent);opacity:.7}
+
 .combo-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
 @media(max-width:800px){.combo-cols{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.combo-cols{grid-template-columns:1fr}}
@@ -160,53 +239,119 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 
 <div class="main">
 
+<!-- GUIA -->
 <div class="panel active" id="panel-guia">
-  <div class="controls">
-    <div class="search-wrap">
+  <div class="guia-controls">
+    <div class="search-wrap" style="flex:1">
       <span class="search-icon">⌕</span>
-      <input type="text" id="sg-search" placeholder="Buscar estilo, técnica ou intenção...">
+      <input type="text" id="sg-search" placeholder="Buscar estilo...">
     </div>
-    <div class="filter-tabs" id="filter-tabs">
-      <div class="ftab active" data-cat="all">Todos</div>
-      <div class="ftab" data-cat="fotografia">📷 Fotografia</div>
-      <div class="ftab" data-cat="pintura">🖌 Pintura</div>
-      <div class="ftab" data-cat="digital">🖥 Digital &amp; 3D</div>
-      <div class="ftab" data-cat="retro">📼 Retrô</div>
-      <div class="ftab" data-cat="fantasia">🐉 Fantasia</div>
-      <div class="ftab" data-cat="ilustracao">✏️ Ilustração</div>
-      <div class="ftab" data-cat="iluminacao">💡 Iluminação</div>
-      <div class="ftab" data-cat="composicao">📐 Composição</div>
-      <div class="ftab" data-cat="angulos">🎥 Ângulos &amp; Planos</div>
-      <div class="ftab" data-cat="conceito">🧠 Método</div>
+    <div class="guia-filter-tabs" id="guia-filter-tabs">
+      <div class="gftab active" data-cat="all">Todos</div>
+      <div class="gftab" data-cat="fotografia">Foto</div>
+      <div class="gftab" data-cat="pintura">Pintura</div>
+      <div class="gftab" data-cat="digital">Digital</div>
+      <div class="gftab" data-cat="retro">Retrô</div>
+      <div class="gftab" data-cat="fantasia">Fantasia</div>
+      <div class="gftab" data-cat="ilustracao">Ilustração</div>
+      <div class="gftab" data-cat="iluminacao">Luz</div>
+      <div class="gftab" data-cat="angulos">Ângulos</div>
+      <div class="gftab" data-cat="composicao">Comp.</div>
+      <div class="gftab" data-cat="conceito">Método</div>
     </div>
   </div>
   <div class="sg-count" id="sg-count"></div>
-  <div class="grid" id="grid"></div>
+  <div class="visual-grid" id="grid"></div>
+
+  <!-- MODAL OVERLAY -->
+  <div class="style-modal-overlay" id="style-modal-overlay">
+    <div class="style-modal" id="style-modal">
+      <button class="style-modal-close" id="style-modal-close">×</button>
+      <div class="style-modal-img-wrap">
+        <img class="style-modal-img" id="style-modal-img" src="" alt="" loading="lazy">
+        <div class="style-modal-cat" id="style-modal-cat"></div>
+      </div>
+      <div class="style-modal-body">
+        <div class="style-modal-header">
+          <div class="style-modal-icon" id="style-modal-icon"></div>
+          <div>
+            <div class="style-modal-title" id="style-modal-title"></div>
+            <div class="style-modal-desc" id="style-modal-desc"></div>
+          </div>
+          <button class="style-modal-fav" id="style-modal-fav" title="Favoritar">⭐</button>
+        </div>
+        <div class="style-modal-effect" id="style-modal-effect"></div>
+        <div class="style-modal-prompts" id="style-modal-prompts"></div>
+        <div class="style-modal-actions">
+          <button class="btn-green" id="style-modal-combo">+ Adicionar ao Combinador →</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- BUILDER -->
 <div class="panel" id="panel-builder">
   <div class="builder-layout">
     <div>
       <div class="section-title">Monte seu prompt</div>
-      <label class="field-label" for="b-subject">Seu sujeito</label>
-      <input class="field-input" id="b-subject" placeholder="ex: uma mulher de cabelo ruivo, uma cidade...">
-      <label class="field-label" for="b-style">Estilo visual</label>
-      <select class="field-select" id="b-style"><option value="">— Escolha um estilo —</option></select>
-      <label class="field-label">Iluminação</label>
-      <div class="chip-group" id="chips-lighting"></div>
-      <label class="field-label">Ângulo / Plano</label>
-      <div class="chip-group" id="chips-angle"></div>
-      <label class="field-label">Humor / Atmosfera</label>
-      <div class="chip-group" id="chips-mood"></div>
-      <label class="field-label">Paleta de cor</label>
-      <div class="chip-group" id="chips-color"></div>
-      <label class="field-label">Qualidade técnica</label>
-      <div class="chip-group" id="chips-quality"></div>
-      <label class="field-label">Preservar</label>
-      <div class="chip-group" id="chips-preserve"></div>
-      <label class="field-label">Evitar</label>
-      <div class="chip-group" id="chips-avoid"></div>
+
+      <div class="b-section">
+        <label class="field-label" for="b-subject">Seu sujeito</label>
+        <input class="field-input" id="b-subject" placeholder="ex: mulher de cabelo ruivo, cidade ao pôr do sol...">
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Estilo visual <span class="field-multi-hint">(escolha 1)</span></div>
+        <div class="style-grid" id="chips-style"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Iluminação <span class="field-multi-hint">(multi-seleção)</span><span class="b-sel-count" id="cnt-lighting"></span></div>
+        <div class="chip-group" id="chips-lighting"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Câmera — Lente / Equipamento <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-camera"></span></div>
+        <div class="chip-group" id="chips-camera"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Câmera — Ângulo / Plano <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-angle"></span></div>
+        <div class="chip-group" id="chips-angle"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Câmera — Profundidade de campo <span class="field-multi-hint">(escolha 1)</span></div>
+        <div class="chip-group" id="chips-dof"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Humor / Atmosfera <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-mood"></span></div>
+        <div class="chip-group" id="chips-mood"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Paleta de cor <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-color"></span></div>
+        <div class="chip-group" id="chips-color"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Qualidade técnica <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-quality"></span></div>
+        <div class="chip-group" id="chips-quality"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Preservar <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-preserve"></span></div>
+        <div class="chip-group" id="chips-preserve"></div>
+      </div>
+
+      <div class="b-section">
+        <div class="field-label">Evitar <span class="field-multi-hint">(multi)</span><span class="b-sel-count" id="cnt-avoid"></span></div>
+        <div class="chip-group" id="chips-avoid"></div>
+      </div>
     </div>
+
     <div>
       <div class="builder-preview">
         <div class="preview-title">Prompt gerado</div>
@@ -216,11 +361,13 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
         </div>
         <div class="preview-box" id="b-preview">Preencha os campos ao lado para montar seu prompt.</div>
         <button class="btn-green" id="b-copy-btn">Copiar prompt</button>
+        <button class="btn-reset" id="b-reset-btn">Limpar tudo</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- COMBO -->
 <div class="panel" id="panel-combo">
   <div style="margin-bottom:1.25rem">
     <div class="section-title">Combine estilos</div>
@@ -243,14 +390,17 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   </div>
 </div>
 
+<!-- PALETAS -->
 <div class="panel" id="panel-paletas">
   <div class="palettes-grid" id="palettes-grid"></div>
 </div>
 
+<!-- FAVORITOS -->
 <div class="panel" id="panel-favoritos">
-  <div class="grid" id="fav-grid"></div>
+  <div class="visual-grid" id="fav-grid"></div>
 </div>
 
+<!-- HISTORICO -->
 <div class="panel" id="panel-historico">
   <div class="hist-clear"><button class="btn-clear" id="btn-clear-hist">Limpar histórico</button></div>
   <div id="hist-list"></div>
@@ -876,11 +1026,76 @@ const PALETTES = [
    ]},
 ];
 
+// TOOLTIPS — descrição detalhada de cada estilo para o card
+var STYLE_TIPS = {
+  'Fotorrealista':       {effect:'Imagem indistinguível de uma fotografia real. Texturas de pele, reflexos, imperfeições naturais.',example:'Ideal para retratos, produtos e mockups que precisam parecer fotos.',tags:['ultra-realista','fotografia','detalhes','textura']},
+  'Cinematográfico':     {effect:'Estética de filme hollywoodiano. Grão de 35mm, cores viradas para teal-laranja, barras pretas no topo e base.',example:'Perfeito para criar a sensação de cena de filme épico.',tags:['filme','teal-orange','grão','épico']},
+  'Editorial / Moda':    {effect:'Visual limpo e controlado de revistas de moda. Luz suave, composição precisa, cores polidas.',example:'Campanhas de moda, lookbooks, capas de revista.',tags:['vogue','moda','polido','studio']},
+  'Street Photography':  {effect:'Fotografia documental urbana. Preto e branco, grão pesado, momentos espontâneos sem pose.',example:'Cenas de cidade, retratos candid, vida cotidiana.',tags:['PB','urban','candid','grão']},
+  'Astrofotografia':     {effect:'Céu noturno com Via Láctea visível, estrelas nítidas e exposição longa. Silhueta no primeiro plano.',example:'Paisagens noturnas, natureza, aventura.',tags:['noite','estrelas','Via Láctea','exposição longa']},
+  'Retrato Dramático':   {effect:'Iluminação de fonte única criando sombras profundas e expressão intensa. Alto impacto emocional.',example:'Retratos de personagens, músicos, executivos com autoridade.',tags:['sombra','dramático','key light','emocional']},
+  'Óleo sobre Tela':     {effect:'Pinceladas visíveis e espessas, textura de tela, profundidade de cor. Parece pintado à mão.',example:'Retratos clássicos, paisagens, arte decorativa.',tags:['pintura','impasto','clássico','textura']},
+  'Aquarela':            {effect:'Cores fluindo suavemente com bordas difusas. Transparência, leveza e aspecto feito à mão.',example:'Ilustrações botânicas, cartões, arte delicada.',tags:['fluido','transparente','suave','artesanal']},
+  'Impressionismo':      {effect:'Pinceladas curtas e soltas capturam luz e movimento. Contornos suaves, cores vibrantes em manchas.',example:'Paisagens, cenas ao ar livre, jardinagem.',tags:['Monet','pinceladas','luz','vibrante']},
+  'Esboço / Pencil Art': {effect:'Traços de lápis ou carvão visíveis. Hachuras para sombra, textura de papel, aspecto de caderno.',example:'Arte conceitual, retratos expressivos, sketchbook.',tags:['grafite','carvão','hachura','papel']},
+  'Art Nouveau':         {effect:'Linhas orgânicas fluindo, ornamentos florais e femininos, paleta dourada dos anos 1900.',example:'Pôsteres decorativos, capas, branding elegante.',tags:['Mucha','orgânico','floral','dourado']},
+  'Expressionismo':      {effect:'Distorção emocional da realidade. Cores chocantes, formas angulosas, intensidade psicológica.',example:'Arte emocional, temas sombrios, impacto visual forte.',tags:['Munch','distorcido','emocional','angular']},
+  '3D Render / CGI':     {effect:'Renderização computadorizada fotorrealista. Materiais físicos, reflexos, iluminação global.',example:'Produtos, arquitetura, personagens de games.',tags:['CGI','octane','materiais','renderização']},
+  'Isométrico':          {effect:'Perspectiva 3D em 45 graus, vista de cima. Visual de jogos mobile, limpo e geométrico.',example:'Mapas, infográficos, design de apps, games.',tags:['45°','geométrico','clean','game']},
+  'Cyberpunk / Neon':    {effect:'Chuva, reflexos neon em teal e magenta, névoa, futurismo sombrio. Estética Blade Runner.',example:'Personagens futuristas, cenários urbanos dark.',tags:['neon','futurismo','rain','teal-magenta']},
+  'Low Poly':            {effect:'Arte formada por triângulos geométricos. Cada face tem cor sólida, aspecto minimalista digital.',example:'Logos, wallpapers, retratos artísticos.',tags:['triângulos','geométrico','flat','minimal']},
+  'Glitch Art':          {effect:'Falha digital intencional. Separação de canais RGB, scanlines, pixels deslocados, efeito VHS.',example:'Arte digital, capas de música eletrônica, cyberpunk.',tags:['RGB split','VHS','pixels','distorção']},
+  'Concept Art':         {effect:'Arte profissional para games/filmes. Perspectiva atmosférica, detalhes e foco dramático.',example:'Personagens, cenários, props para produção audiovisual.',tags:['game','filme','Artstation','profissional']},
+  'Vaporwave / Synthwave':{effect:'Estética nostálgica anos 80-90. Neon pastel, grade retro, pôr do sol roxo-laranja.',example:'Capas de música, wallpapers retrô, branding nostálgico.',tags:['80s','neon pastel','grid','nostálgico']},
+  'Filme Analógico / Lo-Fi':{effect:'Grão de filme fotográfico, cores desbotadas, vinheta natural. Parece capturado em analógico.',example:'Fotografia casual, moda vintage, memórias.',tags:['Kodak','grão','lo-fi','analógico']},
+  'Art Deco':            {effect:'Geometria elegante dos anos 1920. Dourado, simetria, formas em chevron e leque.',example:'Pôsteres glamorosos, branding luxuoso, convites.',tags:['1920s','dourado','geométrico','glamour']},
+  'Pop Art':             {effect:'Pontos de halftone, contornos pretos grossos, cores primárias planas. Estilo Warhol/Lichtenstein.',example:'Retratos icônicos, arte pop, impressões.',tags:['Warhol','halftone','primárias','bold']},
+  'Film Noir':           {effect:'Preto e branco de alto contraste, sombras dramáticas, atmosfera de mistério anos 1940.',example:'Retratos misteriosos, cenas urbanas noturnas.',tags:['P&B','sombras','mistério','1940s']},
+  'Fantasy / Alta Fantasia':{effect:'Mundos épicos com luz volumétrica, névoa mágica, escala monumental.',example:'Personagens heroicos, paisagens de RPG, capas de livro.',tags:['épico','mágico','volumetric','RPG']},
+  'Dark Fantasy / Gothic':{effect:'Tons frios dessaturados, arquitetura gótica, luz de vela, clima opressivo.',example:'Personagens sombrios, horror, literatura gótica.',tags:['gótico','sombrio','vela','opressivo']},
+  'Sci-Fi / Ficção Científica':{effect:'Tecnologia avançada, espaço sideral, bioluminescência. Escala épica e materiais futuristas.',example:'Naves, planetas, personagens cyborg.',tags:['espaço','futurismo','tech','épico']},
+  'Studio Ghibli':       {effect:'Aquarela suave com detalhes delicados. Natureza exuberante, luz dourada, melancolia encantada.',example:'Cenas de natureza, personagens animados, fantasia japonesa.',tags:['Miyazaki','aquarela','japonês','encantado']},
+  'Horror / Suspense':   {effect:'Tons dessaturados, sombras densas, isolamento e sensação de ameaça iminente.',example:'Personagens assustadores, cenas de tensão.',tags:['terror','sombras','opressivo','medo']},
+  'Livro Infantil':      {effect:'Formas arredondadas, cores quentes, aspecto pintado à mão com charme acolhedor.',example:'Personagens fofos, cenários mágicos, ilustrações pedagógicas.',tags:['infantil','fofo','colorido','acolhedor']},
+  'Anime / Manga':       {effect:'Olhos grandes expressivos, traços limpos e precisos, cores vibrantes, poses dinâmicas.',example:'Personagens japoneses, fan art, estética asiática.',tags:['japonês','olhos grandes','linha limpa','vibrante']},
+  'Flat Design / Vector':{effect:'Formas geométricas simples sem sombras. Visual corporativo moderno, limpo e escalável.',example:'Ícones, apps, apresentações, branding.',tags:['vetor','sem sombra','geométrico','corporativo']},
+  'Line Art':            {effect:'Apenas linhas, sem preenchimento ou com mínimo. Traços finos e precisos, muito elegante.',example:'Ilustrações botânicas, logotipos, tatuagens.',tags:['linhas','minimalista','preciso','elegante']},
+  'Claymation / Stop Motion':{effect:'Superfície de argila texturizada, cores vibrantes, imperfeições artesanais charmosas.',example:'Personagens animados, cenários lúdicos.',tags:['argila','artesanal','textura','animação']},
+  'Sticker / Kawaii':    {effect:'Contorno branco grosso, proporções chibi exageradas, cores pastel suaves.',example:'Stickers para app, emojis, conteúdo fofo para redes.',tags:['fofo','chibi','pastel','sticker']},
+  'Golden Hour':         {effect:'Luz dourada rasante após o amanhecer ou antes do pôr do sol. Sombras longas e suaves.',example:'Retratos ao ar livre, paisagens, lifestyle.',tags:['quente','dourado','pôr do sol','suave']},
+  'Chiaroscuro / Rembrandt':{effect:'Triângulo de luz na bochecha, sombra profunda no restante. Técnica de pintura clássica.',example:'Retratos dramáticos, pinturas renascentistas.',tags:['triângulo','sombra','dramático','clássico']},
+  'Bioluminescente':     {effect:'Elementos emitindo luz própria em teal e azul sobre fundo quase negro. Efeito oceânico.',example:'Criaturas, natureza, sci-fi, fantasia.',tags:['glow','teal','azul','orgânico']},
+  'Candlelight / Low Key':{effect:'Única fonte de luz quente e fraca. A maioria da cena está em sombra densa.',example:'Cenas íntimas, retratos históricos, drama.',tags:['vela','sombra','íntimo','quente']},
+  'Luz Difusa / Overcast':{effect:'Luz de dia nublado, sem sombras duras. Iluminação uniforme e suave em tudo.',example:'Retratos lisos, produtos, moda minimalista.',tags:['uniforme','suave','sem sombra','natural']},
+  'Blue Hour':           {effect:'Céu azul profundo crepuscular com luzes artificiais quentes contrastando. Hora antes do anoitecer.',example:'Cidades, arquitetura, paisagens urbanas noturnas.',tags:['azul','crepúsculo','urbano','contraste']},
+  'Studio Lighting':     {effect:'Três pontos de luz controlada. Key light, fill light e rim light para resultado perfeito.',example:'Produtos, retratos profissionais, moda.',tags:['estúdio','controlado','3-point','profissional']},
+  'Regra dos Terços':    {effect:'Sujeito posicionado nos pontos de interseção de uma grade 3x3. Composição equilibrada.',example:'Qualquer fotografia ou ilustração que precise de equilíbrio.',tags:['composição','grade','equilíbrio','clássico']},
+  "Bird's Eye View":     {effect:'Câmera diretamente de cima. Tudo vira formas planas e geométricas. Perspectiva aérea.',example:'Flat lay, arquitetura, mapas, culinária.',tags:['aéreo','de cima','flat lay','geométrico']},
+  'Leading Lines':       {effect:'Linhas na cena guiam o olho até o sujeito principal. Cria profundidade e direção.',example:'Estradas, corredores, trilhos, arquitetura.',tags:['linhas','profundidade','direção','guia']},
+  'Dutch Angle':         {effect:'Câmera inclinada 15-20 graus. Cria tensão psicológica e desorientação intencional.',example:'Cenas de suspense, thriller, horror.',tags:['inclinado','tensão','suspense','psicológico']},
+  'Close-up / Macro':    {effect:'Aproximação extrema de detalhes. Bokeh forte no fundo, texturas invisíveis a olho nu.',example:'Olhos, flores, produtos, pele, joias.',tags:['detalhe','macro','bokeh','textura']},
+  'Enquadramento Simétrico':{effect:'Sujeito centralizado, elementos espelhados em ambos os lados. Estilo Wes Anderson.',example:'Arquitetura, retratos frontais, design.',tags:['Wes Anderson','simétrico','centralizado','plano']},
+  'Plano Geral':         {effect:'Sujeito pequeno no ambiente. O cenário domina, transmitindo escala e isolamento.',example:'Paisagens épicas, estabelecimento de cena.',tags:['wide','cenário','escala','isolamento']},
+  'Plano Conjunto':      {effect:'Sujeito inteiro visível com espaço ao redor. Equilibra personagem e ambiente.',example:'Apresentação de personagem, ação corporal.',tags:['full shot','corpo inteiro','contexto']},
+  'Plano Médio':         {effect:'Da cintura para cima. O enquadramento mais usado em diálogos de cinema e TV.',example:'Entrevistas, conversas, personagens em ação.',tags:['waist up','clássico','diálogo','TV']},
+  'Plano Americano':     {effect:'Do joelho/coxa para cima. Criado nos westerns para mostrar coldre junto ao rosto.',example:'Westerns, personagens de ação, filmes de época.',tags:['western','joelho','cowboy','ação']},
+  'Primeiro Plano':      {effect:'Do busto para cima. Foca expressão com algum contexto corporal ainda visível.',example:'Entrevistas, emoções, retratos dinâmicos.',tags:['busto','expressão','retrato']},
+  'Close-Up':            {effect:'Apenas o rosto preenchendo o quadro. Máxima expressão emocional e conexão.',example:'Momentos dramáticos, emoção intensa.',tags:['face','emoção','intenso','drama']},
+  'Plano Detalhe':       {effect:'Detalhe isolado: olho, mão, objeto. Simbolismo e tensão máximos.',example:'Objetos simbólicos, partes do corpo, suspense.',tags:['detalhe','símbolo','extremo','isolado']},
+  'Plongée':             {effect:'Câmera alta olhando para baixo. Sujeito parece menor, vulnerável ou dominado.',example:'Transmitir fragilidade, subordinação, perspectiva de autoridade.',tags:['alto','vulnerável','de cima','dominado']},
+  'Contre-Plongée':      {effect:'Câmera baixa olhando para cima. Sujeito parece poderoso, heroico ou ameaçador.',example:'Heróis, vilões, personagens imponentes.',tags:['baixo','poder','heroico','de baixo']},
+  "Worm's Eye View":     {effect:'Câmera ao nível do chão olhando para cima. Distorção extrema e dramatismo máximo.',example:'Edifícios imponentes, efeito inseto, cenas surreais.',tags:['chão','distorção','extremo','dramático']},
+  'Over the Shoulder':   {effect:'Câmera atrás de um personagem olhando para outro. O clássico de diálogos de cinema.',example:'Cenas de conversa, confrontos, drama.',tags:['OTS','ombro','diálogo','clássico']},
+  'POV':                 {effect:'A câmera é os olhos do personagem. O espectador vê exatamente o que ele vê.',example:'Videogames, ação em primeira pessoa, imersão.',tags:['primeira pessoa','imersão','FPS','subjetivo']},
+  'Dois Planos':         {effect:'Dois sujeitos no mesmo quadro com peso visual igual. Relação e dinâmica entre eles.',example:'Relações, confrontos, conexões.',tags:['two shot','duplo','relação','dinâmica']},
+  'Drone / Aerial Shot': {effect:'Perspectiva de drone bem acima. Revela padrões geográficos, escala e contexto amplo.',example:'Cidades, natureza, arquitetura, eventos.',tags:['drone','aéreo','alto','épico']}
+};
+
 // STATE
-var sgCat='all', sgOpen=null, bLang='en', cLang='en';
-var bSel={lighting:'',angle:'',mood:'',color:'',quality:'',preserve:'',avoid:''};
+var sgCat='all', bLang='en', cLang='en';
+var bSel={lighting:[],camera:[],angle:[],dof:'',mood:[],color:[],quality:[],preserve:[],avoid:[]};
 var comboSel={style:null,light:null,angle:null};
-var favs=[], hist=[], palOpen=null, builderInited=false, comboInited=false;
+var favs=[],hist=[],palOpen=null,builderInited=false,comboInited=false,modalOpenIdx=null;
 try{favs=JSON.parse(localStorage.getItem('sg_favs')||'[]');}catch(e){}
 try{hist=JSON.parse(localStorage.getItem('sg_hist')||'[]');}catch(e){}
 
@@ -888,9 +1103,7 @@ var CAT_LABELS={fotografia:'Fotografia',pintura:'Pintura & Arte',digital:'Digita
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function copyToClip(txt,btn,lang,style){
-  navigator.clipboard.writeText(txt).catch(function(){
-    var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
-  });
+  navigator.clipboard.writeText(txt).catch(function(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
   var orig=btn.textContent;btn.textContent='✓ Copiado!';btn.classList.add('ok');
   setTimeout(function(){btn.textContent=orig;btn.classList.remove('ok');},1800);
   addHist(style||'',txt,lang||'');
@@ -911,61 +1124,173 @@ document.getElementById('nav-tabs').addEventListener('click',function(e){
   if(panel==='builder')initBuilder();
 });
 
-// FILTER TABS
-document.getElementById('filter-tabs').addEventListener('click',function(e){
-  var tab=e.target.closest('.ftab');if(!tab)return;
-  sgCat=tab.dataset.cat;
-  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
-  tab.classList.add('active');
-  sgOpen=null;renderGuia();
-});
-document.getElementById('sg-search').addEventListener('input',function(){sgOpen=null;renderGuia();});
+// IMAGE MAP — Unsplash representative images per style
+var IMG={
+  'Fotorrealista':       'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
+  'Cinematográfico':     'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=360&h=360&fit=crop&auto=format',
+  'Editorial / Moda':    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=360&h=360&fit=crop&auto=format',
+  'Street Photography':  'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
+  'Astrofotografia':     'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=360&h=360&fit=crop&auto=format',
+  'Retrato Dramático':   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
+  'Óleo sobre Tela':     'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=360&h=360&fit=crop&auto=format',
+  'Aquarela':            'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=360&h=360&fit=crop&auto=format',
+  'Impressionismo':      'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=360&h=360&fit=crop&auto=format',
+  'Esboço / Pencil Art': 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=360&h=360&fit=crop&auto=format',
+  'Art Nouveau':         'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=360&h=360&fit=crop&auto=format',
+  'Expressionismo':      'https://images.unsplash.com/photo-1501472312651-726afe119ff1?w=360&h=360&fit=crop&auto=format',
+  '3D Render / CGI':     'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=360&h=360&fit=crop&auto=format',
+  'Isométrico':          'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=360&h=360&fit=crop&auto=format',
+  'Cyberpunk / Neon':    'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=360&h=360&fit=crop&auto=format',
+  'Low Poly':            'https://images.unsplash.com/photo-1518770660439-4636190af475?w=360&h=360&fit=crop&auto=format',
+  'Glitch Art':          'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=360&h=360&fit=crop&auto=format',
+  'Concept Art':         'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=360&h=360&fit=crop&auto=format',
+  'Vaporwave / Synthwave':'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=360&h=360&fit=crop&auto=format',
+  'Filme Analógico / Lo-Fi':'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=360&h=360&fit=crop&auto=format',
+  'Art Deco':            'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
+  'Pop Art':             'https://images.unsplash.com/photo-1534081333815-ae5019106622?w=360&h=360&fit=crop&auto=format',
+  'Film Noir':           'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=360&h=360&fit=crop&auto=format',
+  'Fantasy / Alta Fantasia':'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=360&h=360&fit=crop&auto=format',
+  'Dark Fantasy / Gothic':'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=360&h=360&fit=crop&auto=format',
+  'Sci-Fi / Ficção Científica':'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=360&h=360&fit=crop&auto=format',
+  'Studio Ghibli':       'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=360&h=360&fit=crop&auto=format',
+  'Horror / Suspense':   'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=360&h=360&fit=crop&auto=format',
+  'Livro Infantil':      'https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=360&h=360&fit=crop&auto=format',
+  'Anime / Manga':       'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=360&h=360&fit=crop&auto=format',
+  'Flat Design / Vector':'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=360&h=360&fit=crop&auto=format',
+  'Line Art':            'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=360&h=360&fit=crop&auto=format',
+  'Claymation / Stop Motion':'https://images.unsplash.com/photo-1530654782394-c506ee0af41f?w=360&h=360&fit=crop&auto=format',
+  'Sticker / Kawaii':    'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=360&h=360&fit=crop&auto=format',
+  'Golden Hour':         'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=360&h=360&fit=crop&auto=format',
+  'Chiaroscuro / Rembrandt':'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
+  'Bioluminescente':     'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=360&h=360&fit=crop&auto=format',
+  'Candlelight / Low Key':'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=360&h=360&fit=crop&auto=format',
+  'Luz Difusa / Overcast':'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
+  'Blue Hour':           'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
+  'Studio Lighting':     'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=360&h=360&fit=crop&auto=format',
+  'Regra dos Terços':    'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=360&h=360&fit=crop&auto=format',
+  "Bird's Eye View":     'https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?w=360&h=360&fit=crop&auto=format',
+  'Leading Lines':       'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=360&h=360&fit=crop&auto=format',
+  'Dutch Angle':         'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=360&h=360&fit=crop&auto=format',
+  'Close-up / Macro':    'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
+  'Enquadramento Simétrico':'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
+  'Plano Geral':         'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=360&h=360&fit=crop&auto=format',
+  'Plano Conjunto':      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
+  'Plano Médio':         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
+  'Plano Americano':     'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=360&h=360&fit=crop&auto=format',
+  'Primeiro Plano':      'https://images.unsplash.com/photo-1504276048855-f3d60e69632f?w=360&h=360&fit=crop&auto=format',
+  'Close-Up':            'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
+  'Plano Detalhe':       'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
+  'Plongée':             'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
+  'Contre-Plongée':      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=360&h=360&fit=crop&auto=format',
+  "Worm's Eye View":     'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
+  'Over the Shoulder':   'https://images.unsplash.com/photo-1504276048855-f3d60e69632f?w=360&h=360&fit=crop&auto=format',
+  'POV':                 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=360&h=360&fit=crop&auto=format',
+  'Dois Planos':         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
+  'Drone / Aerial Shot': 'https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?w=360&h=360&fit=crop&auto=format'
+};
+var IMG_FALLBACK='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=360&h=360&fit=crop&auto=format';
 
-// RENDER GUIA
+// GUIA FILTER TABS
+document.getElementById('guia-filter-tabs').addEventListener('click',function(e){
+  var tab=e.target.closest('.gftab');if(!tab)return;
+  sgCat=tab.dataset.cat;
+  document.querySelectorAll('.gftab').forEach(function(t){t.classList.remove('active');});
+  tab.classList.add('active');
+  renderGuia();
+});
+document.getElementById('sg-search').addEventListener('input',function(){renderGuia();});
+
+// CATEGORY COLORS for background fallback
+var CAT_COLORS={
+  fotografia:'#1a2a3a', pintura:'#2a1a1a', digital:'#1a1a2e',
+  retro:'#2a1a2a', fantasia:'#1a2a1a', ilustracao:'#2a2a1a',
+  iluminacao:'#2a2210', composicao:'#1a2428', angulos:'#201a2a', conceito:'#1e1e1e'
+};
+
 function renderGuia(){
   var q=document.getElementById('sg-search').value.toLowerCase().trim();
   var filtered=[];
   for(var i=0;i<SG_DATA.length;i++){
     var d=SG_DATA[i];
-    if((sgCat==='all'||d.cat===sgCat)&&(!q||d.title.toLowerCase().indexOf(q)!==-1||d.desc.toLowerCase().indexOf(q)!==-1||d.prompts.join(' ').toLowerCase().indexOf(q)!==-1))
+    if((sgCat==='all'||d.cat===sgCat)&&(!q||d.title.toLowerCase().indexOf(q)!==-1||d.desc.toLowerCase().indexOf(q)!==-1))
       filtered.push({d:d,i:i});
   }
-  document.getElementById('sg-count').textContent=filtered.length+' estilo'+(filtered.length!==1?'s':'')+' encontrado'+(filtered.length!==1?'s':'');
+  document.getElementById('sg-count').textContent=filtered.length+' estilo'+(filtered.length!==1?'s':'');
   var grid=document.getElementById('grid');
   if(!filtered.length){grid.innerHTML='<div class="empty">Nenhum estilo encontrado.</div>';return;}
   var h='';
-  var labels=['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
   for(var fi=0;fi<filtered.length;fi++){
-    var d=filtered[fi].d,i=filtered[fi].i,isOpen=sgOpen===i,isFav=favs.indexOf(d.title)!==-1;
-    h+='<div class="card'+(isOpen?' expanded':'')+'" data-idx="'+i+'">';
-    h+='<button class="card-fav-btn'+(isFav?' on':'')+'" data-fav="'+esc(d.title)+'" title="Favoritar">⭐</button>';
-    h+='<div class="card-body" data-toggle="'+i+'">';
-    h+='<div class="card-header"><div class="card-title">'+esc(d.icon)+' '+esc(d.title)+'</div><span class="card-arrow">▼</span></div>';
-    h+='<div class="card-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div>';
-    h+='<div class="card-desc">'+esc(d.desc)+'</div></div>';
-    h+='<div class="card-prompts">';
-    for(var pi=0;pi<d.prompts.length;pi++){
-      h+='<div class="prompt-num">'+(labels[pi]||'Prompt '+(pi+1))+'</div>';
-      h+='<div class="prompt-block">'+esc(d.prompts[pi])+'</div>';
-      h+='<button class="btn-copy" data-ci="'+i+'" data-cpi="'+pi+'">Copiar</button>';
-    }
-    h+='<button class="btn-use" data-combo="'+esc(d.title)+'">+ Adicionar ao Combinador →</button>';
-    h+='</div></div>';
+    var d=filtered[fi].d,i=filtered[fi].i;
+    var isFav=favs.indexOf(d.title)!==-1;
+    var img=IMG[d.title]||IMG_FALLBACK;
+    var bg=CAT_COLORS[d.cat]||'#1a1a2e';
+    h+='<div class="vcard" data-vidx="'+i+'" style="background:'+bg+'">';
+    h+='<div class="vcard-bg">'+d.icon+'</div>';
+    h+='<img class="vcard-img" src="'+img+'" alt="'+esc(d.title)+'" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'">';
+    h+='<div class="vcard-overlay"></div>';
+    h+='<button class="vcard-fav'+(isFav?' on':'')+'" data-vfav="'+esc(d.title)+'" title="Favoritar">⭐</button>';
+    h+='<div class="vcard-bottom"><div class="vcard-name">'+esc(d.title)+'</div><div class="vcard-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div></div>';
+    h+='</div>';
   }
   grid.innerHTML=h;
 }
 
 document.getElementById('grid').addEventListener('click',function(e){
-  var fb=e.target.closest('.card-fav-btn');
-  if(fb){e.stopPropagation();toggleFav(fb.dataset.fav);return;}
-  var cb=e.target.closest('.btn-copy');
-  if(cb){e.stopPropagation();var idx=parseInt(cb.dataset.ci),pi=parseInt(cb.dataset.cpi),d=SG_DATA[idx];copyToClip(d.prompts[pi],cb,pi===2?'PT':'EN'+(pi+1),d.title);return;}
-  var ub=e.target.closest('.btn-use');
-  if(ub){e.stopPropagation();goToCombo(ub.dataset.combo);return;}
-  var tog=e.target.closest('[data-toggle]');
-  if(tog){var i=parseInt(tog.dataset.toggle);sgOpen=(sgOpen===i)?null:i;renderGuia();
-    if(sgOpen!==null){var c=document.querySelector('[data-idx="'+sgOpen+'"]');if(c)setTimeout(function(){c.scrollIntoView({behavior:'smooth',block:'nearest'});},50);}
+  var fb=e.target.closest('.vcard-fav');
+  if(fb){e.stopPropagation();toggleFav(fb.dataset.vfav);return;}
+  var vc=e.target.closest('.vcard');
+  if(vc){openModal(parseInt(vc.dataset.vidx));}
+});
+
+// MODAL
+function openModal(idx){
+  var d=SG_DATA[idx];if(!d)return;
+  modalOpenIdx=idx;
+  var tip=STYLE_TIPS[d.title]||null;
+  var img=IMG[d.title]||IMG_FALLBACK;
+  document.getElementById('style-modal-img').src=img;
+  document.getElementById('style-modal-cat').textContent=CAT_LABELS[d.cat]||d.cat;
+  document.getElementById('style-modal-icon').textContent=d.icon;
+  document.getElementById('style-modal-title').textContent=d.title;
+  document.getElementById('style-modal-desc').textContent=d.desc;
+  var fb=document.getElementById('style-modal-fav');
+  fb.className='style-modal-fav'+(favs.indexOf(d.title)!==-1?' on':'');
+  fb.dataset.mfav=d.title;
+  if(tip){
+    var th='';for(var ti=0;ti<tip.tags.length;ti++)th+='<span class="tooltip-tag">'+esc(tip.tags[ti])+'</span>';
+    document.getElementById('style-modal-effect').innerHTML='<strong style="color:var(--text);display:block;margin-bottom:5px">Como funciona</strong>'+esc(tip.effect)+'<div style="color:var(--text3);font-size:11px;margin-top:5px">Ex: '+esc(tip.example)+'</div><div class="tooltip-tags" style="margin-top:8px">'+th+'</div>';
+  }else{document.getElementById('style-modal-effect').innerHTML='';}
+  var labels=['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
+  var ph='';
+  for(var pi=0;pi<d.prompts.length;pi++){
+    ph+='<div class="modal-prompt-block"><div class="modal-prompt-label">'+(labels[pi]||'Prompt '+(pi+1))+'</div>';
+    ph+='<div class="modal-prompt-text">'+esc(d.prompts[pi])+'</div>';
+    ph+='<button class="btn-copy" data-mci="'+idx+'" data-mcpi="'+pi+'">Copiar</button></div>';
   }
+  document.getElementById('style-modal-prompts').innerHTML=ph;
+  document.getElementById('style-modal-combo').dataset.ctitle=d.title;
+  document.getElementById('style-modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('style-modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+  modalOpenIdx=null;
+}
+document.getElementById('style-modal-close').addEventListener('click',closeModal);
+document.getElementById('style-modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+document.getElementById('style-modal-prompts').addEventListener('click',function(e){
+  var btn=e.target.closest('.btn-copy');if(!btn)return;
+  var idx=parseInt(btn.dataset.mci),pi=parseInt(btn.dataset.mcpi);
+  copyToClip(SG_DATA[idx].prompts[pi],btn,pi===2?'PT':'EN'+(pi+1),SG_DATA[idx].title);
+});
+document.getElementById('style-modal-fav').addEventListener('click',function(){
+  var title=this.dataset.mfav;toggleFav(title);
+  this.className='style-modal-fav'+(favs.indexOf(title)!==-1?' on':'');
+});
+document.getElementById('style-modal-combo').addEventListener('click',function(){
+  closeModal();goToCombo(this.dataset.ctitle);
 });
 
 // FAVORITOS
@@ -974,31 +1299,18 @@ function renderFavs(){
   var grid=document.getElementById('fav-grid');
   var found=[];for(var i=0;i<SG_DATA.length;i++){if(favs.indexOf(SG_DATA[i].title)!==-1)found.push({d:SG_DATA[i],i:i});}
   if(!found.length){grid.innerHTML='<div class="panel-empty">Nenhum favorito ainda.<br><small>Clique na ⭐ nos cards do Guia.</small></div>';return;}
-  var h='',labels=['🇺🇸 English — Variação 1','🇺🇸 English — Variação 2','🇧🇷 Português'];
+  var h='';
   for(var fi=0;fi<found.length;fi++){
-    var d=found[fi].d,i=found[fi].i;
-    h+='<div class="card" data-fidx="'+i+'">';
-    h+='<button class="card-fav-btn on" data-rfav="'+esc(d.title)+'">⭐</button>';
-    h+='<div class="card-body" data-ftog="'+i+'">';
-    h+='<div class="card-header"><div class="card-title">'+esc(d.icon)+' '+esc(d.title)+'</div><span class="card-arrow">▼</span></div>';
-    h+='<div class="card-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div><div class="card-desc">'+esc(d.desc)+'</div></div>';
-    h+='<div class="card-prompts" id="fp-'+i+'">';
-    for(var pi=0;pi<d.prompts.length;pi++){
-      h+='<div class="prompt-num">'+(labels[pi]||'Prompt '+(pi+1))+'</div>';
-      h+='<div class="prompt-block">'+esc(d.prompts[pi])+'</div>';
-      h+='<button class="btn-copy" data-fci="'+i+'" data-fcpi="'+pi+'">Copiar</button>';
-    }
-    h+='</div></div>';
+    var d=found[fi].d,i=found[fi].i,img=IMG[d.title]||IMG_FALLBACK,bg=CAT_COLORS[d.cat]||'#1a1a2e';
+    h+='<div class="vcard" data-vidx="'+i+'" style="background:'+bg+'"><div class="vcard-bg">'+d.icon+'</div><img class="vcard-img" src="'+img+'" alt="'+esc(d.title)+'" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'"><div class="vcard-overlay"></div><button class="vcard-fav on" data-vfav="'+esc(d.title)+'">⭐</button><div class="vcard-bottom"><div class="vcard-name">'+esc(d.title)+'</div><div class="vcard-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div></div></div>';
   }
   grid.innerHTML=h;
+  // favs grid also opens modal
+  grid.addEventListener('click',function(e){
+    var fb=e.target.closest('.vcard-fav');if(fb){e.stopPropagation();toggleFav(fb.dataset.vfav);renderFavs();return;}
+    var vc=e.target.closest('.vcard');if(vc)openModal(parseInt(vc.dataset.vidx));
+  });
 }
-document.getElementById('fav-grid').addEventListener('click',function(e){
-  var rb=e.target.closest('[data-rfav]');if(rb){e.stopPropagation();toggleFav(rb.dataset.rfav);renderFavs();return;}
-  var cb=e.target.closest('.btn-copy');if(cb){e.stopPropagation();var idx=parseInt(cb.dataset.fci),pi=parseInt(cb.dataset.fcpi);copyToClip(SG_DATA[idx].prompts[pi],cb,pi===2?'PT':'EN'+(pi+1),SG_DATA[idx].title);return;}
-  var tog=e.target.closest('[data-ftog]');
-  if(tog){var i=parseInt(tog.dataset.ftog),pp=document.getElementById('fp-'+i),card=tog.closest('.card');
-    if(pp){var open=pp.style.display==='block';pp.style.display=open?'none':'block';if(card)card.classList.toggle('expanded',!open);}}
-});
 
 // HISTORICO
 function addHist(style,txt,lang){hist.unshift({style:style,txt:txt,lang:lang,time:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});if(hist.length>60)hist=hist.slice(0,60);try{localStorage.setItem('sg_hist',JSON.stringify(hist));}catch(e){}}
@@ -1012,73 +1324,302 @@ function renderHist(){
 document.getElementById('hist-list').addEventListener('click',function(e){var btn=e.target.closest('.hist-btn');if(!btn)return;var i=parseInt(btn.dataset.hidx);navigator.clipboard.writeText(hist[i].txt).catch(function(){});btn.textContent='✓';btn.classList.add('ok');setTimeout(function(){btn.textContent='Copiar';btn.classList.remove('ok');},1500);});
 document.getElementById('btn-clear-hist').addEventListener('click',function(){hist=[];try{localStorage.setItem('sg_hist','[]');}catch(e){}renderHist();});
 
-// BUILDER
-var BOPTS={
-  lighting:['Golden Hour','Rembrandt / Chiaroscuro','Studio Lighting','Candlelight','Blue Hour','Bioluminescente','Luz Difusa','Backlight / Silhueta','Neon Light','Natural Daylight'],
-  angle:['Plano Geral','Plano Médio','Close-Up','Plano Detalhe','Plongée','Contre-Plongée',"Bird's Eye View","Worm's Eye View",'Over the Shoulder','POV'],
-  mood:['Dramático','Melancólico','Épico','Romântico','Misterioso','Alegre','Tenso','Sonhador','Sombrio','Minimalista'],
-  color:['Tons quentes','Tons frios','Pastel','Monocromático','Neon saturado','Dessaturado','Sépia','Preto e branco','Complementar','Sunset gradient'],
-  quality:['Ultra-detalhado','8K','Fotorrealista','Bokeh suave','Grão de filme','HDR','Iluminação cinemática','Qualidade editorial'],
-  preserve:['Sujeito original','Composição original','Rosto e aparência','Cores originais','Enquadramento original'],
-  avoid:['Não adicionar texto','Não adicionar pessoas','Não tornar cartoon','Não borrar','Não mudar composição']
+// BUILDER — multi-seleção + mais opções de câmera e iluminação
+var BOPTS = {
+  lighting:[
+    {v:'Golden Hour',tip:'Luz quente e dourada logo após o amanhecer ou antes do pôr do sol'},
+    {v:'Rembrandt',tip:'Triângulo de luz na bochecha, sombra densa e dramática'},
+    {v:'Studio — 3 Points',tip:'Key light + fill light + rim light. Resultado polido e profissional'},
+    {v:'Studio — High Key',tip:'Ambiente muito iluminado, sombras mínimas, visual limpo e comercial'},
+    {v:'Studio — Low Key',tip:'Fundo escuro com luz direcionada, muito dramático e misterioso'},
+    {v:'Candlelight',tip:'Fonte única de chama, tons âmbar, maioria da cena em sombra densa'},
+    {v:'Blue Hour',tip:'Azul profundo do crepúsculo contrastando com luzes artificiais quentes'},
+    {v:'Bioluminescente',tip:'Elementos emitindo luz própria em teal e azul. Efeito oceânico ou fantasia'},
+    {v:'Luz Difusa / Overcast',tip:'Nuvens difusam a luz. Iluminação uniforme, sem sombras duras'},
+    {v:'Backlight / Silhueta',tip:'Fonte de luz atrás do sujeito criando silhueta ou halo dramático'},
+    {v:'Neon Light',tip:'Luzes neon coloridas como fonte principal. Visual urbano noturno'},
+    {v:'Natural Daylight',tip:'Luz solar direta durante o dia. Sombras firmes e cores naturais'},
+    {v:'Volumetric Light',tip:'Raios de luz visíveis atravessando fumaça, névoa ou partículas'},
+    {v:'Chiaroscuro',tip:'Contraste extremo entre luz e sombra. Técnica dos Grandes Mestres'},
+    {v:'Window Light',tip:'Luz suave de janela lateral. Flatante e natural, ideal para retratos'},
+    {v:'Sunset Backlight',tip:'Pôr do sol atrás do sujeito criando silhueta com halo dourado'},
+  ],
+  camera:[
+    {v:'24mm — Grande Angular',tip:'Perspectiva expansiva com leve distorção. Ótimo para paisagens e arquitetura'},
+    {v:'35mm — Olho Humano',tip:'Perspectiva próxima da visão humana. Natural e versátil'},
+    {v:'50mm — Nifty Fifty',tip:'Sem distorção perceptível. O mais natural para qualquer assunto'},
+    {v:'85mm — Retrato',tip:'Compressão suave, desfoque de fundo ideal. O padrão para retratos'},
+    {v:'135mm — Teleobjetiva',tip:'Forte compressão de fundo. Sujeito se destaca muito do ambiente'},
+    {v:'200mm+ — Super Tele',tip:'Compressão extrema. Sujeito e fundo parecem muito próximos'},
+    {v:'Macro',tip:'Foco em detalhes a centímetros. Texturas e detalhes invisíveis a olho nu'},
+    {v:'Olho de Peixe',tip:'Distorção circular extrema. Visual artístico e surreal'},
+    {v:'Tilt-Shift',tip:'Miniaturiza cenas reais ou cria foco seletivo incomum'},
+    {v:'Anamórfico',tip:'Bokeh oval e lens flares horizontais. Estética de cinema épico'},
+    {v:'Shot on Film — 35mm',tip:'Grão analógico Kodak/Fuji. Cores orgânicas e imperfeições charmosas'},
+    {v:'Shot on DSLR',tip:'Visual fotográfico digital nítido e moderno'},
+    {v:'Shot on Hasselblad',tip:'Qualidade de médio formato. Detalhes extremos e tonalidade rica'},
+    {v:'Shot on iPhone',tip:'Estética de câmera de celular. Instantâneo e documental'},
+    {v:'CCTV / Surveillance',tip:'Câmera de segurança. Grão, vinheta pesada, perspectiva fixa'},
+  ],
+  angle:[
+    {v:'Plano Geral (Wide)',tip:'Sujeito pequeno no ambiente. Contexto e escala dominam'},
+    {v:'Plano Médio (Waist)',tip:'Da cintura para cima. Clássico de cinema e TV para diálogos'},
+    {v:'Plano Americano (Knee)',tip:'Do joelho para cima. Clássico dos westerns'},
+    {v:'Primeiro Plano (Bust)',tip:'Do busto para cima. Foco em expressão'},
+    {v:'Close-Up (Face)',tip:'Apenas o rosto. Emoção máxima'},
+    {v:'Plano Detalhe (XCU)',tip:'Um único detalhe isolado — olho, mão, objeto'},
+    {v:'Plongée (High Angle)',tip:'Câmera alta olhando para baixo. Transmite vulnerabilidade'},
+    {v:'Contre-Plongée (Low Angle)',tip:'Câmera baixa olhando para cima. Transmite poder e grandiosidade'},
+    {v:"Bird's Eye (Top Down)",tip:'Diretamente de cima. Cria composições geométricas e aéreas'},
+    {v:"Worm's Eye (Ground)",tip:'Ao nível do chão olhando para cima. Distorção dramática extrema'},
+    {v:'Over the Shoulder (OTS)',tip:'Câmera sobre o ombro de um personagem olhando outro'},
+    {v:'POV (First Person)',tip:'A câmera são os olhos do personagem'},
+    {v:'Dutch Angle (Tilted)',tip:'Câmera inclinada criando tensão psicológica'},
+    {v:'Aerial / Drone',tip:'Altitude de drone. Revela padrões geográficos e escala épica'},
+  ],
+  dof:[
+    {v:'f/1.2 — Bokeh extremo',tip:'Fundo completamente desfocado. Sujeito se destaca ao máximo'},
+    {v:'f/1.8 — Bokeh suave',tip:'Desfoque elegante e muito usado em retratos profissionais'},
+    {v:'f/2.8 — Bokeh moderado',tip:'Boa separação do fundo com algum contexto ainda visível'},
+    {v:'f/5.6 — Intermediário',tip:'Algum desfoque no fundo, mas ambiente ainda reconhecível'},
+    {v:'f/8 — Tudo em foco',tip:'Profundidade de campo total. Ideal para paisagens e arquitetura'},
+    {v:'Tilt-Shift Focus',tip:'Plano de foco inclinado criando miniaturização ou efeito incomum'},
+    {v:'Rack Focus',tip:'Foco muda de plano durante a cena, revelando novo elemento'},
+  ],
+  mood:[
+    {v:'Dramático',tip:'Alta carga emocional, contraste forte, atmosfera tensa'},
+    {v:'Melancólico',tip:'Quietude, tristeza suave, beleza na solidão'},
+    {v:'Épico',tip:'Grandioso, poderoso, emocionalmente impactante'},
+    {v:'Romântico',tip:'Suave, cálido, delicado, sonhador'},
+    {v:'Misterioso',tip:'Algo escondido, atmosfera de descoberta ou ameaça velada'},
+    {v:'Alegre',tip:'Luminoso, energético, positivo, celebrativo'},
+    {v:'Tenso / Suspense',tip:'Sensação de perigo iminente, silêncio antes da tempestade'},
+    {v:'Sonhador / Surreal',tip:'Realidade distorcida de forma onírica, não ameaçadora'},
+    {v:'Sombrio / Dark',tip:'Escuro, opressivo, desolado, pesado'},
+    {v:'Minimalista / Clean',tip:'Simplicidade radical, espaço vazio deliberado'},
+    {v:'Nostálgico',tip:'Memória afetiva, tempo passado, calor do familiar'},
+    {v:'Poético',tip:'Contemplativo, delicado, artístico sem esforço'},
+  ],
+  color:[
+    {v:'Tons quentes',tip:'Vermelhos, laranjas e amarelos. Energia, calor e paixão'},
+    {v:'Tons frios',tip:'Azuis, verdes e roxos. Calma, profundidade e melancolia'},
+    {v:'Paleta pastel',tip:'Cores suaves e desbotadas. Delicadeza e romantismo'},
+    {v:'Monocromático',tip:'Um único matiz em variações de luz e sombra'},
+    {v:'Duotone',tip:'Apenas duas cores: uma para sombras, outra para luzes'},
+    {v:'Neon saturado',tip:'Cores ao máximo da saturação. Visual vibrante e energético'},
+    {v:'Dessaturado / Muted',tip:'Cores apagadas e cinzas. Seriedade, cinema moderno'},
+    {v:'Sépia',tip:'Tons marrons envelhecidos. Nostalgia de fotografia antiga'},
+    {v:'Preto e branco',tip:'Sem cor. Atemporal, dramatico, artístico'},
+    {v:'Complementar',tip:'Cores opostas no círculo cromático. Contraste dinâmico'},
+    {v:'Sunset gradient',tip:'Do roxo ao rosa, laranja e dourado. Pôr do sol épico'},
+    {v:'Teal & Orange',tip:'O grade de cor clássico do cinema hollywoodiano'},
+  ],
+  quality:[
+    {v:'Ultra-detalhado',tip:'Cada elemento com máximo detalhe e definição'},
+    {v:'8K / 16K',tip:'Resolução extrema, adequado para impressão em grandes formatos'},
+    {v:'Fotorrealista',tip:'Indistinguível de uma fotografia real'},
+    {v:'Bokeh suave',tip:'Desfoque de fundo elegante e orgânico'},
+    {v:'Grão de filme',tip:'Ruído analógico que adiciona caráter e profundidade'},
+    {v:'HDR',tip:'Alto alcance dinâmico. Detalhes em luzes E sombras simultaneamente'},
+    {v:'Iluminação cinemática',tip:'Qualidade de iluminação de set de filmagem profissional'},
+    {v:'Qualidade editorial',tip:'Nível de acabamento de publicação de revista profissional'},
+    {v:'Hyperrealistic',tip:'Além do fotorrealismo — cada imperfeição e textura exagerada'},
+    {v:'Painterly',tip:'Qualidade pictórica, como se fosse pintado mas com fotografia'},
+    {v:'Sharp & crisp',tip:'Tudo em foco nítido, zero borrão, máxima clareza'},
+  ],
+  preserve:[
+    {v:'Sujeito original',tip:'A pessoa/objeto principal não deve mudar'},
+    {v:'Composição original',tip:'O enquadramento e posição dos elementos se mantém'},
+    {v:'Rosto e aparência',tip:'O rosto e traços do sujeito não devem ser alterados'},
+    {v:'Cores originais',tip:'A identidade de cor do sujeito se mantém'},
+    {v:'Enquadramento original',tip:'O recorte e proporção da imagem se mantém'},
+    {v:'Expressão original',tip:'A emoção e expressão facial se mantêm'},
+    {v:'Fundo original',tip:'O ambiente ao redor do sujeito se mantém'},
+  ],
+  avoid:[
+    {v:'Não adicionar texto',tip:'Nenhum texto ou marca d\'água na imagem'},
+    {v:'Não adicionar pessoas',tip:'Não inserir pessoas que não estavam na imagem original'},
+    {v:'Não tornar cartoon',tip:'Manter realismo, não caricaturar'},
+    {v:'Não borrar',tip:'Manter nitidez e foco'},
+    {v:'Não mudar composição',tip:'Manter o enquadramento e posição original'},
+    {v:'Não adicionar objetos',tip:'Não inserir elementos que não existiam na cena'},
+    {v:'Não supersaturar',tip:'Evitar cores excessivamente vibrantes e artificiais'},
+    {v:'Não deformar',tip:'Não distorcer proporções ou anatomia'},
+  ]
 };
-var EN_MAP={'Golden Hour':'golden hour warm light','Rembrandt / Chiaroscuro':'Rembrandt dramatic chiaroscuro lighting','Studio Lighting':'professional studio lighting','Candlelight':'warm candlelight','Blue Hour':'blue hour twilight','Bioluminescente':'bioluminescent glow','Luz Difusa':'soft diffused overcast light','Backlight / Silhueta':'backlight silhouette effect','Neon Light':'neon lighting','Natural Daylight':'natural daylight','Plano Geral':'extreme wide shot','Plano Médio':'medium shot waist-up','Close-Up':'close-up face shot','Plano Detalhe':'extreme close-up detail shot','Plongée':'high angle plongée','Contre-Plongée':'low angle contre-plongée',"Bird's Eye View":"bird's eye view overhead","Worm's Eye View":"worm's eye view ground level",'Over the Shoulder':'over-the-shoulder OTS shot','POV':'first-person POV','Dramático':'dramatic atmosphere','Melancólico':'melancholic mood','Épico':'epic cinematic atmosphere','Romântico':'romantic dreamy mood','Misterioso':'mysterious atmosphere','Alegre':'bright joyful mood','Tenso':'tense unsettling atmosphere','Sonhador':'dreamlike ethereal mood','Sombrio':'dark gloomy atmosphere','Minimalista':'minimalist clean atmosphere','Tons quentes':'warm orange-amber tones','Tons frios':'cool blue-teal tones','Pastel':'soft pastel palette','Monocromático':'monochromatic single hue','Neon saturado':'ultra-saturated neon colors','Dessaturado':'desaturated muted tones','Sépia':'sepia vintage tones','Preto e branco':'black and white','Complementar':'complementary color contrast','Sunset gradient':'sunset gradient purple to gold','Ultra-detalhado':'ultra-detailed','8K':'8K resolution','Fotorrealista':'photorealistic quality','Bokeh suave':'soft bokeh background','Grão de filme':'film grain texture','HDR':'HDR quality','Iluminação cinemática':'cinematic lighting','Qualidade editorial':'editorial photography quality','Sujeito original':'Preserve the original subject','Composição original':'Keep the original composition','Rosto e aparência':'Do not change the subject face or appearance','Cores originais':'Maintain original color identity','Enquadramento original':'Keep original framing','Não adicionar texto':'Do not add text or watermarks','Não adicionar pessoas':'Do not add people not in original','Não tornar cartoon':'Do not make it cartoonish','Não borrar':'Do not blur the image','Não mudar composição':'Do not change the original composition'};
+
+var EN_MAP={
+  'Golden Hour':'golden hour warm light','Rembrandt':'Rembrandt dramatic chiaroscuro lighting',
+  'Studio — 3 Points':'professional three-point studio lighting','Studio — High Key':'high-key studio lighting',
+  'Studio — Low Key':'low-key dramatic studio lighting','Candlelight':'warm single candlelight source',
+  'Blue Hour':'blue hour twilight','Bioluminescente':'bioluminescent organic glow','Luz Difusa / Overcast':'soft diffused overcast light',
+  'Backlight / Silhueta':'dramatic backlight silhouette effect','Neon Light':'neon light source',
+  'Natural Daylight':'natural daylight','Volumetric Light':'volumetric god rays light',
+  'Chiaroscuro':'extreme chiaroscuro contrast','Window Light':'soft side window light',
+  'Sunset Backlight':'golden sunset backlight halo',
+  '24mm — Grande Angular':'24mm wide-angle lens','35mm — Olho Humano':'35mm standard lens',
+  '50mm — Nifty Fifty':'50mm nifty fifty lens','85mm — Retrato':'85mm portrait lens',
+  '135mm — Teleobjetiva':'135mm telephoto lens','200mm+ — Super Tele':'200mm+ super telephoto lens',
+  'Macro':'macro lens extreme close-up','Olho de Peixe':'fisheye lens distortion',
+  'Tilt-Shift':'tilt-shift lens','Anamórfico':'anamorphic lens with oval bokeh and lens flares',
+  'Shot on Film — 35mm':'shot on 35mm film Kodak Portra 400','Shot on DSLR':'shot on DSLR camera',
+  'Shot on Hasselblad':'shot on Hasselblad medium format','Shot on iPhone':'shot on iPhone',
+  'CCTV / Surveillance':'CCTV surveillance camera look',
+  'Plano Geral (Wide)':'extreme wide shot (EWS)','Plano Médio (Waist)':'medium shot waist-up',
+  'Plano Americano (Knee)':'medium long shot cowboy shot knee-up',
+  'Primeiro Plano (Bust)':'medium close-up bust shot','Close-Up (Face)':'close-up face shot',
+  'Plano Detalhe (XCU)':'extreme close-up detail shot (XCU)',
+  'Plongée (High Angle)':'plongée high angle looking down',
+  'Contre-Plongée (Low Angle)':'contre-plongée low angle looking up',
+  "Bird's Eye (Top Down)":"bird's eye view directly overhead",
+  "Worm's Eye (Ground)":"worm's eye view ground level",
+  'Over the Shoulder (OTS)':'over-the-shoulder shot (OTS)','POV (First Person)':'first-person POV shot',
+  'Dutch Angle (Tilted)':'Dutch angle canted frame 20 degrees','Aerial / Drone':'aerial drone shot',
+  'f/1.2 — Bokeh extremo':'f/1.2 aperture extreme bokeh','f/1.8 — Bokeh suave':'f/1.8 aperture soft bokeh',
+  'f/2.8 — Bokeh moderado':'f/2.8 aperture moderate bokeh','f/5.6 — Intermediário':'f/5.6 aperture',
+  'f/8 — Tudo em foco':'f/8 aperture everything in focus',
+  'Tilt-Shift Focus':'tilt-shift selective focus','Rack Focus':'rack focus effect',
+  'Dramático':'dramatic tense atmosphere','Melancólico':'melancholic quiet mood',
+  'Épico':'epic cinematic atmosphere','Romântico':'romantic dreamy mood',
+  'Misterioso':'mysterious atmospheric mood','Alegre':'bright joyful mood',
+  'Tenso / Suspense':'tense suspenseful atmosphere','Sonhador / Surreal':'dreamlike surreal mood',
+  'Sombrio / Dark':'dark gloomy oppressive atmosphere','Minimalista / Clean':'minimalist clean atmosphere',
+  'Nostálgico':'nostalgic warm memory mood','Poético':'poetic contemplative mood',
+  'Tons quentes':'warm orange-amber color tones','Tons frios':'cool blue-teal color tones',
+  'Paleta pastel':'soft pastel color palette','Monocromático':'monochromatic single hue',
+  'Duotone':'duotone two-color treatment','Neon saturado':'ultra-saturated neon colors',
+  'Dessaturado / Muted':'desaturated muted tones','Sépia':'sepia vintage tones',
+  'Preto e branco':'black and white','Complementar':'complementary color contrast',
+  'Sunset gradient':'sunset gradient purple to gold','Teal & Orange':'teal and orange cinematic color grade',
+  'Ultra-detalhado':'ultra-detailed','8K / 16K':'8K resolution quality',
+  'Fotorrealista':'photorealistic quality','Bokeh suave':'soft bokeh background',
+  'Grão de filme':'film grain texture','HDR':'HDR dynamic range quality',
+  'Iluminação cinemática':'cinematic lighting quality','Qualidade editorial':'editorial photography quality',
+  'Hyperrealistic':'hyperrealistic beyond photography','Painterly':'painterly pictorial quality',
+  'Sharp & crisp':'sharp crisp focus maximum clarity',
+  'Sujeito original':'Preserve the original subject',
+  'Composição original':'Keep the original composition',
+  'Rosto e aparência':'Do not change the subject face or appearance',
+  'Cores originais':'Maintain original color identity of the subject',
+  'Enquadramento original':'Keep original framing and crop',
+  'Expressão original':'Preserve the original expression',
+  'Fundo original':'Keep the original background',
+  'Não adicionar texto':'Do not add text or watermarks',
+  'Não adicionar pessoas':'Do not add people not in original',
+  'Não tornar cartoon':'Do not make it cartoonish',
+  'Não borrar':'Do not blur or soften the image',
+  'Não mudar composição':'Do not change the original composition',
+  'Não adicionar objetos':'Do not add objects not in the original',
+  'Não supersaturar':'Do not oversaturate colors',
+  'Não deformar':'Do not distort proportions or anatomy'
+};
 
 function initBuilder(){
   if(builderInited){buildPrompt();return;}builderInited=true;
-  var sel=document.getElementById('b-style');
-  var styles=SG_DATA.filter(function(d){return['fotografia','pintura','digital','retro','fantasia','ilustracao'].indexOf(d.cat)!==-1;});
-  for(var i=0;i<styles.length;i++){var o=document.createElement('option');o.value=styles[i].title;o.textContent=styles[i].title;sel.appendChild(o);}
-  var groups=['lighting','angle','mood','color','quality','preserve','avoid'];
-  for(var g=0;g<groups.length;g++){
-    (function(key){
-      var container=document.getElementById('chips-'+key);
-      var opts=BOPTS[key];
-      for(var oi=0;oi<opts.length;oi++){
-        (function(opt){
-          var chip=document.createElement('div');chip.className='chip';chip.textContent=opt;
-          chip.addEventListener('click',function(){
-            if(bSel[key]===opt){bSel[key]='';chip.classList.remove('sel');}
-            else{container.querySelectorAll('.chip').forEach(function(c){c.classList.remove('sel');});bSel[key]=opt;chip.classList.add('sel');}
-            buildPrompt();
-          });
-          container.appendChild(chip);
-        })(opts[oi]);
-      }
-    })(groups[g]);
+  var bStyle='';
+  var styleContainer=document.getElementById('chips-style');
+  var styleSrc=SG_DATA.filter(function(d){return['fotografia','pintura','digital','retro','fantasia','ilustracao'].indexOf(d.cat)!==-1;});
+  for(var i=0;i<styleSrc.length;i++){
+    (function(d){
+      var card=document.createElement('div');card.className='style-card';
+      card.innerHTML='<div class="style-card-icon">'+d.icon+'</div><div class="style-card-name">'+esc(d.title)+'</div><div class="style-card-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div>';
+      card.addEventListener('click',function(){
+        if(bStyle===d.title){bStyle='';card.classList.remove('sel');}
+        else{styleContainer.querySelectorAll('.style-card').forEach(function(c){c.classList.remove('sel');});bStyle=d.title;card.classList.add('sel');}
+        buildPrompt();
+      });
+      styleContainer.appendChild(card);
+    })(styleSrc[i]);
   }
+
+  var multiGroups=['lighting','camera','angle','mood','color','quality','preserve','avoid'];
+  var singleGroups=['dof'];
+
+  function makeChips(key,isSingle){
+    var container=document.getElementById('chips-'+key);
+    if(!container)return;
+    var opts=BOPTS[key];
+    for(var oi=0;oi<opts.length;oi++){
+      (function(opt,isSingle,key){
+        var chip=document.createElement('div');chip.className='chip';chip.textContent=opt.v;
+        if(opt.tip){var tipEl=document.createElement('div');tipEl.className='chip-tip';tipEl.textContent=opt.tip;chip.appendChild(tipEl);}
+        chip.addEventListener('click',function(){
+          if(isSingle){
+            var cur=bSel[key];
+            container.querySelectorAll('.chip').forEach(function(c){c.classList.remove('sel');});
+            bSel[key]=(cur===opt.v)?'':opt.v;
+            if(bSel[key])chip.classList.add('sel');
+          } else {
+            var arr=bSel[key];var idx=arr.indexOf(opt.v);
+            if(idx===-1){arr.push(opt.v);chip.classList.add('sel');}
+            else{arr.splice(idx,1);chip.classList.remove('sel');}
+            var cntEl=document.getElementById('cnt-'+key);
+            if(cntEl)cntEl.textContent=arr.length?'('+arr.length+')':'';
+          }
+          buildPrompt();
+        });
+        container.appendChild(chip);
+      })(opts[oi],isSingle,key);
+    }
+  }
+  for(var g=0;g<multiGroups.length;g++)makeChips(multiGroups[g],false);
+  for(var g=0;g<singleGroups.length;g++)makeChips(singleGroups[g],true);
+
   document.getElementById('b-subject').addEventListener('input',buildPrompt);
-  document.getElementById('b-style').addEventListener('change',buildPrompt);
   document.getElementById('b-lang-toggle').addEventListener('click',function(e){var btn=e.target.closest('.lang-btn');if(!btn)return;bLang=btn.dataset.lang;document.querySelectorAll('#b-lang-toggle .lang-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');buildPrompt();});
-  document.getElementById('b-copy-btn').addEventListener('click',function(){var txt=document.getElementById('b-preview').textContent;if(!txt||txt.indexOf('Preencha')===0)return;var btn=document.getElementById('b-copy-btn');copyToClip(txt,btn,bLang==='en'?'EN':'PT',document.getElementById('b-style').value||'Builder');});
+  document.getElementById('b-copy-btn').addEventListener('click',function(){var txt=document.getElementById('b-preview').textContent;if(!txt||txt.indexOf('Preencha')===0)return;var btn=document.getElementById('b-copy-btn');copyToClip(txt,btn,bLang==='en'?'EN':'PT',bStyle||'Builder');});
+  document.getElementById('b-reset-btn').addEventListener('click',function(){
+    document.getElementById('b-subject').value='';
+    bStyle='';
+    document.querySelectorAll('#chips-style .style-card').forEach(function(c){c.classList.remove('sel');});
+    bSel={lighting:[],camera:[],angle:[],dof:'',mood:[],color:[],quality:[],preserve:[],avoid:[]};
+    document.querySelectorAll('#panel-builder .chip').forEach(function(c){c.classList.remove('sel');});
+    ['lighting','camera','angle','mood','color','quality','preserve','avoid'].forEach(function(k){var el=document.getElementById('cnt-'+k);if(el)el.textContent='';});
+    buildPrompt();
+  });
   buildPrompt();
 }
+
 function buildPrompt(){
   var subj=(document.getElementById('b-subject').value||'').trim();
-  var style=document.getElementById('b-style').value||'';
+  var style=bStyle||'';
   var parts=[];
+
+  function enArr(arr){return arr.map(function(v){return EN_MAP[v]||v;});}
+  function join(arr){
+    if(!arr.length)return '';
+    if(arr.length===1)return arr[0];
+    return arr.slice(0,-1).join(', ')+' and '+arr[arr.length-1];
+  }
+
   if(bLang==='en'){
     parts.push(style?'Transform this image into '+style+' style.':'Transform this image.');
-    if(subj)parts.push('The main subject is: '+subj+'.');
-    if(bSel.lighting)parts.push('Apply '+(EN_MAP[bSel.lighting]||bSel.lighting)+'.');
-    if(bSel.angle)parts.push('Use '+(EN_MAP[bSel.angle]||bSel.angle)+'.');
-    if(bSel.mood)parts.push('Create a '+(EN_MAP[bSel.mood]||bSel.mood)+'.');
-    if(bSel.color)parts.push('Apply '+(EN_MAP[bSel.color]||bSel.color)+'.');
-    if(bSel.quality)parts.push('Render with '+(EN_MAP[bSel.quality]||bSel.quality)+'.');
-    if(bSel.preserve)parts.push((EN_MAP[bSel.preserve]||bSel.preserve)+'.');
-    if(bSel.avoid)parts.push((EN_MAP[bSel.avoid]||bSel.avoid)+'.');
+    if(subj)parts.push('The subject is: '+subj+'.');
+    if(bSel.lighting.length)parts.push('Lighting: '+join(enArr(bSel.lighting))+'.');
+    if(bSel.camera.length)parts.push('Camera: '+join(enArr(bSel.camera))+'.');
+    if(bSel.angle.length)parts.push('Framing: '+join(enArr(bSel.angle))+'.');
+    if(bSel.dof)parts.push('Depth of field: '+(EN_MAP[bSel.dof]||bSel.dof)+'.');
+    if(bSel.mood.length)parts.push('Atmosphere: '+join(enArr(bSel.mood))+'.');
+    if(bSel.color.length)parts.push('Color: '+join(enArr(bSel.color))+'.');
+    if(bSel.quality.length)parts.push('Quality: '+join(enArr(bSel.quality))+'.');
+    var pres=bSel.preserve.map(function(v){return EN_MAP[v]||v;});
+    if(pres.length)parts.push(pres.join('. ')+'.');
+    var avds=bSel.avoid.map(function(v){return EN_MAP[v]||v;});
+    if(avds.length)parts.push(avds.join('. ')+'.');
   }else{
     parts.push(style?'Transforme esta imagem em estilo '+style+'.':'Transforme esta imagem.');
-    if(subj)parts.push('O sujeito principal é: '+subj+'.');
-    if(bSel.lighting)parts.push('Aplique '+bSel.lighting+'.');
-    if(bSel.angle)parts.push('Use '+bSel.angle+'.');
-    if(bSel.mood)parts.push('Crie uma atmosfera '+bSel.mood+'.');
-    if(bSel.color)parts.push('Aplique '+bSel.color+'.');
-    if(bSel.quality)parts.push('Renderize com '+bSel.quality+'.');
-    if(bSel.preserve)parts.push(bSel.preserve+'.');
-    if(bSel.avoid)parts.push(bSel.avoid+'.');
+    if(subj)parts.push('O sujeito é: '+subj+'.');
+    if(bSel.lighting.length)parts.push('Iluminação: '+bSel.lighting.join(', ')+'.');
+    if(bSel.camera.length)parts.push('Câmera: '+bSel.camera.join(', ')+'.');
+    if(bSel.angle.length)parts.push('Enquadramento: '+bSel.angle.join(', ')+'.');
+    if(bSel.dof)parts.push('Profundidade de campo: '+bSel.dof+'.');
+    if(bSel.mood.length)parts.push('Atmosfera: '+bSel.mood.join(', ')+'.');
+    if(bSel.color.length)parts.push('Cor: '+bSel.color.join(', ')+'.');
+    if(bSel.quality.length)parts.push('Qualidade: '+bSel.quality.join(', ')+'.');
+    if(bSel.preserve.length)parts.push(bSel.preserve.join('. ')+'.');
+    if(bSel.avoid.length)parts.push(bSel.avoid.join('. ')+'.');
   }
-  document.getElementById('b-preview').textContent=parts.join(' ');
+  document.getElementById('b-preview').textContent=parts.join(' ')||'Preencha os campos ao lado para montar seu prompt.';
 }
 
 // COMBO
@@ -1157,7 +1698,6 @@ function renderPaletas(){
   }
 }
 
-// INIT
 renderGuia();
 </script>
 </body>

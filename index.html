@@ -89,15 +89,15 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .gftab.active{background:var(--accent);border-color:var(--accent);color:#fff}
 .visual-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 /* VISUAL CARD */
-.vcard{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;position:relative;background:var(--bg3);border:1px solid var(--border);transition:transform .15s,border-color .15s;aspect-ratio:1/1;min-height:160px}
-.vcard:hover{transform:translateY(-3px) scale(1.02);border-color:var(--border2)}
-.vcard-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .4s}
+.vcard{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;position:relative;background:var(--bg3);border:1px solid var(--border);transition:transform .15s,border-color .15s;height:180px}
+.vcard:hover{transform:translateY(-3px);border-color:var(--border2)}
+.vcard-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .5s}
 .vcard-img.loaded{opacity:1}
-.vcard-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:42px;opacity:.18}
-.vcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.05) 100%)}
-.vcard:hover .vcard-overlay{background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.5) 60%,rgba(0,0,0,.1) 100%)}
-.vcard-bottom{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 9px;z-index:1}
-.vcard-name{font-family:var(--font-display);font-size:12px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:2px}
+.vcard-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px}
+.vcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.1) 100%)}
+.vcard:hover .vcard-overlay{background:linear-gradient(to top,rgba(0,0,0,.97) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.15) 100%)}
+.vcard-bottom{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 10px;z-index:1}
+.vcard-name{font-family:var(--font-display);font-size:12px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:2px}
 .vcard-cat{font-size:10px;color:rgba(255,255,255,.5);font-weight:500}
 .vcard-fav{position:absolute;top:7px;right:7px;font-size:13px;opacity:0;transition:opacity .15s;background:rgba(0,0,0,.5);border:none;cursor:pointer;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;z-index:2}
 .vcard:hover .vcard-fav{opacity:.7}
@@ -1124,71 +1124,8 @@ document.getElementById('nav-tabs').addEventListener('click',function(e){
   if(panel==='builder')initBuilder();
 });
 
-// IMAGE MAP — Unsplash representative images per style
-var IMG={
-  'Fotorrealista':       'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
-  'Cinematográfico':     'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=360&h=360&fit=crop&auto=format',
-  'Editorial / Moda':    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=360&h=360&fit=crop&auto=format',
-  'Street Photography':  'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
-  'Astrofotografia':     'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=360&h=360&fit=crop&auto=format',
-  'Retrato Dramático':   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
-  'Óleo sobre Tela':     'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=360&h=360&fit=crop&auto=format',
-  'Aquarela':            'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=360&h=360&fit=crop&auto=format',
-  'Impressionismo':      'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=360&h=360&fit=crop&auto=format',
-  'Esboço / Pencil Art': 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=360&h=360&fit=crop&auto=format',
-  'Art Nouveau':         'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=360&h=360&fit=crop&auto=format',
-  'Expressionismo':      'https://images.unsplash.com/photo-1501472312651-726afe119ff1?w=360&h=360&fit=crop&auto=format',
-  '3D Render / CGI':     'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=360&h=360&fit=crop&auto=format',
-  'Isométrico':          'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=360&h=360&fit=crop&auto=format',
-  'Cyberpunk / Neon':    'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=360&h=360&fit=crop&auto=format',
-  'Low Poly':            'https://images.unsplash.com/photo-1518770660439-4636190af475?w=360&h=360&fit=crop&auto=format',
-  'Glitch Art':          'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=360&h=360&fit=crop&auto=format',
-  'Concept Art':         'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=360&h=360&fit=crop&auto=format',
-  'Vaporwave / Synthwave':'https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=360&h=360&fit=crop&auto=format',
-  'Filme Analógico / Lo-Fi':'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=360&h=360&fit=crop&auto=format',
-  'Art Deco':            'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
-  'Pop Art':             'https://images.unsplash.com/photo-1534081333815-ae5019106622?w=360&h=360&fit=crop&auto=format',
-  'Film Noir':           'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=360&h=360&fit=crop&auto=format',
-  'Fantasy / Alta Fantasia':'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=360&h=360&fit=crop&auto=format',
-  'Dark Fantasy / Gothic':'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=360&h=360&fit=crop&auto=format',
-  'Sci-Fi / Ficção Científica':'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=360&h=360&fit=crop&auto=format',
-  'Studio Ghibli':       'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=360&h=360&fit=crop&auto=format',
-  'Horror / Suspense':   'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=360&h=360&fit=crop&auto=format',
-  'Livro Infantil':      'https://images.unsplash.com/photo-1472162072942-cd5147eb3902?w=360&h=360&fit=crop&auto=format',
-  'Anime / Manga':       'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=360&h=360&fit=crop&auto=format',
-  'Flat Design / Vector':'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=360&h=360&fit=crop&auto=format',
-  'Line Art':            'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=360&h=360&fit=crop&auto=format',
-  'Claymation / Stop Motion':'https://images.unsplash.com/photo-1530654782394-c506ee0af41f?w=360&h=360&fit=crop&auto=format',
-  'Sticker / Kawaii':    'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=360&h=360&fit=crop&auto=format',
-  'Golden Hour':         'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=360&h=360&fit=crop&auto=format',
-  'Chiaroscuro / Rembrandt':'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
-  'Bioluminescente':     'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=360&h=360&fit=crop&auto=format',
-  'Candlelight / Low Key':'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=360&h=360&fit=crop&auto=format',
-  'Luz Difusa / Overcast':'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
-  'Blue Hour':           'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
-  'Studio Lighting':     'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=360&h=360&fit=crop&auto=format',
-  'Regra dos Terços':    'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=360&h=360&fit=crop&auto=format',
-  "Bird's Eye View":     'https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?w=360&h=360&fit=crop&auto=format',
-  'Leading Lines':       'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=360&h=360&fit=crop&auto=format',
-  'Dutch Angle':         'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=360&h=360&fit=crop&auto=format',
-  'Close-up / Macro':    'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
-  'Enquadramento Simétrico':'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
-  'Plano Geral':         'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=360&h=360&fit=crop&auto=format',
-  'Plano Conjunto':      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
-  'Plano Médio':         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
-  'Plano Americano':     'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=360&h=360&fit=crop&auto=format',
-  'Primeiro Plano':      'https://images.unsplash.com/photo-1504276048855-f3d60e69632f?w=360&h=360&fit=crop&auto=format',
-  'Close-Up':            'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=360&h=360&fit=crop&auto=format',
-  'Plano Detalhe':       'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=360&h=360&fit=crop&auto=format',
-  'Plongée':             'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
-  'Contre-Plongée':      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=360&h=360&fit=crop&auto=format',
-  "Worm's Eye View":     'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=360&h=360&fit=crop&auto=format',
-  'Over the Shoulder':   'https://images.unsplash.com/photo-1504276048855-f3d60e69632f?w=360&h=360&fit=crop&auto=format',
-  'POV':                 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=360&h=360&fit=crop&auto=format',
-  'Dois Planos':         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=360&h=360&fit=crop&auto=format',
-  'Drone / Aerial Shot': 'https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?w=360&h=360&fit=crop&auto=format'
-};
-var IMG_FALLBACK='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=360&h=360&fit=crop&auto=format';
+// No external images — using CSS gradient backgrounds
+var IMG_FALLBACK='';
 
 // GUIA FILTER TABS
 document.getElementById('guia-filter-tabs').addEventListener('click',function(e){
@@ -1200,7 +1137,56 @@ document.getElementById('guia-filter-tabs').addEventListener('click',function(e)
 });
 document.getElementById('sg-search').addEventListener('input',function(){renderGuia();});
 
-// CATEGORY COLORS for background fallback
+// STYLE GRADIENTS — rich per-style background gradients
+var STYLE_GRAD={
+  'Fotorrealista':          'linear-gradient(135deg,#0f2027,#203a43,#2c5364)',
+  'Cinematográfico':        'linear-gradient(135deg,#0d0d0d,#1a0a00,#3d1c02)',
+  'Editorial / Moda':       'linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)',
+  'Street Photography':     'linear-gradient(135deg,#111,#1a1a1a,#2d2d2d)',
+  'Astrofotografia':        'linear-gradient(135deg,#020218,#0a0a2e,#1a0a3a)',
+  'Retrato Dramático':      'linear-gradient(135deg,#1a0a00,#2d1500,#3d1c02)',
+  'Óleo sobre Tela':        'linear-gradient(135deg,#2a1500,#3d2200,#4a2800)',
+  'Aquarela':               'linear-gradient(135deg,#e8f4f8,#b8dce8,#8cc4d8)',
+  'Impressionismo':          'linear-gradient(135deg,#1a3a1a,#2a4a1a,#1a2a0a)',
+  'Esboço / Pencil Art':    'linear-gradient(135deg,#1a1a18,#2a2a26,#3a3a34)',
+  'Art Nouveau':             'linear-gradient(135deg,#2a1a08,#3d2a10,#4a3518)',
+  'Expressionismo':          'linear-gradient(135deg,#2a0808,#3d1010,#4a1818)',
+  '3D Render / CGI':        'linear-gradient(135deg,#0a0a1e,#14143a,#1e1e56)',
+  'Isométrico':              'linear-gradient(135deg,#0a1e2a,#103a4a,#1a4a5a)',
+  'Cyberpunk / Neon':        'linear-gradient(135deg,#0d0020,#1a0035,#00001a)',
+  'Low Poly':                'linear-gradient(135deg,#0a1e3a,#0a2a4a,#1a3a5a)',
+  'Glitch Art':              'linear-gradient(135deg,#0d0020,#200d00,#001a20)',
+  'Concept Art':             'linear-gradient(135deg,#0a1a2a,#101a3a,#1a2a4a)',
+  'Vaporwave / Synthwave':   'linear-gradient(135deg,#200035,#35005a,#00102a)',
+  'Filme Analógico / Lo-Fi': 'linear-gradient(135deg,#1a1206,#2a1e0a,#3a2a10)',
+  'Art Deco':                'linear-gradient(135deg,#1a1200,#2a1e00,#3a2c00)',
+  'Pop Art':                 'linear-gradient(135deg,#1a0a1a,#2a0a2a,#1a0a00)',
+  'Film Noir':               'linear-gradient(135deg,#080808,#101010,#181818)',
+  'Fantasy / Alta Fantasia': 'linear-gradient(135deg,#0a1a2a,#1a2a3a,#0a0a2a)',
+  'Dark Fantasy / Gothic':   'linear-gradient(135deg,#0a0010,#10001a,#1a0020)',
+  'Sci-Fi / Ficção Científica':'linear-gradient(135deg,#020212,#04041e,#08082a)',
+  'Studio Ghibli':           'linear-gradient(135deg,#0a2a0a,#1a3a1a,#2a4a2a)',
+  'Horror / Suspense':       'linear-gradient(135deg,#0a0000,#180000,#200808)',
+  'Livro Infantil':          'linear-gradient(135deg,#1a2a0a,#2a3a1a,#1a1a2a)',
+  'Anime / Manga':           'linear-gradient(135deg,#0a0a2a,#1a1a3a,#0a1a2a)',
+  'Flat Design / Vector':    'linear-gradient(135deg,#0a1a3a,#1a2a4a,#0a2a3a)',
+  'Line Art':                'linear-gradient(135deg,#181818,#222,#2a2a2a)',
+  'Claymation / Stop Motion':'linear-gradient(135deg,#1a2a0a,#2a1a1a,#0a1a2a)',
+  'Sticker / Kawaii':        'linear-gradient(135deg,#2a0a2a,#3a1a3a,#1a0a2a)',
+  'Golden Hour':             'linear-gradient(135deg,#2a1800,#3d2800,#4a3800)',
+  'Chiaroscuro / Rembrandt': 'linear-gradient(135deg,#0a0800,#181200,#201800)',
+  'Bioluminescente':         'linear-gradient(135deg,#000a0a,#001a1a,#002a2a)',
+  'Candlelight / Low Key':   'linear-gradient(135deg,#1a0c00,#2a1400,#1a0800)',
+  'Luz Difusa / Overcast':   'linear-gradient(135deg,#1a1a20,#202028,#282830)',
+  'Blue Hour':               'linear-gradient(135deg,#000a20,#00123a,#001a4a)',
+  'Studio Lighting':         'linear-gradient(135deg,#101018,#181820,#202028)',
+  'Regra dos Terços':        'linear-gradient(135deg,#0a1428,#101e35,#182840)',
+  "Bird's Eye View":         'linear-gradient(135deg,#0a1e0a,#102a10,#1a3a1a)',
+  'Leading Lines':           'linear-gradient(135deg,#0a0a14,#10101e,#181828)',
+  'Dutch Angle':             'linear-gradient(135deg,#14000a,#200010,#2a0018)',
+  'Close-up / Macro':        'linear-gradient(135deg,#0a1a0a,#102010,#182818)',
+  'Enquadramento Simétrico': 'linear-gradient(135deg,#080818,#101020,#181828)',
+};
 var CAT_COLORS={
   fotografia:'#1a2a3a', pintura:'#2a1a1a', digital:'#1a1a2e',
   retro:'#2a1a2a', fantasia:'#1a2a1a', ilustracao:'#2a2a1a',
@@ -1222,11 +1208,10 @@ function renderGuia(){
   for(var fi=0;fi<filtered.length;fi++){
     var d=filtered[fi].d,i=filtered[fi].i;
     var isFav=favs.indexOf(d.title)!==-1;
-    var img=IMG[d.title]||IMG_FALLBACK;
-    var bg=CAT_COLORS[d.cat]||'#1a1a2e';
+    var bg=STYLE_GRAD[d.title]||(CAT_COLORS[d.cat]||'#1a1a2e');
     h+='<div class="vcard" data-vidx="'+i+'" style="background:'+bg+'">';
     h+='<div class="vcard-bg">'+d.icon+'</div>';
-    h+='<img class="vcard-img" src="'+img+'" alt="'+esc(d.title)+'" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'">';
+    // no external image
     h+='<div class="vcard-overlay"></div>';
     h+='<button class="vcard-fav'+(isFav?' on':'')+'" data-vfav="'+esc(d.title)+'" title="Favoritar">⭐</button>';
     h+='<div class="vcard-bottom"><div class="vcard-name">'+esc(d.title)+'</div><div class="vcard-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div></div>';
@@ -1248,7 +1233,9 @@ function openModal(idx){
   modalOpenIdx=idx;
   var tip=STYLE_TIPS[d.title]||null;
   var img=IMG[d.title]||IMG_FALLBACK;
-  document.getElementById('style-modal-img').src=img;
+  var mgrad=STYLE_GRAD[d.title]||(CAT_COLORS[d.cat]||'#1a1a2e');
+  document.getElementById('style-modal-img-wrap').style.background=mgrad;
+  document.getElementById('style-modal-img').src=img||'';
   document.getElementById('style-modal-cat').textContent=CAT_LABELS[d.cat]||d.cat;
   document.getElementById('style-modal-icon').textContent=d.icon;
   document.getElementById('style-modal-title').textContent=d.title;
@@ -1301,7 +1288,7 @@ function renderFavs(){
   if(!found.length){grid.innerHTML='<div class="panel-empty">Nenhum favorito ainda.<br><small>Clique na ⭐ nos cards do Guia.</small></div>';return;}
   var h='';
   for(var fi=0;fi<found.length;fi++){
-    var d=found[fi].d,i=found[fi].i,img=IMG[d.title]||IMG_FALLBACK,bg=CAT_COLORS[d.cat]||'#1a1a2e';
+    var d=found[fi].d,i=found[fi].i,bg=STYLE_GRAD[d.title]||(CAT_COLORS[d.cat]||'#1a1a2e');
     h+='<div class="vcard" data-vidx="'+i+'" style="background:'+bg+'"><div class="vcard-bg">'+d.icon+'</div><img class="vcard-img" src="'+img+'" alt="'+esc(d.title)+'" loading="lazy" onload="this.classList.add(\'loaded\')" onerror="this.style.display=\'none\'"><div class="vcard-overlay"></div><button class="vcard-fav on" data-vfav="'+esc(d.title)+'">⭐</button><div class="vcard-bottom"><div class="vcard-name">'+esc(d.title)+'</div><div class="vcard-cat">'+esc(CAT_LABELS[d.cat]||d.cat)+'</div></div></div>';
   }
   grid.innerHTML=h;
@@ -1437,7 +1424,7 @@ var BOPTS = {
     {v:'Fundo original',tip:'O ambiente ao redor do sujeito se mantém'},
   ],
   avoid:[
-    {v:'Não adicionar texto',tip:'Nenhum texto ou marca d\'água na imagem'},
+    {v:'Não adicionar texto',tip:'Nenhum texto ou marca dagua na imagem'},
     {v:'Não adicionar pessoas',tip:'Não inserir pessoas que não estavam na imagem original'},
     {v:'Não tornar cartoon',tip:'Manter realismo, não caricaturar'},
     {v:'Não borrar',tip:'Manter nitidez e foco'},
@@ -1698,7 +1685,7 @@ function renderPaletas(){
   }
 }
 
-renderGuia();
+document.addEventListener("DOMContentLoaded",function(){renderGuia();});
 </script>
 </body>
 </html>
